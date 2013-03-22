@@ -1,0 +1,9 @@
+{
+	"font_face": "Source Code Pro",
+	"font_size": 13,
+	// When enabled, pressing tab will insert the best matching completion.
+	// When disabled, tab will only trigger snippets or insert a tab.
+	// Shift+tab can be used to insert an explicit tab when tab_completion is
+	// enabled.
+	"tab_completion": false
+}
