@@ -1,0 +1,18 @@
+{
+	/*Default jsHint Options*/
+	"browser": true,
+	"es5": true,
+	"esnext": true,
+	"globalstrict": false,
+	"trailing": false,
+	"undef": true,
+	"sub": true,
+	"evil": true,
+	"noarg": true,
+	"eqeqeq": true,
+	"bitwise": true,
+	"curly": false,
+	"jquery": true,
+	"devel": true,
+	"dojo": true
+}
