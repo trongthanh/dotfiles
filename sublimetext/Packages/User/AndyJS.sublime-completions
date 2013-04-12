@@ -216,7 +216,7 @@
         { "trigger": "concat()\tArray", "contents": "concat(${1:values})$0" },
         { "trigger": "every()\tArray", "contents": "every(${1:testfunction}${2:[, thisobj]})$0" },
         { "trigger": "filter()\tArray", "contents": "filter(${1:testfunction}${2:[, thisobj]})$0" },
-        { "trigger": "foreach()\tArray", "contents": "foreach(${1:testfunction}${2:[, thisobj]})$0" },
+        { "trigger": "forEach()\tArray", "contents": "forEach(${1:fn(item)}${2:[, thisobj]})$0" },
         { "trigger": "indexOf()\tArray", "contents": "indexOf(${1:targetElement}${2:[, startIndex]})$0" },
         { "trigger": "join()\tArray", "contents": "join(${1:separator})$0" },
         { "trigger": "lastIndexOf()\tArray", "contents": "lastIndexOf(${1:targetElement}${2:[, startIndex]})$0" },
