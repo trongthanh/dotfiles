@@ -1,9 +1,14 @@
 {
+	// nice monospace font from Adobe
 	"font_face": "Source Code Pro",
 	"font_size": 13,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
-	"tab_completion": false
+	"tab_completion": false,
+	// better looking dark theme; need to install via Package Control
+	"theme": "Soda Dark.sublime-theme",
+	// remove $ so that I can select jquery $variable as whole word
+    "word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?"
 }
