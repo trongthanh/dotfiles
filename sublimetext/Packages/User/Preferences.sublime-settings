@@ -8,7 +8,5 @@
 	],
 	"tab_completion": false,
 	// better looking dark theme; need to install via Package Control
-	"theme": "Soda Dark.sublime-theme",
-	// remove $ so that I can select jquery $variable as whole word
-    "word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?"
+	"theme": "Soda Dark.sublime-theme"
 }
