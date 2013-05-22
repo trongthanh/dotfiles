@@ -1,11 +1,11 @@
 {
 	/*Default jsHint Options*/
 	"browser": true,
-	"es5": true,
 	"esnext": true,
 	"globalstrict": false,
 	"trailing": false,
 	"undef": true,
+	"unused": true,
 	"sub": true,
 	"evil": true,
 	"noarg": true,
