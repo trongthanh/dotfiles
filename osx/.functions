@@ -142,3 +142,12 @@ gifify() {
   fi
 }
 
+# Clean up dupplicated programs icon in Open With menu
+# Source: internet (to be added)
+function resetow() { # reset Open With
+	/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;
+	killall Finder;
+	echo "Open With has been rebuilt, Finder will relaunch"
+}
+
+
