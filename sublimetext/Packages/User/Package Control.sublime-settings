@@ -1,0 +1,19 @@
+{
+	"installed_packages":
+	[
+		"All Autocomplete",
+		"AutoFileName",
+		"ColorPicker",
+		"DocBlockr",
+		"Emmet",
+		"Package Control",
+		"Pretty JSON",
+		"SublimeLinter",
+		"Theme - Soda"
+	],
+	"auto_upgrade_ignore":
+	[
+		"AutoFileName",
+		"SublimeLinter"
+	]
+}
