@@ -6,6 +6,9 @@
 	[
 		"Vintage"
 	],
+	//this must be set in user settings to be enabled in MAC OSX
+	"scroll_past_end": true,
+	//avoid confusion with tabstops
 	"tab_completion": false,
 	// better looking dark theme; need to install via Package Control
 	"theme": "Soda Dark.sublime-theme",
