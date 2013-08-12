@@ -15,7 +15,7 @@ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-ke
 sudo apt-get update
 
 # Install neccessary packages:
-sudo apt-get install git subversion meld
+sudo apt-get install git subversion meld ubuntu-restricted-extras
 
 # Install Google Chrome Canary
 sudo apt-get install google-chrome-unstable
