@@ -1,5 +1,7 @@
 # Package management
-alias update="sudo apt-get -qq update && sudo apt-get upgrade"
+alias addrepo="sudo apt-add-repository"
+alias update="sudo apt-get update"
+alias upgrade="sudo apt-get -qq update && sudo apt-get upgrade"
 alias install="sudo apt-get install"
 alias remove="sudo apt-get remove"
 alias search="apt-cache search"
@@ -24,11 +26,11 @@ alias c='pygmentize -O style=monokai -f console256 -g'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en1" # NOT WORKING
+alias localip="ifconfig | grep" # NOT WORKING, use ips instead
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
 # Enhanced WHOIS lookups
-alias whois="whois -h whois-servers.net" #NOT WORKING
+alias whois="whois -h whois-servers.net" #NOT WORKING, whois is not install by default
 
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
