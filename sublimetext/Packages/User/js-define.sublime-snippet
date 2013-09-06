@@ -2,12 +2,18 @@
 	<content><![CDATA[
 define(function (require) {
 	//imports
-	var ${1:Module} = require('${2:module_path}');
+	${3:var ${1:Module} = require('${2:module/path}');}
 
-	${0://body}
+	/**
+	 * ${4:[description]}
+	 *
+	 * @class ${TM_FILENAME/(.*)[.](.*)/$1/g}
+	 * @namespace ${5:${TM_FILEPATH/.*(app.*)\/.*/$1/ig}}
+	 */
+	var ${TM_FILENAME/(.*)[.](.*)/$1/g} = ${0:\{\}};
 
 	//exports
-	return {};
+	return ${TM_FILENAME/(.*)[.](.*)/$1/g};
 });
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
