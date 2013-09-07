@@ -11,7 +11,10 @@
 	//avoid confusion with tabstops
 	"tab_completion": false,
 	// better looking dark theme; need to install via Package Control
-	"theme": "Soda Dark.sublime-theme",
+	//"theme": "Soda Dark.sublime-theme", //ST2
+	//"theme": "Soda Dark 3.sublime-theme", //ST3
+	// better dark monokai editor scheme, bundled in User folder
+	"color_scheme": "Packages/User/Monokai Soda.tmTheme",
 	// Set to true to removing trailing white space on save
 	"trim_trailing_white_space_on_save": true
 }
