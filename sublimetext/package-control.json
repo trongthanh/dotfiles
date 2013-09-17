@@ -3,9 +3,15 @@
 
 	"packages": [
 		{
-			"name": "JavaScriptCompletions",
+			"name": "JavaScript Completions",
 			"details": "https://github.com/trongthanh/AndyJS2",
-			"labels": ["auto-complete", "snippets"]
+			"labels": ["auto-complete", "snippets"],
+			"releases": [
+				{
+					"details": "https://github.com/trongthanh/AndyJS2/releases"
+				}
+			]
+
 		}
 	]
 }
