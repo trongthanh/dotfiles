@@ -16,5 +16,9 @@
 	// better dark monokai editor scheme, bundled in User folder
 	"color_scheme": "Packages/User/Monokai Soda.tmTheme",
 	// Set to true to removing trailing white space on save
-	"trim_trailing_white_space_on_save": true
+	"trim_trailing_white_space_on_save": true,
+	// The delay, in ms, before the auto complete window is shown after typing
+	// TTT: Delaying this to have the completion files more likely
+	// to be included in the auto complete list
+    "auto_complete_delay": 200
 }
