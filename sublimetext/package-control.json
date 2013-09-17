@@ -3,7 +3,7 @@
 
 	"packages": [
 		{
-			"name": "JavaScriptCompletions"
+			"name": "JavaScriptCompletions",
 			"details": "https://github.com/trongthanh/AndyJS2",
 			"labels": ["auto-complete", "snippets"]
 		}
