@@ -1,5 +1,5 @@
 <snippet>
-	<content><![CDATA[require('${1:${TM_CURRENT_LINE/.*?(\w+)\s*=\s*|\s*/$1/}}')]]></content>
+	<content><![CDATA[require('${1:${TM_CURRENT_LINE/.*?(\w+)\s*=\s*;?|\s*/$1/}}')]]></content>
 	<tabTrigger>req</tabTrigger>
 	<scope>source.js</scope>
 	<description>RequireJS require('pkg')</description>
