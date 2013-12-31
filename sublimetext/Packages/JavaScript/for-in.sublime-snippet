@@ -1,6 +1,6 @@
 <snippet>
     <content><![CDATA[for (var prop in ${1:obj}) {
-    ${1:obj}[prop]
+	${1:obj}[prop]
 }]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
     <tabTrigger>forin</tabTrigger>
