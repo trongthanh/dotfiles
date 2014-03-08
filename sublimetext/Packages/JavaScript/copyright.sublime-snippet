@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[/* © 2014 ${1:NauStud.io}
+ * @author ${2:...}
+ */$0]]></content>
+    <tabTrigger>copyright</tabTrigger>
+    <scope>source.js,source.css,source.scss,source.php</scope>
+    <description>© copyright</description>
+</snippet>
