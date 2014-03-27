@@ -1,20 +1,29 @@
 {
 	"installed_packages":
 	[
+		"Alignment",
 		"All Autocomplete",
 		"AutoFileName",
 		"ColorPicker",
 		"DocBlockr",
+		"EasyMotion",
+		"EditorConfig",
 		"Emmet",
+		"GitGutter",
+		"Gutter Color",
+		"JavaScriptNext - ES6 Syntax",
+		"JsFormat",
+		"MarkdownEditing",
 		"Package Control",
 		"Pretty JSON",
-		"SublimeLinter",
 		"Sass",
+		"Select Quoted",
+		"SublimeLinter",
+		"SublimeLinter-csslint",
+		"SublimeLinter-jscs",
+		"SublimeLinter-jshint",
+		"SublimeLinter-json",
+		"Sublimerge Pro",
 		"Theme - Soda"
-	],
-	"auto_upgrade_ignore":
-	[
-		"AutoFileName",
-		"SublimeLinter"
 	]
 }
