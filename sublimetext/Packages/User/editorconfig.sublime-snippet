@@ -1,0 +1,28 @@
+<snippet>
+	<content><![CDATA[# .editorconfig
+# NauStud.io Editor Config https://github.com/naustudio/dotfiles
+# More info: editorconfig.org
+
+root = true
+
+[*]
+
+# Change these settings to your own preference
+indent_style = tab
+indent_size = 4
+
+# We recommend you to keep these unchanged
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+
+[*.md]
+
+trim_trailing_whitespace = false
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>editorconfig</tabTrigger>
+	<description>.editorconfig</description>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
