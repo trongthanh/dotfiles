@@ -116,6 +116,7 @@
 		"window",
 		"XDomainRequest()",
 		"XMLHttpRequest()",
+		{ "trigger": "us\tuse strict", "contents": "'use strict';" },
 		// Global functions/constructors
 		{ "trigger": "ActiveXObject()\tJS Global", "contents": "ActiveXObject(\"${1:Microsoft.XMLHTTP}\")" },
 		{ "trigger": "Date()\tJS Global", "contents": "Date()" },
