@@ -1,5 +1,5 @@
 <snippet>
-	<content><![CDATA[console.log(${1:String});]]></content>
+	<content><![CDATA[console.${1:l}${1/(l)|(i)|(d)|(w)|(e)|.*/(?1:og)(?2:nfo)(?3:ebug)(?4:arn)(?5:rror)/}($2);]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>log</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
