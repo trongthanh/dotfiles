@@ -12,6 +12,10 @@ alias supercanary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Googl
 alias please=sudo
 alias hosts='sudo st /etc/hosts'   # yes I occasionally 127.0.0.1 twitter.com ;)
 
+# some list files shortcuts
+alias ll='ls -la'
+alias la='ls -a'
+
 # List only directories
 alias lsd='ls -l | grep "^d"'
 
