@@ -1,4 +1,4 @@
-dotfiles
-========
+Nau dotfiles
+============
 
-My essential snippets &amp; configurations for my tools and stuff
+Nau Studio toolset configurations & snippets
