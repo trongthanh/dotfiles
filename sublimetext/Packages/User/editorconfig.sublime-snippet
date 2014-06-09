@@ -19,6 +19,11 @@ trim_trailing_whitespace = true
 [*.md]
 
 trim_trailing_whitespace = false
+
+[package.json]
+# package.json adhere to --save-dev manipulation styles
+indent_style = space
+indent_size = 2
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>editorconfig</tabTrigger>
