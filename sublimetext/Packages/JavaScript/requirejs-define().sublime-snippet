@@ -1,7 +1,8 @@
 <snippet>
 	<content><![CDATA[
-define(function (require) {
-	//imports
+define(function(require) {
+	'use strict';
+	// imports
 	${3:var ${1:Module} = require('${2:module/path}');}
 
 	/**
@@ -12,7 +13,7 @@ define(function (require) {
 	 */
 	var ${TM_FILENAME/(.*)[.](.*)/$1/g} = ${0:\{\}};
 
-	//exports
+	// exports
 	return ${TM_FILENAME/(.*)[.](.*)/$1/g};
 });
 ]]></content>
