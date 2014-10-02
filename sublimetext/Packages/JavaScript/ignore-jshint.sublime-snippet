@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[/* jshint ignore:${1:s}${1/(s)|(e)|(l)|.*/(?1:tart)(?2:nd)(?3:ine)/} */]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>ignore</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js</scope>
+	<description>/* jshint ignore:[s|e|l] */</description>
+</snippet>
