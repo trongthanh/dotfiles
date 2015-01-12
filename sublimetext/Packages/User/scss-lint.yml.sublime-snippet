@@ -1,0 +1,47 @@
+<snippet>
+	<content><![CDATA[
+# .scss-lint.yml
+
+# inherit_from: ''
+# exclude: ''
+
+linters:
+    Comment:
+        enabled: false
+    ColorKeyword:
+        enabled: false
+    PropertySortOrder:
+        enabled: false
+    UrlQuotes:
+        enabled: false
+    Indentation:
+        exclude:
+            - 'plugins/**'
+        severity: warning
+        character: tab
+        width: 1
+
+    #debatable:
+    LeadingZero:
+        style: include_zero
+    VendorPrefixes:
+        enabled: false
+    HexNotation:
+        style: lowercase
+        #OR uppercase
+    ImportPath:
+        leading_underscore: false
+        filename_extension: false
+    Shorthand:
+        enabled: true
+    SingleLinePerSelector:
+        enabled: false
+    StringQuotes:
+        style: double_quotes
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>scsslint</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
