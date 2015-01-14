@@ -8,8 +8,6 @@
 linters:
     Comment:
         enabled: false
-    ColorKeyword:
-        enabled: false
     PropertySortOrder:
         enabled: false
     UrlQuotes:
@@ -20,25 +18,19 @@ linters:
         severity: warning
         character: tab
         width: 1
-
-    #debatable:
     LeadingZero:
         style: include_zero
     VendorPrefixes:
         enabled: false
     HexNotation:
         style: lowercase
-        #OR uppercase
     ImportPath:
         leading_underscore: false
         filename_extension: false
     Shorthand:
         enabled: true
-    SingleLinePerSelector:
-        enabled: false
     StringQuotes:
-        style: double_quotes
-
+        style: single_quotes
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>scsslint</tabTrigger>
