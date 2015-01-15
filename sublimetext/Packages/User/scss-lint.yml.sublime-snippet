@@ -29,6 +29,10 @@ linters:
         convention: BEM
     Shorthand:
         enabled: true
+    SpaceAfterPropertyColon:
+        style: at_least_one_space
+    SpaceBeforeBrace:
+        allow_single_line_padding: true
     StringQuotes:
         style: single_quotes
     UrlQuotes:
