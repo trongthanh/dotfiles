@@ -8,10 +8,11 @@
 linters:
     Comment:
         enabled: false
-    PropertySortOrder:
-        enabled: false
-    UrlQuotes:
-        enabled: false
+    HexNotation:
+        style: lowercase
+    ImportPath:
+        leading_underscore: false
+        filename_extension: false
     Indentation:
         exclude:
             - 'plugins/**'
@@ -20,20 +21,22 @@ linters:
         width: 1
     LeadingZero:
         style: include_zero
-    VendorPrefixes:
+    NameFormat:
+        convention: BEM
+    PropertySortOrder:
         enabled: false
-    HexNotation:
-        style: lowercase
-    ImportPath:
-        leading_underscore: false
-        filename_extension: false
     Shorthand:
         enabled: true
     StringQuotes:
         style: single_quotes
+    UrlQuotes:
+        enabled: false
+    VendorPrefixes:
+        enabled: false
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>scsslint</tabTrigger>
+    <description>.scss-lint.yml</description>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<!-- <scope>source.python</scope> -->
 </snippet>
