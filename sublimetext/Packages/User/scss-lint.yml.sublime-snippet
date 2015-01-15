@@ -25,6 +25,8 @@ linters:
         convention: BEM
     PropertySortOrder:
         enabled: false
+    SelectorFormat:
+        convention: BEM
     Shorthand:
         enabled: true
     StringQuotes:
@@ -36,7 +38,7 @@ linters:
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>scsslint</tabTrigger>
-    <description>.scss-lint.yml</description>
+	<description>.scss-lint.yml</description>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<!-- <scope>source.python</scope> -->
 </snippet>
