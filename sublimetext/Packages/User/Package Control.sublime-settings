@@ -3,7 +3,6 @@
 	[
 		"Alignment",
 		"All Autocomplete",
-		"AutoFileName",
 		"Color Highlighter",
 		"ColorPicker",
 		"CSS3",
@@ -11,13 +10,13 @@
 		"EasyMotion",
 		"EditorConfig",
 		"Emmet",
+		"FuzzyFilePath",
 		"Gist",
 		"GitGutter",
 		"Handlebars",
 		"Hex to HSL Color Converter",
 		"HTML-CSS-JS Prettify",
 		"JavaScriptNext - ES6 Syntax",
-		"LESS",
 		"MarkdownEditing",
 		"nginx",
 		"Open Finder",
@@ -25,8 +24,8 @@
 		"Pretty JSON",
 		"PxToEm",
 		"ReactJS",
-		"Sass",
 		"SassBeautify",
+		"SCSS",
 		"Select Quoted",
 		"SublimeLinter",
 		"SublimeLinter-contrib-scss-lint",
@@ -35,8 +34,6 @@
 		"SublimeLinter-jshint",
 		"SublimeLinter-json",
 		"SublimeLinter-jsxhint",
-		"Sublimerge Pro",
-		"Terminal",
-		"Theme - Soda"
+		"Terminal"
 	]
 }
