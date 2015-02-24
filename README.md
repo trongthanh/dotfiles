@@ -6,7 +6,7 @@ OSX
 ---
 These dotfiles are specific to Mac OS X only.
 
-### The Setup New Machine Script
+### The Setup New Machine Script:
 
 Use this script to install command line tools and set up defaults for a new OSX installation. Read the script for what it will do.
 
@@ -16,17 +16,18 @@ To run, execute:
 ```
 (Add execute permission if the file hasn't: `chmod +x initialize.sh`).
 
-### Terminal / Command Line Helpers
+### Terminal / Command Line Helpers:
+
 These files will add useful aliases and functions to your terminal session.
 
-#### What are they
+#### What are they:
 
 - `.aliases`
 - `.bashrc`
 - `.bash_profile`
 - `.functions`
 
-#### How to install
+#### How to install:
 
 Running sync will copy those dotfiles into `~/`.
 ```shell
@@ -35,6 +36,7 @@ Running sync will copy those dotfiles into `~/`.
 To update later on, just run the sync again.
 
 #### Extras:
+
 There are additional setup you might be interested in:
 
 - Git friendly terminal prompt: [Mathias Bynens' `.bash_prompt`](https://github.com/mathiasbynens/dotfiles/blob/master/.bash_prompt)
@@ -56,9 +58,11 @@ Our conventional IDE for Front End development is SubLime Text 3.
 Inside this folders are predefined snippets and settings for it:
 
 ### JavaScript
+
 The files in this folder can be classified into these categories:
 
 #### Completions Files:
+
 Sublime Text [completions files](http://sublime-text-unofficial-documentation.readthedocs.org/en/latest/reference/completions.html) (.sublime-completions) are dictionaries that keep a set of auto completion texts. 
 
 - __JavaScript.sublime-completions__: Auto completions for vanilla JavaScript language
@@ -68,6 +72,7 @@ Sublime Text [completions files](http://sublime-text-unofficial-documentation.re
 - __jQuery.sublime-completions__: Auto completions for jQuery API
 
 #### Snippets:
+
 [Snippets](http://sublime-text-unofficial-documentation.readthedocs.org/en/latest/extensibility/snippets.html) are like completion files but they deal with single entry and have higher priority when displayed in the completion list.
 
 Some remarkable snippets:
@@ -81,12 +86,16 @@ Some remarkable snippets:
 Please check out other snippets in the folder to learn what's available.
 
 ### User
+
 Some other general config for ST3:
 
 #### Default Sublime Text Plugin List:
+
+In __Package Control.sublime-settings__, there is our recommended list of ST3 plugins for Front End development, with details below.
+
 Install __Package Control__ plugin (instructions at [its website](https://packagecontrol.io)) before copying `Package Control.sublime-settings`. The rest will be installed automatically after you restart Sublime Text.
 
-In __Package Control.sublime-settings__, there is our recommended list of ST3 plugins for Front End development; includes:
+The recommended plugins are:
 
 - [Alignment](https://github.com/wbond/sublime_alignment): Help align code for better readability (especially in long properties list). Shortcut has been switch to `ctrl + shift + a` due to conflicts with SublimeLinter
 - [All Autocomplete](https://github.com/alienhard/SublimeAllAutocomplete): List and suggest completion for all the words appeared in opened files
@@ -115,7 +124,9 @@ In __Package Control.sublime-settings__, there is our recommended list of ST3 pl
 - [SublimeLinter-jshint](https://github.com/SublimeLinter/SublimeLinter-jshint): SublimeLinter plugin for JavaScript, using NodeJS package `jshint`.
 - [SublimeLinter-json](https://github.com/SublimeLinter/SublimeLinter-json): SublimeLinter plugin for JSON. 
 - [SublimeLinter-jsxhint](https://github.com/SublimeLinter/SublimeLinter-jsxhint): SublimeLinter 3 plugin for JSX (React.js), using the NodeJS package `jsxhint`. 
-- [Terminal](http://wbond.net/sublime_packages/terminal): Launch terminals from the current file or the root project folder
+- [Terminal](http://wbond.net/sublime_packages/terminal): Launch terminals from the current file or the root project folder.
+
+_Note: key bindings for the plugins to be added_
 
 #### Additional Snippets:
 
@@ -127,7 +138,7 @@ In __Package Control.sublime-settings__, there is our recommended list of ST3 pl
 
 #### Key Bindings Modifiers
 
-These key binding modifiers are to resolve conflicts among plugins (mostly with sublimelinter) and add shortcuts to useful but hidden commands:
+These key binding modifiers for OSX (`Default (OSX).sublime-keymap`) are to resolve conflicts among plugins (mostly with SublimeLinter) and add shortcuts to useful but hidden commands:
 
 ```json
 [
@@ -136,8 +147,6 @@ These key binding modifiers are to resolve conflicts among plugins (mostly with 
     {"keys": ["shift+ctrl+e"], "command": "px_to_em"}
 ]
 ```
-
-
 
 #### Other Preferences
 
