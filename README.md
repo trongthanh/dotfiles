@@ -99,7 +99,7 @@ The recommended plugins are:
 
 - [Alignment](https://github.com/wbond/sublime_alignment): Help align code for better readability (especially in long properties list). Shortcut has been switch to `ctrl + shift + a` due to conflicts with SublimeLinter
 - [All Autocomplete](https://github.com/alienhard/SublimeAllAutocomplete): List and suggest completion for all the words appeared in opened files
-- [Color Highlighter](): is a plugin for the Sublime text 2 and 3, which underlays selected hexadecimal colorcodes (like "#FFFFFF", "rgb(255,255,255)", "white", etc.) with their real color. Also, plugin adds color picker to easily modify colors.
+- [Color Highlighter](https://github.com/Monnoroch/ColorHighlighter): is a plugin for the Sublime text 2 and 3, which underlays selected hexadecimal colorcodes (like "#FFFFFF", "rgb(255,255,255)", "white", etc.) with their real color. Also, plugin adds color picker to easily modify colors.
 - [CSS3](https://github.com/y0ssar1an/CSS3): The most complete CSS support for Sublime Text 3
 - [DocBlockr](https://github.com/spadgos/sublime-jsdocs): Simplifies writing DocBlock comments in Javascript, PHP, CoffeeScript, Actionscript...
 - [EditorConfig](https://github.com/sindresorhus/editorconfig-sublime): Helps developers maintain consistent coding styles between different editors. See `.editorconfig` snippet.
@@ -138,25 +138,33 @@ _Note: key bindings for the plugins to be added_
 
 #### Key Bindings Modifiers
 
-These key binding modifiers for OSX (`Default (OSX).sublime-keymap`) are to resolve conflicts among plugins (mostly with SublimeLinter) and add shortcuts to useful but hidden commands:
+These key binding modifiers for OSX (`Default (OSX).sublime-keymap`) are to resolve conflicts among plugins and add shortcuts to useful but hidden commands:
 
-```json
+```js
 [
+    // Reveal current opening file in sidebar:
     {"keys": ["ctrl+super+r"], "command": "reveal_in_side_bar"},
+    // New key binding for Alignment plugin
     {"keys": ["shift+ctrl+a"], "command": "alignment"},
-    {"keys": ["shift+ctrl+e"], "command": "px_to_em"}
+    // New key binding for PxToEm plugin
+    {"keys": ["shift+ctrl+e"], "command": "px_to_em"},
 ]
 ```
 
 #### Other Preferences
 
-##### Preferences
+##### `ColorHighlighter.sublime-settings`
+
+- Disable its key bindings for now due to conflict with expand selection to tag (`super+shift+a`).
+- Add some additional extensions where color highlighting is expected.
+
+##### `Emmet.sublime-settings`
 [TBC]
 
-##### Emmet
+##### `Preferences.sublime-settings`
 [TBC]
 
-##### FuzzyFilePath
+##### `FuzzyFilePath.sublime-settings`
 [TBC]
 
 -------------------------------------------------------------------------------
