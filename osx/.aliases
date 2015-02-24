@@ -5,8 +5,9 @@ alias superchrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrom
 # Google Chrome with security disabled
 alias supercanary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --disable-web-security --allow-file-access-from-files"
 
-# For Sublime Text 2, do this:
-# ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/st
+# Sublime Text 3 cli command
+# For Sublime Text 3, do this (once):
+# ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
 
 # be nice
 alias please=sudo

@@ -2,6 +2,54 @@ Nâu Dotfiles
 ============
 A set of recommended OS and tooling configurations for Nau team.
 
+OSX
+---
+These dotfiles are specific to Mac OS X only.
+
+### The Setup New Machine Script
+
+Use this script to install command line tools and set up defaults for a new OSX installation. Read the script for what it will do.
+
+To run, execute:
+```shell
+./setup-new-machine.sh
+```
+(Add execute permission if the file hasn't: `chmod +x initialize.sh`).
+
+### Terminal / Command Line Helpers
+These files will add useful aliases and functions to your terminal session.
+
+#### What are they
+
+- `.aliases`
+- `.bashrc`
+- `.bash_profile`
+- `.functions`
+
+#### How to install
+
+Running sync will copy those dotfiles into `~/`.
+```shell
+./sync.sh
+```
+To update later on, just run the sync again.
+
+#### Extras:
+There are additional setup you might be interested in:
+
+- Git friendly terminal prompt: [Mathias Bynens' `.bash_prompt`](https://github.com/mathiasbynens/dotfiles/blob/master/.bash_prompt)
+- Auto complete git commands: [git-completion.bash](http://git-scm.com/book/en/v1/Git-Basics-Tips-and-Tricks#Auto-Completion)
+
+-------------------------------------------------------------------------------
+
+Ubuntu
+------
+Ubuntu is not our official working OS yet. 
+These dotfiles and bash profile configs are for personal uses. 
+Usage is similar to ones in OSX.
+
+-------------------------------------------------------------------------------
+
 SublimeText
 -------------
 Our conventional IDE for Front End development is SubLime Text 3.
@@ -14,7 +62,9 @@ The files in this folder can be classified into these categories:
 Sublime Text [completions files](http://sublime-text-unofficial-documentation.readthedocs.org/en/latest/reference/completions.html) (.sublime-completions) are dictionaries that keep a set of auto completion texts. 
 
 - __JavaScript.sublime-completions__: Auto completions for vanilla JavaScript language
-    Note: We are considering the ST package __JavaScript Completions__ to replace this completion file.
+
+    _**Note**: We are considering the ST package **JavaScript Completions** to replace this completion file._
+
 - __jQuery.sublime-completions__: Auto completions for jQuery API
 
 #### Snippets:
@@ -22,11 +72,11 @@ Sublime Text [completions files](http://sublime-text-unofficial-documentation.re
 
 Some remarkable snippets:
 
-- __console.log()__: Trigger by typing `log`; after it completes the text, you have the chance to switch to `console.info()` or `console.warn()` or `console.error()` by typing the first letter of the method, respectively __i, w, e__
-- __[IIFE](http://benalman.com/news/2010/11/immediately-invoked-function-expression/) block__: Trigger `iife`; complete the "immediately invoked function expression" block.
-- __[JSHint](http://jshint.com/) by-project config__: Trigger by `jshintrc` in new text file; it will complete the file with Nau's conventional linting rules for JavaScript. Save it to the root of the project.
-- __[JSCS](http://jscs.info/) coding style config__: Trigger by `jscsrc` in new text file; it will complete the file with Nau's coding style rules for JavaScript. Save it to the root of the project.
-- __[RequireJS](http://requirejs.org/docs/api.html#cjsmodule) Module with Simplified CommonJS Wrapper__: Trigger by `define`. This is our recommended AMD syntax where the dependencies are imported by a `require` function which makes it similar to NodeJS modules and a convenience to add / remove dependencies.
+- __console.log()__: Triggered by typing `log`; after it completes the text `console.log()`, you have the chance to switch to `console.info()` or `console.warn()` or `console.error()` by typing the first letter of the method, respectively __i, w, e__
+- __[IIFE](http://benalman.com/news/2010/11/immediately-invoked-function-expression/) block__: Triggered by `iife`; complete the "immediately invoked function expression" block.
+- __[JSHint](http://jshint.com/) by-project config__: Triggered by `jshintrc` in new text file; it will complete the file with Nau's conventional linting rules for JavaScript. Save it to the root of the project.
+- __[JSCS](http://jscs.info/) coding style config__: Triggered by `jscsrc` in new text file; it will complete the file with Nau's coding style rules for JavaScript. Save it to the root of the project.
+- __[RequireJS](http://requirejs.org/docs/api.html#cjsmodule) Module with Simplified CommonJS Wrapper__: Triggered by `define`. This is our recommended AMD syntax where the dependencies are imported by a `require` function which makes it similar to NodeJS modules and a convenience to add / remove dependencies.
 
 Please check out other snippets in the folder to learn what's available.
 
@@ -34,7 +84,9 @@ Please check out other snippets in the folder to learn what's available.
 Some other general config for ST3:
 
 #### Default Sublime Text Plugin List:
-Defined in __Package Control.sublime-settings__. It is our recommended list of ST3 plugins for Front End development; includes:
+Install __Package Control__ plugin (instructions at [its website](https://packagecontrol.io)) before copying `Package Control.sublime-settings`. The rest will be installed automatically after you restart Sublime Text.
+
+In __Package Control.sublime-settings__, there is our recommended list of ST3 plugins for Front End development; includes:
 
 - [Alignment](https://github.com/wbond/sublime_alignment): Help align code for better readability (especially in long properties list). Shortcut has been switch to `ctrl + shift + a` due to conflicts with SublimeLinter
 - [All Autocomplete](https://github.com/alienhard/SublimeAllAutocomplete): List and suggest completion for all the words appeared in opened files
@@ -50,7 +102,7 @@ Defined in __Package Control.sublime-settings__. It is our recommended list of S
 - [HTML-CSS-JS Prettify](https://github.com/victorporof/Sublime-HTMLPrettify): HTML, CSS, JavaScript and JSON code formatter for Sublime Text 2 and 3 via node.js
 - [JavaScriptNext - ES6 Syntax](https://github.com/Benvie/JavaScriptNext.tmLanguage): Better JavaScript language definition for TextMate and SublimeText, with support for latest ES5 & 6 sepcifications. Set `.js` files to always open with this syntax.
 - [Open Finder](https://github.com/kallepersson/Sublime-Finder/): (OSX only) Provides a command for opening Finder in the current directory.
-- [Package Control](https://packagecontrol.io): The de facto package manager for Sublime Text. You already used it to install other plugins.
+- [Package Control](https://packagecontrol.io): The de facto package manager for Sublime Text. You already used it to install these plugins.
 - [Pretty JSON](https://github.com/dzhibas/SublimePrettyJson): plugin for [ST3] to pretty [and minify] json
 - [PxToEm](https://github.com/ningbit/sublime_pxtoem): plugin to convert px to em with comments. Shortcut was changed to `Shift + Ctrl + E` to avoid linter conflicts.
 - [ReactJS](https://github.com/reactjs/sublime-react): Sublime Text helpers for React/JSX
@@ -68,11 +120,19 @@ Defined in __Package Control.sublime-settings__. It is our recommended list of S
 #### EditorConfig
 [EditorConfig](http://editorconfig.org/) helps developers define and seamlessly maintain consistent coding styles between different editors and IDEs. Most of the time, the concerned preferences are new line format, indentation rules for each kind of source files.
 
-- __editorconfig.sublime-snippet__: Trigger by `editorconfig` in new text file; default set of config to maintain editor's preferences for a specific project; save it at project root and should be checked into version control system.
+- __editorconfig.sublime-snippet__: Triggered by `editorconfig` in new text file; default set of config to maintain editor's preferences for a specific project; save it at project root and should be checked into version control system.
 
-#### Keybindings Modifiers
-[TBC] 
+#### Key Bindings Modifiers
 
+These key binding modifiers are to resolve conflicts among plugins (mostly with sublimelinter) and add shortcuts to useful but hidden commands:
+
+```json
+[
+    {"keys": ["ctrl+super+r"], "command": "reveal_in_side_bar"},
+    {"keys": ["shift+ctrl+a"], "command": "alignment"},
+    {"keys": ["shift+ctrl+e"], "command": "px_to_em"}
+]
+```
 
 #### Other Preferences
 
@@ -85,33 +145,10 @@ Defined in __Package Control.sublime-settings__. It is our recommended list of S
 ##### FuzzyFilePath
 [TBC]
 
+-------------------------------------------------------------------------------
 
-OSX
----
+Thanks to
+---------
 
-### The Initialize Scripts
-[TBC]
-
-### Terminal Helpers
-
-#### What are they
-```
-.aliases    
-.bashrc     
-.jshintrc
-.bash_profile   
-.functions
-```
-
-#### How to install
-[TBC]
-
-#### How to use
-[TBC]
-
-Ubuntu
-------
-Ubuntu is not our official working machines yet. 
-These dotfiles and bash profile configs are for personal machines.
-
-
+- [Paul Irish](https://github.com/paulirish) and his [dotfiles repository](https://github.com/paulirish/dotfiles) from which the OSX section is based on.
+- [Thanh Tran](https://github.com/trongthanh) and his [dotfiles repository](https://github.com/trongthanh/dotfiles) from which this repo is forked and standardized further.
