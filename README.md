@@ -74,8 +74,8 @@ Some remarkable snippets:
 
 - __console.log()__: Triggered by typing `log`; after it completes the text `console.log()`, you have the chance to switch to `console.info()` or `console.warn()` or `console.error()` by typing the first letter of the method, respectively __i, w, e__
 - __[IIFE](http://benalman.com/news/2010/11/immediately-invoked-function-expression/) block__: Triggered by `iife`; complete the "immediately invoked function expression" block.
-- __[JSHint](http://jshint.com/) by-project config__: Triggered by `jshintrc` in new text file; it will complete the file with Nau's conventional linting rules for JavaScript. Save it to the root of the project.
-- __[JSCS](http://jscs.info/) coding style config__: Triggered by `jscsrc` in new text file; it will complete the file with Nau's coding style rules for JavaScript. Save it to the root of the project.
+- __[JSHint](http://jshint.com/) by-project config__: Triggered by `jshintrc` in new text file; it will complete the file with Nau's conventional linting rules for JavaScript. Save it as `.jshintrc` to the root of the project.
+- __[JSCS](http://jscs.info/) coding style config__: Triggered by `jscsrc` in new text file; it will complete the file with Nau's coding style rules for JavaScript. Save it as `.jscsrc` to the root of the project.
 - __[RequireJS](http://requirejs.org/docs/api.html#cjsmodule) Module with Simplified CommonJS Wrapper__: Triggered by `define`. This is our recommended AMD syntax where the dependencies are imported by a `require` function which makes it similar to NodeJS modules and a convenience to add / remove dependencies.
 
 Please check out other snippets in the folder to learn what's available.
@@ -117,10 +117,13 @@ In __Package Control.sublime-settings__, there is our recommended list of ST3 pl
 - [SublimeLinter-jsxhint](https://github.com/SublimeLinter/SublimeLinter-jsxhint): SublimeLinter 3 plugin for JSX (React.js), using the NodeJS package `jsxhint`. 
 - [Terminal](http://wbond.net/sublime_packages/terminal): Launch terminals from the current file or the root project folder
 
-#### EditorConfig
-[EditorConfig](http://editorconfig.org/) helps developers define and seamlessly maintain consistent coding styles between different editors and IDEs. Most of the time, the concerned preferences are new line format, indentation rules for each kind of source files.
+#### Additional Snippets:
 
-- __editorconfig.sublime-snippet__: Triggered by `editorconfig` in new text file; default set of config to maintain editor's preferences for a specific project; save it at project root and should be checked into version control system.
+- __SCSS Lint config__: Triggered by `scsslint` in new text file. This is our conventional SCSS linting rules. Save it as `.scss-lint.yml` to project root.
+- __.gitignore__: Triggered by 'gitignore' in new text file. This is our generic files ignoring rules for GIT. Further modify it with project specific rules. Save it as `.gitignore` at project root and checked into GIT repo.
+- __Default EditorConfig__: Triggered by `editorconfig` in new text file. Save it as `.editorconfig` at project root and should be checked into version control system.
+
+> [EditorConfig](http://editorconfig.org/) helps developers define and seamlessly maintain consistent coding styles between different editors and IDEs. Most of the time, the concerned preferences are new line format, indentation rules for each kind of source files.
 
 #### Key Bindings Modifiers
 
@@ -133,6 +136,8 @@ These key binding modifiers are to resolve conflicts among plugins (mostly with 
     {"keys": ["shift+ctrl+e"], "command": "px_to_em"}
 ]
 ```
+
+
 
 #### Other Preferences
 
