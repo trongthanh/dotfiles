@@ -1,6 +1,5 @@
 [
 	{"keys": ["ctrl+super+r"], "command": "reveal_in_side_bar"},
-	{"keys": ["ctrl+x","ctrl+f"], "command": "file_system_comp_trigger"},
 	{"keys": ["shift+ctrl+a"], "command": "alignment"},
 	{"keys": ["shift+ctrl+e"], "command": "px_to_em"}
 ]
