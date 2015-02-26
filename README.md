@@ -97,7 +97,7 @@ Install __Package Control__ plugin (instructions at [its website](https://packag
 
 The recommended plugins are:
 
-- [Alignment](https://github.com/wbond/sublime_alignment): Help align code for better readability (especially in long properties list). Shortcut has been switch to `ctrl + shift + a` due to conflicts with SublimeLinter
+- [Alignment](https://github.com/wbond/sublime_alignment): Help align code for better readability (especially in long properties list). Shortcut has been switch to `ctrl+shift+a` due to conflicts with SublimeLinter
 - [All Autocomplete](https://github.com/alienhard/SublimeAllAutocomplete): List and suggest completion for all the words appeared in opened files
 - [Color Highlighter](https://github.com/Monnoroch/ColorHighlighter): is a plugin for the Sublime text 2 and 3, which underlays selected hexadecimal colorcodes (like "#FFFFFF", "rgb(255,255,255)", "white", etc.) with their real color. Also, plugin adds color picker to easily modify colors.
 - [CSS3](https://github.com/y0ssar1an/CSS3): The most complete CSS support for Sublime Text 3
@@ -113,7 +113,7 @@ The recommended plugins are:
 - [Open Finder](https://github.com/kallepersson/Sublime-Finder/): (OSX only) Provides a command for opening Finder in the current directory.
 - [Package Control](https://packagecontrol.io): The de facto package manager for Sublime Text. You already used it to install these plugins.
 - [Pretty JSON](https://github.com/dzhibas/SublimePrettyJson): plugin for [ST3] to pretty [and minify] json
-- [PxToEm](https://github.com/ningbit/sublime_pxtoem): plugin to convert px to em with comments. Shortcut was changed to `Shift + Ctrl + E` to avoid linter conflicts.
+- [PxToEm](https://github.com/ningbit/sublime_pxtoem): plugin to convert px to em with comments. Shortcut was changed to `ctrl+shift+e` to avoid linter conflicts.
 - [ReactJS](https://github.com/reactjs/sublime-react): Sublime Text helpers for React/JSX
 - [SCSS](https://github.com/MarioRicalde/SCSS.tmbundle): The TextMate SCSS Official Bundle. Now Compatible with SublimeText2/3.
 - [Select Quoted](https://github.com/int3h/SublimeSelectQuoted): A Sublime Text 2/3 plugin at add a "Expand Selection to Quoted" command
@@ -152,6 +152,7 @@ These key binding modifiers for OSX (`Default (OSX).sublime-keymap`) are to reso
 ```
 
 #### Other Preferences
+Details of what's been set up for ST3 and plugins to enhance the workflow:
 
 ##### `ColorHighlighter.sublime-settings`
 
@@ -159,13 +160,55 @@ These key binding modifiers for OSX (`Default (OSX).sublime-keymap`) are to reso
 - Add some additional extensions where color highlighting is expected.
 
 ##### `Emmet.sublime-settings`
-[TBC]
+
+- Trivially fix Emmet's [tags comment filter](http://docs.emmet.io/filters/#comment-tags-c) to insert closing comments on the same line with closing tags instead of on a new line to save space. For e.g:
+```html
+<h2 class="title">
+    A Title
+</h2><!-- /.title -->
+```
 
 ##### `Preferences.sublime-settings`
-[TBC]
+
+Here's an extract of the system preference with explanation comments:
+```js
+{
+    // nice monospace font from Adobe, the light variant looks 
+    // very pleasing on dark theme
+    "font_face": "Source Code Pro Light",
+    "font_size": 13,
+    //this must be set in user settings to be enabled in MAC OSX
+    "scroll_past_end": true,
+    //avoid confusion with tabstops
+    "tab_completion": false,
+    // Flat dark theme with very good set of file icon on the side bar; 
+    // need to install via Package Control, require ST3 Build 3062++
+    "theme": "Seti.sublime-theme",
+    // better dark monokai editor scheme, bundled in User folder
+    "color_scheme": "Packages/User/Monokai Soda.tmTheme",
+    // The delay, in ms, before the auto complete window is shown after typing
+    // Note: Delaying this to have the completion files more likely
+    // to be included in the auto complete list
+    "auto_complete_delay": 200,
+    // For best practices, will be overriden by EditorConfig
+    "trim_trailing_white_space_on_save": true,
+    // Easier to differentiate folders from files
+    "bold_folder_labels": true,
+    // Esier to spot edited tabs
+    "highlight_modified_tabs": true
+}
+```
+Some of the entries were commented out in the real file to keep the preferences more agnostic. It's up to you to turn them on or use different settings.
+
+Downloads:
+
+- Adobe's [Source Code Pro font](https://github.com/adobe-fonts/source-code-pro)
+- [Seti UI Theme](https://packagecontrol.io/packages/Seti_UI)
 
 ##### `FuzzyFilePath.sublime-settings`
-[TBC]
+
+- Added `jsx`, `tmpl`, `hbs`, `json` extensions to search for after `require` and `define` code block.
+- (More tweaking to come as this is our very newly adopted plugin)
 
 -------------------------------------------------------------------------------
 
@@ -174,3 +217,7 @@ Thanks to
 
 - [Paul Irish](https://github.com/paulirish) and his [dotfiles repository](https://github.com/paulirish/dotfiles) from which the OSX section is based on.
 - [Thanh Tran](https://github.com/trongthanh) and his [dotfiles repository](https://github.com/trongthanh/dotfiles) from which this repo is forked and standardized further.
+
+-------------------------------------------------------------------------------
+
+© 2015 Nâu Studio
