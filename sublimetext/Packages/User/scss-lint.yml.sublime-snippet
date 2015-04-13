@@ -22,11 +22,11 @@ linters:
     LeadingZero:
         style: include_zero
     NameFormat:
-        convention: BEM
+        convention: hyphenated_lowercase
     PropertySortOrder:
         enabled: false
     SelectorFormat:
-        convention: BEM
+        convention: hyphenated_BEM
     Shorthand:
         enabled: true
     SpaceAfterPropertyColon:
