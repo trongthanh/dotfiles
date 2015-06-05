@@ -99,6 +99,7 @@ The recommended plugins are:
 
 - [Alignment](https://github.com/wbond/sublime_alignment): Help align code for better readability (especially in long properties list). Shortcut has been switch to `ctrl+shift+a` due to conflicts with SublimeLinter
 - [All Autocomplete](https://github.com/alienhard/SublimeAllAutocomplete): List and suggest completion for all the words appeared in opened files
+- [Babel](https://github.com/babel/babel-sublime): Language definitions for [ES6+ JavaScript](http://kangax.github.io/compat-table/es6/) with [React JSX syntax](http://facebook.github.io/react/docs/jsx-in-depth.html) extensions.
 - [Color Highlighter](https://github.com/Monnoroch/ColorHighlighter): is a plugin for the Sublime text 2 and 3, which underlays selected hexadecimal colorcodes (like "#FFFFFF", "rgb(255,255,255)", "white", etc.) with their real color. Also, plugin adds color picker to easily modify colors.
 - [CSS3](https://github.com/y0ssar1an/CSS3): The most complete CSS support for Sublime Text 3
 - [DocBlockr](https://github.com/spadgos/sublime-jsdocs): Simplifies writing DocBlock comments in Javascript, PHP, CoffeeScript, Actionscript...
@@ -109,7 +110,10 @@ The recommended plugins are:
 - [Handlebars](https://github.com/daaain/Handlebars/): [ST3] package for Handlebars.js templates
 - [Hex to HSL Color Converter](https://github.com/atadams/Hex-to-HSL-Color): plugin to convert CSS Hex colors to HSL
 - [HTML-CSS-JS Prettify](https://github.com/victorporof/Sublime-HTMLPrettify): HTML, CSS, JavaScript and JSON code formatter for Sublime Text 2 and 3 via node.js
-- [JavaScriptNext - ES6 Syntax](https://github.com/Benvie/JavaScriptNext.tmLanguage): Better JavaScript language definition for TextMate and SublimeText, with support for latest ES5 & 6 sepcifications. Set `.js` files to always open with this syntax.
+- [Insert Nums](https://github.com/jbrooksuk/InsertNums): A Sublime Text 2 and 3 plugin, that inserts (consecutive) numbers across multiple selections or modifies the selections' contents with expressions. Huge configurability.
+- [JSCS-Formatter](https://github.com/TheSavior/SublimeJSCSFormatter): Sublime Text 3 Plugin to autoformat your javascript code according to the JSCS configuration files you already have.
+- [Markdown Preview](https://github.com/revolunet/sublimetext-markdown-preview): Preview and build your markdown files quickly in your web browser from sublime text 2/3.
+- [MarkdownEditing](https://github.com/SublimeText-Markdown/MarkdownEditing): Powerful Markdown package for Sublime Text with better syntax understanding and good color schemes.
 - [Open Finder](https://github.com/kallepersson/Sublime-Finder/): (OSX only) Provides a command for opening Finder in the current directory.
 - [Package Control](https://packagecontrol.io): The de facto package manager for Sublime Text. You already used it to install these plugins.
 - [Pretty JSON](https://github.com/dzhibas/SublimePrettyJson): plugin for [ST3] to pretty [and minify] json
