@@ -1,5 +1,5 @@
 <snippet>
-    <content><![CDATA[/* © 2014 ${1:NauStud.io}
+    <content><![CDATA[/* © 2015 ${1:NauStud.io}
  * @author ${2:...}
  */$0]]></content>
     <tabTrigger>copyright</tabTrigger>
