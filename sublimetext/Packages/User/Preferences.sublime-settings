@@ -19,10 +19,6 @@
 	"scroll_past_end": true,
 	//avoid confusion with tabstops
 	"tab_completion": false,
-	// better looking dark theme; need to install via Package Control
-	//"theme": "Soda Dark 3.sublime-theme",
-	// better dark monokai editor scheme, bundled in User folder
-	"color_scheme": "Packages/User/Monokai Soda.tmTheme",
 	// The delay, in ms, before the auto complete window is shown after typing
 	// TTT: Delaying this to have the completion files more likely
 	// to be included in the auto complete list
