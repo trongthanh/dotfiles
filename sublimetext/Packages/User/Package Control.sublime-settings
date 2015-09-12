@@ -3,6 +3,9 @@
 	[
 		"Alignment",
 		"All Autocomplete",
+		"AngularJS",
+		"AutoFileName",
+		"Babel",
 		"Color Highlighter",
 		"ColorPicker",
 		"CSS3",
@@ -16,11 +19,15 @@
 		"Handlebars",
 		"Hex to HSL Color Converter",
 		"HTML-CSS-JS Prettify",
-		"JavaScriptNext - ES6 Syntax",
+		"Insert Nums",
+		"InsertDate",
+		"JSCS-Formatter",
+		"Markdown Preview",
 		"MarkdownEditing",
 		"nginx",
 		"Open Finder",
 		"Package Control",
+		"Predawn",
 		"Pretty JSON",
 		"PxToEm",
 		"ReactJS",
@@ -34,6 +41,7 @@
 		"SublimeLinter-jshint",
 		"SublimeLinter-json",
 		"SublimeLinter-jsxhint",
-		"Terminal"
+		"Terminal",
+		"TodoReview"
 	]
 }

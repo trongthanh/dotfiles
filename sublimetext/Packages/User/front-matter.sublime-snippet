@@ -1,0 +1,16 @@
+<snippet>
+	<content><![CDATA[
+---
+layout: post
+title: ${1}
+subtitle: ${2}
+author: Thanh Tran
+meta-description: ${3}
+date: ${4}
+tags: [${5}]
+modified: ${6}
+---
+]]></content>
+	<tabTrigger>fm</tabTrigger>
+	<scope>text.html.markdown</scope>
+</snippet>

@@ -1,11 +1,8 @@
 {
-	// nice monospace font from Adobe
-	"font_face": "Source Code Pro Light",
-	"font_size": 13,
-	"ignored_packages":
-	[
-		"Vintage"
-	],
+	"auto_complete_delay": 200,
+	"bold_folder_labels": true,
+	"color_scheme": "Packages/User/SublimeLinter/Monokai Soda (SL).tmTheme",
+	"findreplace_small": true,
 	"folder_exclude_patterns":
 	[
 		".svn",
@@ -14,24 +11,18 @@
 		"CVS",
 		".sass-cache"
 	],
-	//this must be set in user settings to be enabled in MAC OSX
+	"font_face": "Source Code Pro Light",
+	"font_size": 15,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Vintage",
+		"Markdown"
+	],
 	"scroll_past_end": true,
-	//avoid confusion with tabstops
 	"tab_completion": false,
-	// better looking dark theme; need to install via Package Control
-	//"theme": "Soda Dark 3.sublime-theme",
-	// better dark monokai editor scheme, bundled in User folder
-	"color_scheme": "Packages/User/Monokai Soda.tmTheme",
-	// Set to true to removing trailing white space on save
+	"tabs_small": true,
+	"theme": "predawn-DEV.sublime-theme",
 	"trim_trailing_white_space_on_save": true,
-	// The delay, in ms, before the auto complete window is shown after typing
-	// TTT: Delaying this to have the completion files more likely
-	// to be included in the auto complete list
-    "auto_complete_delay": 200,
-    // For best practices:
-	"trim_trailing_white_space_on_save": true,
-	// Easier to differentiate folders from files
-	"bold_folder_labels": true,
-	// Esier to spot edited tabs
-	"highlight_modified_tabs": true
+	"word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?"
 }
