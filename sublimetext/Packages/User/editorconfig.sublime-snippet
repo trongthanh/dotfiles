@@ -17,8 +17,10 @@ charset = utf-8
 trim_trailing_whitespace = true
 
 [*.md]
-
 trim_trailing_whitespace = false
+
+[*.yml]
+indent_style = space
 
 [package.json]
 # package.json adhere to --save-dev manipulation styles
