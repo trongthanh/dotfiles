@@ -3,5 +3,7 @@
 	{"keys": ["shift+ctrl+a"], "command": "alignment"},
 	{"keys": ["shift+ctrl+e"], "command": "px_to_em"},
   	{"keys": ["strl+f5"], "command": "insert_date_panel" },
-  	{"keys": ["f5"], "command": "sort_lines", "args": {"case_sensitive": false} }
+  	{"keys": ["f5"], "command": "sort_lines", "args": {"case_sensitive": false} },
+  	// ↓↓↓ still need Color Highlighter/Default (OSX).sublime-keymap
+  	{"keys": ["option+shift+a"], "command": "color_convert"}
 ]
