@@ -19,9 +19,11 @@
 		"Markdown",
 		"Vintage"
 	],
+	"predawn_findreplace_small": true,
+	"predawn_tabs_active_underline": true,
+	"predawn_tabs_small": true,
 	"scroll_past_end": true,
 	"tab_completion": false,
-	"tabs_small": true,
 	"theme": "predawn-DEV.sublime-theme",
 	"trim_trailing_white_space_on_save": true,
 	"word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?"
