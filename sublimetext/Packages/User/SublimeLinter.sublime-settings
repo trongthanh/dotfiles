@@ -8,20 +8,28 @@
         "lint_mode": "background",
         "linters": {
             "csslint": {
-                "@disable": false,
+                "@disable": true,
                 "args": [],
                 "errors": "",
                 "excludes": [],
                 "ignore": "",
                 "warnings": ""
             },
-            "jscs": {
+            "eslint": {
                 "@disable": false,
+                "args": [
+                    "--stdin-filename",
+                    "@"
+                ],
+                "excludes": []
+            },
+            "jscs": {
+                "@disable": true,
                 "args": [],
                 "excludes": []
             },
             "jshint": {
-                "@disable": false,
+                "@disable": true,
                 "args": [],
                 "excludes": []
             },

@@ -8,7 +8,9 @@
 		"Alignment",
 		"All Autocomplete",
 		"AngularJS",
+		"Asciidoctor",
 		"AutoFileName",
+		"AutoWrap",
 		"Babel",
 		"Color Highlighter",
 		"ColorPicker",
@@ -22,10 +24,12 @@
 		"GitGutter",
 		"Handlebars",
 		"Hex to HSL Color Converter",
+		"HTML Extended",
 		"HTML-CSS-JS Prettify",
 		"Insert Nums",
 		"InsertDate",
 		"JSCS-Formatter",
+		"LESS",
 		"Markdown Preview",
 		"MarkdownEditing",
 		"Monokai Extended",
@@ -40,6 +44,7 @@
 		"SCSS",
 		"Select Quoted",
 		"SublimeLinter",
+		"SublimeLinter-contrib-eslint",
 		"SublimeLinter-contrib-scss-lint",
 		"SublimeLinter-csslint",
 		"SublimeLinter-jscs",
@@ -47,6 +52,8 @@
 		"SublimeLinter-json",
 		"SublimeLinter-jsxhint",
 		"Terminal",
-		"TodoReview"
+		"TodoReview",
+		"TypeScript",
+		"WordCount"
 	]
 }

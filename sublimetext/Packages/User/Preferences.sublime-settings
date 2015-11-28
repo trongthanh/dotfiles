@@ -2,6 +2,7 @@
 	"auto_complete_delay": 200,
 	"bold_folder_labels": true,
 	"color_scheme": "Packages/User/SublimeLinter/Monokai Soda (SL).tmTheme",
+	"ensure_newline_at_eof_on_save": true,
 	"findreplace_small": true,
 	"folder_exclude_patterns":
 	[
