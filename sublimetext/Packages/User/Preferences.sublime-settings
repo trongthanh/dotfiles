@@ -14,7 +14,9 @@
 		".git",
 		".hg",
 		"CVS",
-		".sass-cache"
+		".sass-cache",
+		"node_modules",
+		".meteor/local"
 	],
 	//this must be set in user settings to be enabled in MAC OSX
 	"scroll_past_end": true,
