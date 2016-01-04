@@ -1,4 +1,5 @@
 {
+	"ensure_newline_at_eof_on_save": true,
 	// nice monospace font from Adobe, the light variant looks
     // very pleasing on dark theme
 	// "font_face": "Source Code Pro Light",
@@ -13,7 +14,9 @@
 		".git",
 		".hg",
 		"CVS",
-		".sass-cache"
+		".sass-cache",
+		"node_modules",
+		".meteor/local"
 	],
 	//this must be set in user settings to be enabled in MAC OSX
 	"scroll_past_end": true,

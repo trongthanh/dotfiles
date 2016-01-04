@@ -1,4 +1,23 @@
 {
+	// set project_directory relative to sublime project directory
+	"project_directory": "",
+
+	// base directory for paths relative to project_directory. Used if scope-trigger contains "base_directory": true
+	// watch out for side effects with project directory (if base_directory is not within project_directory)
+	"base_directory": false,
+
+	// disable automatic path completions
+	"disable_autocompletions": false,
+
+	// disable keymaps
+	"disable_keymap_actions": false,
+
+	// ignore folders that match following regular expressions
+	"exclude_folders": ["node\\_modules", "bower\\_components/.*/bower\\_components"],
+
+	// logs scope evaluation to console to debug configuration
+	"log": false,
+
 	// LIST OF TRIGGERS FOR AUTO COMPLETION
 	// - setting "scopes" in user settings will override all other scopes.
 	// - triggers are evaluated in given order. First match wins
@@ -18,13 +37,14 @@
 			"prefix": ["require", "define"],	// 2. trigger only if: require(<cursor>, define([<cursor>
 			// if 1 & 2 are true:
 			"auto": true,						// auto suggest filepaths, else only by shorctut
-			"extensions": ["js", "jsx", "tmpl", "hbs", "json"],	// js files, and others that can be imported as AMD
+			"extensions": ["js","jsx","json","hbs","tmpl"],				// show only .js files
 			"relative": false,					// insert absolute
 			"base_directory": true,				// insert absolute from the set base directory (above)
 			"replace_on_insert": [
+				["^.*?/app", "app"],			// remove the path before app, we commonly import from app/
 				["\\.js$", ""],					// after insertion, remove .js from path
-				["\\/index$", ""],				// nodejs will load index.js by default => also remove index
-				["\\.jsx$", ""]					// remove .jsx for ReactJS module files
+				["(.*?)\\.jsx$", "jsx!\\1"],	// after insertion, remove .jsx from path and add jsx! prefix
+				["([^.])\\/index$", "\\1"]		// nodejs will load index.js by default => also remove index
 			]
 		},
 		{
@@ -101,6 +121,6 @@
 			"auto": false,
 			"extensions": ["js", "html", "css", "scss", "less", "png", "gif", "jpeg", "jpg", "svg"],
 			"relative": true
-		},
+		}
 	]
 }
