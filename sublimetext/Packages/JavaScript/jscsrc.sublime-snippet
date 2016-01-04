@@ -1,7 +1,15 @@
 <snippet>
 	<content><![CDATA[{
 	"preset": "google",
-	"disallowMultipleVarDecl": false
+	"disallowMultipleVarDecl": false,
+	"validateIndentation": {
+		"value": "\t",
+		"allExcept": ["comments"]
+	},
+	"maximumLineLength": false,
+	"disallowSpacesInsideParentheses": false,
+	"disallowMultipleLineBreaks": false,
+	"disallowSpacesInsideObjectBrackets": false
 }
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
