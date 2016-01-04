@@ -75,7 +75,8 @@
             "html 5": "html",
             "javascript (babel)": "javascript",
             "php": "html",
-            "python django": "python"
+            "python django": "python",
+            "typescript": "javascript"
         },
         "warning_color": "DDB700",
         "wrap_find": true
