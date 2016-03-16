@@ -44,12 +44,22 @@
                 "args": [],
                 "excludes": []
             },
-            "scss": {
+            "sass": {
                 "@disable": false,
+                "args": [],
+                "excludes": []
+            },
+            "scss": {
+                "@disable": true,
                 "args": [],
                 "exclude-linter": "",
                 "excludes": [],
                 "include-linter": ""
+            },
+            "tslint": {
+                "@disable": false,
+                "args": [],
+                "excludes": []
             }
         },
         "mark_style": "squiggly underline",
@@ -75,8 +85,7 @@
             "html 5": "html",
             "javascript (babel)": "javascript",
             "php": "html",
-            "python django": "python",
-            "typescript": "javascript"
+            "python django": "python"
         },
         "warning_color": "DDB700",
         "wrap_find": true
