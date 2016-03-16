@@ -1,5 +1,6 @@
 [
 	{"keys": ["ctrl+super+r"], "command": "reveal_in_side_bar"},
+	{"keys": ["super+k", "super+p"], "command": "copy_path" },
 	{"keys": ["shift+ctrl+a"], "command": "alignment"},
 	{"keys": ["shift+ctrl+e"], "command": "px_to_em"},
   	{"keys": ["strl+f5"], "command": "insert_date_panel" },
