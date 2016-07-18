@@ -1,7 +1,7 @@
 {
 	"auto_complete_delay": 200,
 	"bold_folder_labels": true,
-	"color_scheme": "Packages/User/SublimeLinter/Monokai Soda (SL).tmTheme",
+	"color_scheme": "Packages/Monokai Extended/Monokai Extended.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
 	"findreplace_small": true,
 	"folder_exclude_patterns":
@@ -22,6 +22,13 @@
 		"Markdown",
 		"Vintage"
 	],
+	"index_exclude_patterns":
+	[
+		"*.log",
+		"*.sql",
+		"node_modules/**/*"
+	],
+	"index_files": true,
 	"predawn_findreplace_small": true,
 	"predawn_tabs_active_underline": true,
 	"predawn_tabs_small": true,
@@ -29,5 +36,6 @@
 	"tab_completion": false,
 	"theme": "predawn-DEV.sublime-theme",
 	"trim_trailing_white_space_on_save": true,
+	"typescript_tsdk": "/usr/local/lib/node_modules/typescript/lib",
 	"word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?"
 }
