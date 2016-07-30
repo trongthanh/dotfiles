@@ -7,26 +7,15 @@
         "gutter_theme_excludes": [],
         "lint_mode": "background",
         "linters": {
-            "csslint": {
-                "@disable": true,
-                "args": [],
-                "errors": "",
-                "excludes": [],
-                "ignore": "",
-                "warnings": ""
-            },
             "eslint": {
                 "@disable": false,
                 "args": [
                     "--stdin-filename",
                     "@"
                 ],
-                "excludes": []
-            },
-            "jscs": {
-                "@disable": true,
-                "args": [],
-                "excludes": []
+                "excludes": [
+                    ".eslintrc"
+                ]
             },
             "jshint": {
                 "@disable": true,
@@ -39,22 +28,10 @@
                 "excludes": [],
                 "strict": true
             },
-            "jsxhint": {
+            "stylelint": {
                 "@disable": false,
                 "args": [],
                 "excludes": []
-            },
-            "sass": {
-                "@disable": false,
-                "args": [],
-                "excludes": []
-            },
-            "scss": {
-                "@disable": true,
-                "args": [],
-                "exclude-linter": "",
-                "excludes": [],
-                "include-linter": ""
             },
             "tslint": {
                 "@disable": false,
