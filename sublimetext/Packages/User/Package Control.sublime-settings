@@ -49,7 +49,9 @@
 		"SublimeLinter-contrib-tslint",
 		"SublimeLinter-jshint",
 		"SublimeLinter-json",
+		"Swig",
 		"Terminal",
+		"tern_for_sublime",
 		"TodoReview",
 		"TypeScript",
 		"WordCount"
