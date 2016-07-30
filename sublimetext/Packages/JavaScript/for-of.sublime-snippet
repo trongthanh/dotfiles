@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[for (${1:let} ${2:value} of ${3:iterable}) {
+	${2:value}
+}]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>forof</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.js,source.jsx,source.ts</scope>
+    <description>for(value of...)</description>
+</snippet>
