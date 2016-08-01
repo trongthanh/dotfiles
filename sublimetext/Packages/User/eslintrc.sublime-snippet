@@ -7,7 +7,7 @@
 		"block-scoped-var"            : 1,
 		"camelcase"                   : 2,
 		"comma-style"                 :[2, "last" ],
-		"comma-dangle"                : 2,
+		"comma-dangle"                : 0,
 		"comma-spacing"               :[2, { "before": false, "after": true} ],
 		"curly"                       :[2, "all" ],
 		"dot-notation"                :[2, { "allowKeywords": true } ],

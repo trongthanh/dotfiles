@@ -1,0 +1,27 @@
+<snippet>
+	<content><![CDATA[
+{
+	"extends": "stylelint-config-standard",
+	"rules": {
+		"indentation": "tab",
+		"at-rule-empty-line-before": null,
+		"max-empty-lines": null,
+		"block-closing-brace-newline-after": null,
+		"block-closing-brace-newline-before": null,
+		"declaration-colon-space-after": null,
+		"declaration-colon-newline-after": null,
+		"selector-list-comma-newline-after": null,
+		"number-no-trailing-zeros": null,
+		"declaration-block-single-line-max-declarations": 3,
+		"block-closing-brace-space-before": null,
+		"declaration-block-semicolon-space-after": null
+	}
+}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>stylelintrc</tabTrigger>
+	<description>.stylelintrc</description>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
