@@ -34,16 +34,29 @@
 		{
 			// js - require("") and define([""])
 			"scope": "source\\.js.*string",		// 1. ignore if scope at cursor does not match expression (super+alt+p)
-			"prefix": ["require", "define"],	// 2. trigger only if: require(<cursor>, define([<cursor>
+			"prefix": ["require", "define", "from"],	// 2. trigger only if: require(<cursor>, define([<cursor>
 			// if 1 & 2 are true:
 			"auto": true,						// auto suggest filepaths, else only by shorctut
-			"extensions": ["js","jsx","json","hbs","tmpl"],				// show only .js files
+			"extensions": ["js","ts","jsx","json","hbs","tmpl"],				// show only .js files
 			"relative": false,					// insert absolute
 			"base_directory": true,			// insert absolute from the set base directory (above)
 			"replace_on_insert": [
 				["^.*?/app", "app"],			// remove the path before app, we commonly import from app/
 				["\\.js$", ""],					// after insertion, remove .js from path
 				["(.*?)\\.jsx$", "jsx!\\1"],	// after insertion, remove .jsx from path and add jsx! prefix
+				["([^.])\\/index$", "\\1"]		// nodejs will load index.js by default => also remove index
+			]
+		},
+		{
+			// js - require("") and define([""])
+			"scope": "source.ts.*string",
+			"prefix": ["require", "define", "from"],
+			"auto": true,						// auto suggest filepaths, else only by shorctut
+			"extensions": ["js","ts","jsx","json","hbs","tmpl"],				// show only .js files
+			"relative": true,					// insert relative
+			"base_directory": false,			// insert absolute from the set base directory (above)
+			"replace_on_insert": [
+				["\\.js$", ""],					// after insertion, remove .js from path
 				["([^.])\\/index$", "\\1"]		// nodejs will load index.js by default => also remove index
 			]
 		},
