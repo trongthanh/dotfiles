@@ -1,21 +1,21 @@
 <snippet>
 	<content><![CDATA[
 // Nau standard eslint rules
+// This is NOT JSON, so it's fine to comment
 {
 	"extends": "eslint:recommended",
 	"rules": {
 		"block-scoped-var"            : 1,
 		"camelcase"                   : 2,
 		"comma-style"                 :[2, "last" ],
-		"comma-dangle"                : 0,
+		"comma-dangle"                : 0, // We allow trailing commas in list for benefit of version control diff
 		"comma-spacing"               :[2, { "before": false, "after": true} ],
 		"curly"                       :[2, "all" ],
 		"dot-notation"                :[2, { "allowKeywords": true } ],
 		"eqeqeq"                      :[2, "allow-null" ],
 		"indent"                      :[2, "tab", {"SwitchCase": 1} ],
 		"linebreak-style"             :[2, "unix" ],
-		// must: new ClassFunction(); but allow: Component() (JSX component)
-		"new-cap"                     :[2, { "capIsNew": false } ],
+		"new-cap"                     :[2, { "capIsNew": false } ], // must: new ClassFunction(); but allow: Component() (JSX component)
 		"no-bitwise"                  : 2,
 		"no-caller"                   : 2,
 		"no-console"                  : 0,
@@ -38,14 +38,24 @@
 		"space-infix-ops"             : 2,
 		"space-unary-ops"             :[2, { "words": true }],
 		"strict"                      : 0,
-		"valid-jsdoc"                 : 2
-
+		"valid-jsdoc"                 : 2,
 	},
 	"globals": {
 
 	},
 	"env": {
-		"browser": true
+		"browser": true,
+		// "es6": true,
+		// "node": true,
+		// "jquery": true,
+	},
+	"parserOptions": {
+		"ecmaVersion": 6,
+		// "sourceType": "module",
+		"ecmaFeatures": {
+			"impliedStrict": true,
+			// "jsx": true,
+		}
 	},
 	"plugins": []
 }
