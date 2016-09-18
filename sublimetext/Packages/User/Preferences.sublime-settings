@@ -1,6 +1,5 @@
 {
 	"auto_complete_delay": 200,
-	"bold_folder_labels": true,
 	"color_scheme": "Packages/Monokai Extended/Monokai Extended.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
 	"findreplace_small": true,
@@ -14,13 +13,18 @@
 		"node_modules",
 		".meteor/local"
 	],
-	"font_face": "Source Code Pro Light",
+	"font_face": "Roboto Mono Light",
 	"font_size": 14,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
+		"AutoFileName",
+		"EasyMotion",
 		"Markdown",
-		"Vintage"
+		"SideBarEnhancements",
+		"Sublimerge 3",
+		"Vintage",
+		"WordCount"
 	],
 	"index_exclude_patterns":
 	[
@@ -29,12 +33,12 @@
 		"node_modules/**/*"
 	],
 	"index_files": true,
-	"predawn_findreplace_small": true,
-	"predawn_tabs_active_underline": true,
-	"predawn_tabs_small": true,
+	"index_workers": 2,
+	"line_padding_bottom": 2,
+	"line_padding_top": 1,
 	"scroll_past_end": true,
 	"tab_completion": false,
-	"theme": "predawn-DEV.sublime-theme",
+	"theme": "Boxy Monokai.sublime-theme",
 	"trim_trailing_white_space_on_save": true,
 	"typescript_tsdk": "/usr/local/lib/node_modules/typescript/lib",
 	"word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?"
