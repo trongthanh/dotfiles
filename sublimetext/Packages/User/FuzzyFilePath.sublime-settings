@@ -50,14 +50,24 @@
 		{
 			// js - require("") and define([""])
 			"scope": "source.ts.*string",
-			"prefix": ["require", "define", "from"],
+			"prefix": ["require", "define", "from", "component", "templateUrl"],
 			"auto": true,						// auto suggest filepaths, else only by shorctut
-			"extensions": ["js","ts","jsx","json","hbs","tmpl"],				// show only .js files
+			"extensions": ["js","ts"],				// show only .js files
 			"relative": true,					// insert relative
 			"base_directory": false,			// insert absolute from the set base directory (above)
 			"replace_on_insert": [
-				["\\.js$", ""],					// after insertion, remove .js from path
-				["([^.])\\/index$", "\\1"]		// nodejs will load index.js by default => also remove index
+				["\\.ts$", ""]					// after insertion, remove .js from path
+			]
+		},
+		{
+			// js - require("") and define([""])
+			"scope": "source.ts.*string",
+			"prefix": ["templateUrl", "styleUrls"],
+			"auto": true,						// auto suggest filepaths, else only by shorctut
+			"extensions": ["html","ts","css"],	// show only these files
+			"relative": true,					// insert relative
+			"base_directory": false,			// insert absolute from the set base directory (above)
+			"replace_on_insert": [
 			]
 		},
 		{

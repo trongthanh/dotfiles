@@ -11,6 +11,8 @@
 		"AutoFileName",
 		"AutoWrap",
 		"Babel",
+		"Boxy Theme",
+		"Boxy Theme Addon - Font Face",
 		"Color Highlighter",
 		"ColorPicker",
 		"DocBlockr",
@@ -18,11 +20,13 @@
 		"EditorConfig",
 		"Emmet",
 		"ESLint-Formatter",
+		"File Icons Extended",
 		"FuzzyFilePath",
 		"Gist",
 		"GitGutter",
 		"Handlebars",
 		"Hex to HSL Color Converter",
+		"Highlight",
 		"HTML Extended",
 		"HTML-CSS-JS Prettify",
 		"Insert Nums",
@@ -42,7 +46,6 @@
 		"SassBeautify",
 		"SCSS",
 		"Select Quoted",
-		"SideBarEnhancements",
 		"SublimeLinter",
 		"SublimeLinter-contrib-eslint",
 		"SublimeLinter-contrib-stylelint",
@@ -53,7 +56,6 @@
 		"Terminal",
 		"tern_for_sublime",
 		"TodoReview",
-		"TypeScript",
-		"WordCount"
+		"TypeScript"
 	]
 }
