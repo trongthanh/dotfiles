@@ -1,5 +1,8 @@
 {
 	"auto_complete_delay": 200,
+	"caret_extra_top": 2,
+    "caret_extra_bottom": 2,
+    "caret_extra_width": 0,
 	"color_scheme": "Packages/Monokai Extended/Monokai Extended.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
 	"findreplace_small": true,
@@ -13,7 +16,11 @@
 		"node_modules",
 		".meteor/local"
 	],
-	"font_face": "Roboto Mono Light",
+	"font_face": "Monaco",
+	"font_options":
+	[
+		"no_round"
+	],
 	"font_size": 14,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
@@ -21,7 +28,6 @@
 		"AutoFileName",
 		"EasyMotion",
 		"Markdown",
-		"SideBarEnhancements",
 		"Sublimerge 3",
 		"Vintage",
 		"WordCount"
@@ -30,12 +36,14 @@
 	[
 		"*.log",
 		"*.sql",
-		"node_modules/**/*"
+		"node_modules/**/*",
+		"dist/**/*",
+		"~dist/**/*"
 	],
 	"index_files": true,
 	"index_workers": 2,
 	"line_padding_bottom": 2,
-	"line_padding_top": 1,
+	"line_padding_top": 2,
 	"scroll_past_end": true,
 	"tab_completion": false,
 	"theme": "Boxy Monokai.sublime-theme",
