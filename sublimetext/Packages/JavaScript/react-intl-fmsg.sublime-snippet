@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[
+<FormattedMessage id="${1}"
+	tagName="${2:span}"
+	defaultMessage="${3:$TM_SELECTED_TEXT}"
+	values={{
+		${0}
+	}}
+	/>
+]]></content>
+	<tabTrigger>fmsg</tabTrigger>
+	<scope>source.js meta.class.js</scope>
+	<description>&lt;FormattedMessage&gt;</description>
+</snippet>

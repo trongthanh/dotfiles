@@ -61,6 +61,10 @@
             "html (rails)": "html",
             "html 5": "html",
             "javascript (babel)": "javascript",
+            "javascript (gruntfile)": "javascript",
+            "javascript (gulpfile)": "javascript",
+            "json (npm)": "json",
+            "json (settings)": "json",
             "php": "html",
             "python django": "python"
         },

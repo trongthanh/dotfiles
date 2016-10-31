@@ -1,9 +1,11 @@
 <snippet>
 	<content><![CDATA[
 // Nau standard eslint rules
-// This is NOT JSON, so it's fine to comment
 {
-	"extends": "eslint:recommended",
+	"extends": [
+		"eslint:recommended",
+		// "plugin:react/recommended",
+	],
 	"rules": {
 		"block-scoped-var"            : 1,
 		"camelcase"                   : 2,
@@ -39,6 +41,9 @@
 		"space-unary-ops"             :[2, { "words": true }],
 		"strict"                      : 0,
 		"valid-jsdoc"                 : 2,
+		"jsx-quotes"                  :[2, "prefer-double"],
+		// "react/jsx-no-bind"           : 2,
+		// "react/prop-types"            : 0,
 	},
 	"globals": {
 
@@ -57,7 +62,10 @@
 			// "jsx": true,
 		}
 	},
-	"plugins": []
+	"plugins": [
+		// react (install eslint-plugin-react)
+		// babel (install eslint-plugin-babel)
+	]
 }
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
