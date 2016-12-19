@@ -26,9 +26,9 @@
 	"ignored_packages":
 	[
 		"AutoFileName",
-		"EasyMotion",
 		"Markdown",
 		"Sublimerge 3",
+		"tern_for_sublime",
 		"Vintage",
 		"WordCount"
 	],
@@ -46,7 +46,9 @@
 	"line_padding_top": 2,
 	"scroll_past_end": true,
 	"tab_completion": false,
-	"theme": "Boxy Monokai.sublime-theme",
+	"theme": "Boxy Tomorrow.sublime-theme",
+	"theme_accent_orange": true,
+	"theme_sidebar_folder_materialized": true,
 	"trim_trailing_white_space_on_save": true,
 	"typescript_tsdk": "/usr/local/lib/node_modules/typescript/lib",
 	"word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?"
