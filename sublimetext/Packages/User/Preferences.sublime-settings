@@ -3,7 +3,9 @@
 	"caret_extra_bottom": 2,
 	"caret_extra_top": 2,
 	"caret_extra_width": 0,
-	"color_scheme": "Packages/Monokai Extended/Monokai Extended.tmTheme",
+	"color_scheme": "Packages/Boxy Theme/schemes/Boxy Tomorrow.tmTheme",
+	"enable_inline_error_tips": true,
+	"enable_typescript_language_service": true,
 	"ensure_newline_at_eof_on_save": true,
 	"findreplace_small": true,
 	"folder_exclude_patterns":
@@ -21,11 +23,10 @@
 	[
 		"no_round"
 	],
-	"font_size": 14,
+	"font_size": 15,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"AutoFileName",
 		"Markdown",
 		"Sublimerge 3",
 		"tern_for_sublime",

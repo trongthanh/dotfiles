@@ -1,6 +1,6 @@
 <snippet>
     <content><![CDATA[console.log(console.${1:D}${1/(D)|(I)|(W)|(E)|.*/(?1:EBUG)(?2:NFO)(?3:ARNING)(?4:RROR)/}, '$2');]]></content>
     <tabTrigger>logg</tabTrigger>
-    <scope>source.js</scope>
+    <scope>source.js,source.ts,source.tsx</scope>
     <description>console.log(D|I|W|E)</description>
 </snippet>

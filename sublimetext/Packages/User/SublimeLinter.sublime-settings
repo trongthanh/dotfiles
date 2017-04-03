@@ -1,9 +1,10 @@
 {
     "user": {
+        "@disable": false,
         "debug": false,
         "delay": 0.25,
         "error_color": "D02000",
-        "gutter_theme": "Packages/SublimeLinter/gutter-themes/Koloria/Koloria.gutter-theme",
+        "gutter_theme": "Packages/Boxy Theme/extras/SublimeLinter/Boxy.gutter-theme",
         "gutter_theme_excludes": [],
         "lint_mode": "background",
         "linters": {
@@ -34,7 +35,7 @@
                 "excludes": []
             },
             "tslint": {
-                "@disable": false,
+                "@disable": true,
                 "args": [],
                 "excludes": []
             }
@@ -57,16 +58,40 @@
         "show_errors_on_save": false,
         "show_marks_in_minimap": true,
         "syntax_map": {
+            "coffeescript (gulpfile)": "coffeescript",
             "html (django)": "html",
             "html (rails)": "html",
             "html 5": "html",
             "javascript (babel)": "javascript",
+            "javascript (eslint)": "javascript",
             "javascript (gruntfile)": "javascript",
             "javascript (gulpfile)": "javascript",
+            "javascript (postcss)": "javascript",
+            "javascript (stylelint)": "javascript",
+            "javascript (webpack)": "javascript",
+            "json (babel)": "json",
+            "json (bower)": "json",
+            "json (composer)": "json",
+            "json (eslint)": "json",
             "json (npm)": "json",
+            "json (postcss)": "json",
             "json (settings)": "json",
+            "json (stylelint)": "json",
+            "json (sublime)": "json",
+            "json (tern js)": "json",
             "php": "html",
-            "python django": "python"
+            "python django": "python",
+            "typescript": "javascript",
+            "typescriptreact": "javascript",
+            "xml (config)": "xml",
+            "xml (svg)": "xml",
+            "yaml (circleci)": "yaml",
+            "yaml (docker)": "yaml",
+            "yaml (eslint)": "yaml",
+            "yaml (lock)": "yaml",
+            "yaml (procfile)": "yaml",
+            "yaml (stylelint)": "yaml",
+            "yaml (yarn)": "yaml"
         },
         "warning_color": "DDB700",
         "wrap_find": true

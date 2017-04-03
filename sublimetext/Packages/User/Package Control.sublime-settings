@@ -5,6 +5,7 @@
 	],
 	"installed_packages":
 	[
+		"A File Icon",
 		"Alignment",
 		"All Autocomplete",
 		"AutoFileName",
@@ -13,6 +14,7 @@
 		"Babel Snippets",
 		"Boxy Theme",
 		"Color Highlighter",
+		"ColorPicker",
 		"DocBlockr",
 		"EditorConfig",
 		"Emmet",
@@ -53,7 +55,6 @@
 		"tern_for_sublime",
 		"TodoReview",
 		"Tomorrow Color Schemes",
-		"TypeScript",
-		"zz File Icons"
+		"TypeScript"
 	]
 }
