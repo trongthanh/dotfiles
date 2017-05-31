@@ -45,6 +45,7 @@
 		"SideBarEnhancements",
 		"Solarized Color Scheme",
 		"SublimeLinter",
+		"SublimeLinter-annotations",
 		"SublimeLinter-contrib-eslint",
 		"SublimeLinter-contrib-stylelint",
 		"SublimeLinter-contrib-tslint",
@@ -55,6 +56,7 @@
 		"tern_for_sublime",
 		"TodoReview",
 		"Tomorrow Color Schemes",
-		"TypeScript"
+		"TypeScript",
+		"Vue Syntax Highlight"
 	]
 }

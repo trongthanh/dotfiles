@@ -61,7 +61,7 @@
 		},
 		{
 			// Typescript // <reference path="" />
-			"scope": "source\\.ts\\scomment",
+			"scope": "source\\.tsx?\\scomment",
 
 			"auto": true,
 			"relative": true,
@@ -73,13 +73,13 @@
 		},
 		{
 			// Typescript es6 import from/import "*"
-			"scope": "string[^\\s]*\\.ts\\s",
+			"scope": "string[^\\s]*\\.tsx?\\s",
 
 			"auto": true,
 			"relative": true,
 			"base_directory": false,
 			"prefix": ["from", "import"],
-			"extensions": ["js", "ts"],
+			"extensions": ["js", "ts", "tsx"],
 			"replace_on_insert": [
 				["(\\.js|\\.ts)$", ""],
 				["([^.])\\/index$", "\\1"],

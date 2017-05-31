@@ -1,5 +1,32 @@
 {
-	"auto_complete_delay": 200,
+	"added_words":
+	[
+		"Blogger",
+		"blog",
+		"√É‚Äû„¢‚êi„£‚°„¢‚ª„¢‚Åu",
+		"√É‚Äû„¢‚êa",
+		"N„£‚£„¢‚¢u",
+		"N„£‚£„¢‚¢u",
+		"minification",
+		"Facebook",
+		"Disqus",
+		"plugins",
+		"inlining",
+		"downloadable",
+		"blogger"
+	],
+	"auto_complete_delay": 250,
+	"auto_complete_triggers":
+	[
+		{
+			"characters": "<",
+			"selector": "text.html"
+		},
+		{
+			"characters": ".",
+			"selector": "source.js"
+		}
+	],
 	"caret_extra_bottom": 2,
 	"caret_extra_top": 2,
 	"caret_extra_width": 0,
@@ -16,9 +43,10 @@
 		"CVS",
 		".sass-cache",
 		"node_modules",
-		".meteor/local"
+		".meteor/local",
+		"platforms/**"
 	],
-	"font_face": "Monaco",
+	"font_face": "SF Mono Light",
 	"font_options":
 	[
 		"no_round"
@@ -39,7 +67,8 @@
 		"*.sql",
 		"node_modules/**/*",
 		"dist/**/*",
-		"~dist/**/*"
+		"~dist/**/*",
+		"platforms/**"
 	],
 	"index_files": true,
 	"index_workers": 2,
