@@ -1,12 +1,27 @@
 {
     "user": {
         "debug": false,
-        "delay": 0.5,
+        "delay": 0,
         "error_color": "D02000",
         "gutter_theme": "Packages/Boxy Theme/extras/SublimeLinter/Boxy.gutter-theme",
         "gutter_theme_excludes": [],
-        "lint_mode": "background",
+        "lint_mode": "load/save",
         "linters": {
+            "annotations": {
+                "@disable": false,
+                "args": [],
+                "errors": [
+                    "FIXME"
+                ],
+                "excludes": [],
+                "warnings": [
+                    "NOTE",
+                    "README",
+                    "TODO",
+                    "XXX",
+                    "@todo"
+                ]
+            },
             "eslint": {
                 "@disable": false,
                 "args": [

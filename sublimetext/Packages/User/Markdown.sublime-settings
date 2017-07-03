@@ -7,7 +7,8 @@
 		"txt"
 	],
 
-	"color_scheme": "Packages/Monokai Extended/Monokai Extended.tmTheme",
+	"color_scheme": "Packages/Boxy Theme/schemes/Boxy Tomorrow.tmTheme",
+	// "color_scheme": "Packages/Monokai Extended/Monokai Extended.tmTheme",
 	// "color_scheme": "Packages/Predawn/predawn-markdown.tmTheme",
 	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor.tmTheme",
 	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme",
@@ -17,8 +18,7 @@
 	// set `"highlight_line": true,` in this settings file. It is likely that there will
 	// be more mature focus improvements in the future (maybe similar to iA Writer).
 	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Focus.tmTheme",
-	// "font_face": "Roboto",
-	"font_face": "Source Code Pro Light",
+	"font_face": "Source Code Pro",
 	"font_size": 15,
 
 	"tab_size": 4,

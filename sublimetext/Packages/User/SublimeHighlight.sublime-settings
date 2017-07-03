@@ -1,0 +1,25 @@
+/*
+    SublimeHighlight default settings
+*/
+{
+    /* Pygments theme to use
+    See https://github.com/n1k0/SublimeHighlight
+    */
+    "theme": "monokai",
+
+    /* Full HTML page to generate? false = just a <div/> */
+    "full": false,
+
+    /* Adds line numbering to the ouput; can be "table", "inline" or false */
+    "linenos": false,
+
+    /* Uses inline styles instead of css classes */
+    "noclasses": true,
+
+    /* Lexer options */
+    "lexer_options": {
+        "PHP": {
+            "startinline": true
+        }
+    }
+}
