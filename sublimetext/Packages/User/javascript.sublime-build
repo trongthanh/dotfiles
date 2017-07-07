@@ -1,0 +1,9 @@
+{
+	"selector": "source.js,source.ts,source.jsx,source.tsx",
+	"working_dir": "$file_path",
+	"cmd": [
+		"$project_path/node_modules/.bin/eslint", "$file_name"
+	],
+
+	"file_regex": "(.+)"
+}
