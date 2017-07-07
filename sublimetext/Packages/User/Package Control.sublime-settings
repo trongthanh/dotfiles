@@ -47,6 +47,7 @@
 		"SublimeLinter",
 		"SublimeLinter-annotations",
 		"SublimeLinter-contrib-eslint",
+		"SublimeLinter-contrib-eslint_d",
 		"SublimeLinter-contrib-stylelint",
 		"SublimeLinter-contrib-tslint",
 		"SublimeLinter-jshint",

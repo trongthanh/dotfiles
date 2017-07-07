@@ -23,7 +23,7 @@
                 ]
             },
             "eslint": {
-                "@disable": false,
+                "@disable": true,
                 "args": [
                     "--stdin-filename",
                     "@"
@@ -31,6 +31,14 @@
                 "excludes": [
                     ".eslintrc"
                 ]
+            },
+            "eslint_d": {
+                "@disable": false,
+                "args": [
+                    "--stdin-filename",
+                    "@"
+                ],
+                "excludes": [".eslintrc"]
             },
             "jshint": {
                 "@disable": true,
