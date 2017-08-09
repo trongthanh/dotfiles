@@ -766,7 +766,7 @@
 	gAKACoAN0xAJChEVGVdOUy5rZXlzoxITFIADgASABaMWFxiABoAHgAiACVpJZGVudGlm
 	aWVyVVdpZHRoVkhpZGRlblEwI0BowAAAAAAACNIhIiMkWiRjbGFzc25hbWVYJGNsYXNz
 	ZXNcTlNEaWN0aW9uYXJ5oiMlWE5TT2JqZWN00xAJCicrGaMSExSAA4AEgAWjLC0YgAuA
-	DIAIgAlRMSNAdCAAAAAAANIhIjM0Xk5TTXV0YWJsZUFycmF5ozM1JVdOU0FycmF5XxAP
+	DIAIgAlRMSNAdKAAAAAAANIhIjM0Xk5TTXV0YWJsZUFycmF5ozM1JVdOU0FycmF5XxAP
 	TlNLZXllZEFyY2hpdmVy0Tg5VUFycmF5gAEACAARABoAIwAtADIANwBGAEwAUQBcAGMA
 	ZgBoAGoAbABzAHsAfwCBAIMAhQCJAIsAjQCPAJEAnACiAKkAqwC0ALUAugDFAM4A2wDe
 	AOcA7gDyAPQA9gD4APwA/gEAAQIBBAEGAQ8BFAEjAScBLwFBAUQBSgAAAAAAAAIBAAAA
@@ -800,11 +800,13 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>418 112 606 456 0 0 1440 878 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>298 329 796 473 0 0 1440 878 </string>
+	<string>298 212 918 512 0 0 1440 878 </string>
+	<key>NSWindow Frame UKCrashReporter</key>
+	<string>99 294 592 584 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>114 243 650 552 0 0 1440 878 </string>
+	<string>109 56 898 722 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>145 176 650 552 0 0 1440 878 </string>
+	<string>1559 -37 650 552 1440 -180 1920 1058 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>131 301 650 527 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -1478,9 +1480,9 @@
 					<key>parameter</key>
 					<string></string>
 					<key>partial</key>
-					<false/>
+					<true/>
 					<key>regex</key>
-					<string>password(:| for.*:)</string>
+					<string>(enter|'s)? password(:| for.*:)</string>
 				</dict>
 			</array>
 			<key>Unicode Version</key>
@@ -1520,7 +1522,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>10130860-CA80-4EED-906C-9021928B0222</string>
 	<key>NoSyncLastTipTime</key>
-	<real>504430767.24203402</real>
+	<real>522827673.77463299</real>
 	<key>NoSyncNeverAskAboutSettingAlternateMouseScroll</key>
 	<true/>
 	<key>NoSyncPermissionToShowTip</key>
@@ -1601,6 +1603,7 @@
 		<string>0064</string>
 		<string>0065</string>
 		<string>0065</string>
+		<string>0066</string>
 	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
@@ -1674,7 +1677,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-07-03T03:01:22Z</date>
+	<date>2017-07-27T05:49:35Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1701,6 +1704,8 @@
 	</array>
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<false/>
+	<key>UKCrashReporterLastCrashReportDate</key>
+	<real>1500657408</real>
 	<key>URLHandlersByGuid</key>
 	<dict/>
 	<key>UseBorder</key>
@@ -1726,7 +1731,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.beta.5</string>
+	<string>3.1.beta.6</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
