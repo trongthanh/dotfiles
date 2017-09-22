@@ -16,18 +16,22 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.md]
-indent_style = space
-indent_size = 4
-
-[{*.yml, package.json}]
+[package.json]
 # package.json adhere to --save-dev manipulation styles
 indent_style = space
 indent_size = 2
+
+[*.yml]
+indent_style = space
+indent_size = 2
+
+[*.md]
+indent_style = space
+indent_size = 4
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>editorconfig</tabTrigger>
-	<description>.editorconfig</description>
+	<description>Nau .editorconfig</description>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
 	<!-- <scope>source.python</scope> -->
 </snippet>
