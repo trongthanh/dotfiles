@@ -1,6 +1,5 @@
 <snippet>
-	<content><![CDATA[
-{
+	<content><![CDATA[{
 	"extends": "stylelint-config-standard",
 	"rules": {
 		"at-rule-empty-line-before": null,
@@ -18,18 +17,18 @@
 		"max-empty-lines": 5,
 		"max-nesting-depth": 5,
 		"number-no-trailing-zeros": null,
-		"selector-class-pattern": "^[a-z]+(?:-[a-z0-9]+)*(?:__[a-z0-9\\-]+){0,2}(?:--[a-z0-9\\-]+)?$",
+		"selector-class-pattern": "^[a-z]+(?:-[a-z0-9]+)*(?:__[a-z0-9\\-]+){0,2}(?:--[a-z0-9\\-]+)?\$",
 		"selector-list-comma-newline-after": null,
 		"shorthand-property-no-redundant-values": null,
 		"string-quotes": "single",
 		"selector-max-id": 0
-	},
-	"ignoreFiles": ["src/styles/mui/**/**.scss", "src/styles/airbnb-calendar/**/**.scss", "src/styles/_normalize-5.0.0.scss", "src/styles/_react-big-calendar.scss", "src/styles/_icons.scss"]
+	}
+	"ignoreFiles": ["src/styles/_normalize*.scss"]
 }
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>stylelintrc</tabTrigger>
-	<description>.stylelintrc</description>
+	<description>Generate .stylelintrc</description>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<!-- <scope>source.python</scope> -->
+	<!-- <scope>text.plain</scope> -->
 </snippet>
