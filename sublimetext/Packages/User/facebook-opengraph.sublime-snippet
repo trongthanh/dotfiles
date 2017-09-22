@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[<meta property="og:url"         content="${1:https://}" />"
+<meta property="og:type"        content="${2:website|article}" />"
+<meta property="og:title"       content="${3}" />"
+<meta property="og:description" content="${4}" />"
+<meta property="og:image"       content="${5}" />"
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>fbog</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.html</scope>
+</snippet>

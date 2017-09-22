@@ -14,10 +14,11 @@
 			"selector": "source.js"
 		}
 	],
-	"caret_extra_bottom": 3,
-	"caret_extra_top": 3,
+	"caret_extra_bottom": 4,
+	"caret_extra_top": 4,
 	"caret_extra_width": 0,
 	"color_scheme": "Packages/Boxy Theme/schemes/Boxy Tomorrow.tmTheme",
+	"dictionary": "Packages/User/Vietnamese_vi_VN.dic",
 	"enable_inline_error_tips": true,
 	"enable_typescript_language_service": true,
 	"ensure_newline_at_eof_on_save": true,
@@ -57,7 +58,7 @@
 		".meteor/local",
 		"platforms/**"
 	],
-	"font_face": "Menlo",
+	"font_face": "Hack",
 	"font_options":
 	[
 		"no_round"
@@ -67,8 +68,6 @@
 	"ignored_packages":
 	[
 		"Markdown",
-		"Sublimerge 3",
-		"tern_for_sublime",
 		"Vintage"
 	],
 	"ignored_words":
@@ -136,7 +135,7 @@
 	"scroll_past_end": true,
 	"spell_check": false,
 	"tab_completion": false,
-	"theme": "Boxy Tomorrow.sublime-theme",
+	"theme": "Adaptive.sublime-theme",
 	"theme_accent_orange": true,
 	"theme_sidebar_folder_materialized": true,
 	"trim_trailing_white_space_on_save": true,
