@@ -54,6 +54,7 @@
 		"Terminal",
 		"TodoReview",
 		"TypeScript",
-		"Vue Syntax Highlight"
+		"Vue Syntax Highlight",
+		"WordCount"
 	]
 }

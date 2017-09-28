@@ -19,7 +19,7 @@
 	// set `"highlight_line": true,` in this settings file. It is likely that there will
 	// be more mature focus improvements in the future (maybe similar to iA Writer).
 	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Focus.tmTheme",
-	"font_face": "Noto Mono",
+	"font_face": "Roboto Mono",
 	"font_size": 16,
 
 	"tab_size": 4,
@@ -36,12 +36,13 @@
 	// Line
 	"line_numbers": false,
 	"highlight_line": false,
-	"line_padding_top": 2,
-	"line_padding_bottom": 2,
+	"line_padding_top": 3,
+	"line_padding_bottom": 3,
 
 	// Caret
-	"caret_style": "solid",
-	"caret_extra_width": 1,
+	// Valid values are "smooth", "phase", "blink" and "solid".
+	"caret_style": "blink",
+	"caret_extra_width": 2,
 	// These will work only in ST Build 3057 and later.
 	"caret_extra_top": 3,
 	"caret_extra_bottom": 3,

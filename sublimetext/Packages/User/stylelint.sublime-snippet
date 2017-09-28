@@ -22,7 +22,7 @@
 		"shorthand-property-no-redundant-values": null,
 		"string-quotes": "single",
 		"selector-max-id": 0
-	}
+	},
 	"ignoreFiles": ["src/styles/_normalize*.scss"]
 }
 ]]></content>

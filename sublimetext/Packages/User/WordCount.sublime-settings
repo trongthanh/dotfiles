@@ -1,8 +1,8 @@
 {
 	"enable_live_count": true,
 
-	"enable_readtime": false,
-	"readtime_wpm": 200,
+	"enable_readtime": true,
+	"readtime_wpm": 270,
 	"char_ignore_whitespace": true,
 
 	"enable_line_word_count": false,
@@ -12,7 +12,7 @@
 	"enable_count_lines": false,
 
 	"enable_count_pages": true,
-	"words_per_page": 300,
+	"words_per_page": 1000,
 	"page_count_mode_count_words": true,
 
 	"whitelist_syntaxes": ["Markdown", "Text", "Plain Text"],
