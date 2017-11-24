@@ -14,6 +14,8 @@
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
 	<integer>1</integer>
+	<key>AppleWindowTabbingMode</key>
+	<string>manual</string>
 	<key>AutoHideTmuxClientSession</key>
 	<false/>
 	<key>CheckTestRelease</key>
@@ -759,6 +761,11 @@
 	<false/>
 	<key>NSScrollViewShouldScrollUnderTitlebar</key>
 	<false/>
+	<key>NSSplitView Subview Frames NSColorPanelSplitView</key>
+	<array>
+		<string>0.000000, 0.000000, 228.000000, 280.000000, NO, NO</string>
+		<string>0.000000, 281.000000, 228.000000, 43.000000, NO, NO</string>
+	</array>
 	<key>NSTableView Columns v2 KeyBingingTable</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGNjdYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
@@ -790,7 +797,7 @@
 	<key>NSWindow Frame NSColorPanel</key>
 	<string>357 310 228 297 0 0 1440 878 </string>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>590 303 445 77 0 0 1440 878 </string>
+	<string>355 290 596 244 0 0 1440 878 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>256 267 599 502 0 0 1440 877 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
@@ -800,15 +807,15 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>418 112 606 469 0 0 1440 878 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>235 240 796 473 0 0 1440 878 </string>
+	<string>577 332 796 473 0 0 1440 878 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 294 592 584 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>86 134 1204 625 0 0 1440 878 </string>
+	<string>167 228 730 550 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>1559 -37 650 552 1440 -180 1920 1058 </string>
+	<string>213 190 730 527 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>131 301 650 527 0 0 1440 878 </string>
+	<string>153 82 730 527 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
 	<string>213 57 650 548 0 0 1024 746 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
@@ -1092,7 +1099,7 @@
 			<key>Hide After Opening</key>
 			<false/>
 			<key>Horizontal Spacing</key>
-			<real>1</real>
+			<real>1.030249905873494</real>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
@@ -1313,7 +1320,7 @@
 			<key>Non Ascii Font</key>
 			<string>Monaco 14</string>
 			<key>Non-ASCII Anti Aliased</key>
-			<true/>
+			<false/>
 			<key>Non-ASCII Ligatures</key>
 			<true/>
 			<key>Normal Font</key>
@@ -1482,7 +1489,7 @@
 					<key>partial</key>
 					<true/>
 					<key>regex</key>
-					<string>(enter|'s) password(:| for.*:)</string>
+					<string>(enter|'s|\[sudo\]) password(:| for.*:)</string>
 				</dict>
 			</array>
 			<key>Unicode Version</key>
@@ -1683,7 +1690,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-09-22T09:56:14Z</date>
+	<date>2017-11-23T15:57:43Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1737,7 +1744,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.2.beta.1</string>
+	<string>3.1.5.beta.2</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
