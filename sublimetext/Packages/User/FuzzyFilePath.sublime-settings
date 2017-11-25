@@ -9,7 +9,7 @@
 	// disable keymaps
 	"disable_keymap_actions": false,
 	// ignore folders that match following regular expressions
-	"exclude_folders": ["node\\_modules\\/[^/]*\\/node\\_modules", "bower\\_components/.*/bower\\_components"],
+	"exclude_folders": ["node_modules", "bower_components"],
 	// logs scope evaluation to console to debug configuration
 	"log": false,
 	// LIST OF TRIGGERS FOR AUTO COMPLETION
@@ -41,12 +41,12 @@
 				["\\.js$", ""],						// after insertion, remove .js from path
 				["([^.])\\/index$", "\\1"],			// nodejs will load index.js by default => also remove index
 				// remove path to module-folder, since our build tool resolves this path automatically
-				["^(\\/.+)?\\/(bower_components|node_modules)\\/", ""]
+				["^([\\/.]+)?\\/(bower_components|node_modules)\\/", ""]
 			]
 		},
 		{
 			// es6 import from/import "*"
-			"scope": "source\\.js.*string",
+			"scope": "string\\.js\\s",
 
 			"auto": true,
 			"relative": true,
@@ -56,12 +56,12 @@
 			"replace_on_insert": [
 				["\\.js$", ""],
 				["([^.])\\/index$", "\\1"],
-				["^(\\/.+)?\\/(bower_components|node_modules)\\/", ""]
+				["^([\\/.]+)?\\/(bower_components|node_modules)\\/", ""]
 			]
 		},
 		{
 			// Typescript // <reference path="" />
-			"scope": "source\\.tsx?\\scomment",
+			"scope": "source\\.ts\\scomment",
 
 			"auto": true,
 			"relative": true,
@@ -73,13 +73,13 @@
 		},
 		{
 			// Typescript es6 import from/import "*"
-			"scope": "string[^\\s]*\\.tsx?\\s",
+			"scope": "string[^\\s]*\\.ts\\s",
 
 			"auto": true,
 			"relative": true,
 			"base_directory": false,
 			"prefix": ["from", "import"],
-			"extensions": ["js", "ts", "tsx"],
+			"extensions": ["js", "ts"],
 			"replace_on_insert": [
 				["(\\.js|\\.ts)$", ""],
 				["([^.])\\/index$", "\\1"],
@@ -146,7 +146,7 @@
 		    "prefix": ["src"],
 		    "tagName": ["script"],
 		    "auto": true,
-		    "base_directory": true,
+		    "base_directory": false,
 		    "extensions": ["js"],
 		    "relative": true
 		},

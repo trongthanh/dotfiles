@@ -4,8 +4,9 @@
 {
     /* Pygments theme to use
     See https://github.com/n1k0/SublimeHighlight
+    "monokai" - dark
     */
-    "theme": "monokai",
+    "theme": "borland",
 
     /* Full HTML page to generate? false = just a <div/> */
     "full": false,

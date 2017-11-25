@@ -1,0 +1,177 @@
+{
+	"autoreload":
+	{
+		"when_color_scheme_change": true,
+		"when_settings_change": true
+	},
+	"debug": false,
+	"default_keybindings": true,
+	"experimental":
+	{
+		"asynchronosly_update_color_scheme": false
+	},
+	"file_extensions":
+	[
+		".css",
+		".less",
+		".scss",
+		".sass",
+		".styl",
+		".html",
+		".hbs",
+		".json",
+	],
+	"icon_factory":
+	{
+		"convert_command": "convert",
+		"convert_timeout": 5
+	},
+	"regex_compiler":
+	{
+		"channels":
+		{
+			"dec": "\\d{1,3}",
+			"float": "(?:[0|1])|(?:[1][\\.]?[0]*)|(?:[0]?[\\.]\\d*)",
+			"hex": "[0-9a-fA-F]",
+			"perc": "(?:\\d{1,3}[%])|(?:0)"
+		},
+		"formats":
+		{
+			"hsl":
+			{
+				"description": "hsl(hue 0..360, s%, v%) color format",
+				"regex": "hsl[(][ ]*(?P<H>dec)[ ]*[,][ ]*(?P<S>perc)[ ]*[,][ ]*(?P<L>perc)[ ]*[)]",
+				"white": "hsl(0, 0%, 100%)"
+			},
+			"hsla":
+			{
+				"description": "hsla(hue 0..360, s%, v%, alpha 0.0 .. 1.0) color format",
+				"regex": "hsla[(][ ]*(?P<H>dec)[ ]*[,][ ]*(?P<S>perc)[ ]*[,][ ]*(?P<L>perc)[ ]*[,][ ]*(?P<A>float)[ ]*[)]",
+				"white": "hsla(0, 0%, 100%, 1.)"
+			},
+			"hsv":
+			{
+				"description": "hsv(hue 0..360, s%, v%) color format",
+				"regex": "hsv[(][ ]*(?P<H>dec)[ ]*[,][ ]*(?P<S>perc)[ ]*[,][ ]*(?P<V>perc)[ ]*[)]",
+				"white": "hsv(0, 0%, 100%)"
+			},
+			"hsva":
+			{
+				"description": "hsva(hue 0..360, s%, v%, alpha 0.0 .. 1.0) color format",
+				"regex": "hsva[(][ ]*(?P<H>dec)[ ]*[,][ ]*(?P<S>perc)[ ]*[,][ ]*(?P<V>perc)[ ]*[,][ ]*(?P<A>float)[ ]*[)]",
+				"white": "hsva(0, 0%, 100%, 1.)"
+			},
+			"rgb":
+			{
+				"description": "rgb(255,255,100%) color format",
+				"regex": "rgb[(][ ]*(?P<R>dec|perc)[ ]*[,][ ]*(?P<G>dec|perc)[ ]*[,][ ]*(?P<B>dec|perc)[ ]*[)]",
+				"white": "rgb(255, 255, 100%)"
+			},
+			"rgba":
+			{
+				"description": "rgba(255,255,100%,1) color format",
+				"regex": "rgba[(][ ]*(?P<R>dec|perc)[ ]*[,][ ]*(?P<G>dec|perc)[ ]*[,][ ]*(?P<B>dec|perc)[ ]*[,][ ]*(?P<A>float)[ ]*[)]",
+				"white": "rgba(255, 255, 100%, 1)"
+			},
+			"sharp3":
+			{
+				"after": "sharp4",
+				"description": "Hex #RGB color format",
+				"regex": "#(?P<R>hex)(?P<G>hex)(?P<B>hex)",
+				"white": "#FFF"
+			},
+			"sharp4":
+			{
+				"after": "sharp6",
+				"description": "Hex #RGBA color format",
+				"regex": "#(?P<R>hex)(?P<G>hex)(?P<B>hex)(?P<A>hex)",
+				"white": "#FFFF"
+			},
+			"sharp6":
+			{
+				"after": "sharp8",
+				"description": "Hex #RRGGBBAA color format",
+				"regex": "#[0-9a-fA-F]{6}",
+				"white": "#FFFFFF"
+			},
+			"sharp8":
+			{
+				"description": "Hex #RRGGBBAA color format",
+				"regex": "#[0-9a-fA-F]{8}",
+				"white": "#FFFFFFFF"
+			}
+		}
+	},
+	"search_colors_in":
+	{
+		"all_content":
+		{
+			"color_highlighters":
+			{
+				"color_scheme":
+				{
+					"enabled": true,
+					"highlight_style": "underlined_solid"
+				},
+				"gutter_icons":
+				{
+					"enabled": true,
+					"icon_style": "circle"
+				},
+				"phantoms":
+				{
+					"enabled": false,
+					"length": 2,
+					"style": "right"
+				}
+			},
+			"enabled": true
+		},
+		"hover":
+		{
+			"color_highlighters":
+			{
+				"color_scheme":
+				{
+					"enabled": false,
+					"highlight_style": "filled"
+				},
+				"gutter_icons":
+				{
+					"enabled": false,
+					"icon_style": "circle"
+				},
+				"phantoms":
+				{
+					"enabled": false,
+					"length": 2,
+					"style": "right"
+				}
+			},
+			"enabled": false
+		},
+		"selection":
+		{
+			"color_highlighters":
+			{
+				"color_scheme":
+				{
+					"enabled": false,
+					"highlight_style": "filled"
+				},
+				"gutter_icons":
+				{
+					"enabled": false,
+					"icon_style": "circle"
+				},
+				"phantoms":
+				{
+					"enabled": true,
+					"length": 2,
+					"style": "right"
+				}
+			},
+			"enabled": true
+		}
+	}
+}
