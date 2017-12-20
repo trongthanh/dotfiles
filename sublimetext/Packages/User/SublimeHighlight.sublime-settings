@@ -5,8 +5,10 @@
     /* Pygments theme to use
     See https://github.com/n1k0/SublimeHighlight
     "monokai" - dark
+    "borland" - light
+    "vs" - light
     */
-    "theme": "borland",
+    "theme": "pastie",
 
     /* Full HTML page to generate? false = just a <div/> */
     "full": false,
