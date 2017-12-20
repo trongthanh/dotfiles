@@ -797,7 +797,7 @@
 	<key>NSWindow Frame NSColorPanel</key>
 	<string>357 310 228 297 0 0 1440 878 </string>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>355 290 596 244 0 0 1440 878 </string>
+	<string>746 458 596 110 0 0 1440 878 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>256 267 599 502 0 0 1440 877 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
@@ -807,13 +807,13 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>418 112 606 469 0 0 1440 878 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>577 332 796 473 0 0 1440 878 </string>
+	<string>577 385 796 473 0 0 1440 878 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 294 592 584 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>167 228 730 550 0 0 1440 878 </string>
+	<string>198 276 980 602 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>213 190 730 527 0 0 1440 878 </string>
+	<string>25 182 730 602 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>153 82 730 527 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -1690,7 +1690,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-11-23T15:57:43Z</date>
+	<date>2017-12-02T16:12:39Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
