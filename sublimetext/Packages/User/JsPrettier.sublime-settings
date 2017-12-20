@@ -47,7 +47,7 @@
 	//     - Windows.......: "C:/path/to/npm/prettier" (absolute)
 	// ----------------------------------------------------------------------
 
-	"prettier_cli_path": "",
+	"prettier_cli_path": "/usr/local/bin/prettier_d",
 
 	// ----------------------------------------------------------------------
 	// Node Path
@@ -182,7 +182,13 @@
 	// troubleshooting issues.
 	// ----------------------------------------------------------------------
 
-	"additional_cli_args": {},
+	"additional_cli_args": {
+		"--single-quote": "",
+		"--print-width": "120",
+		"--trailing-comma": "es5",
+		"--prose-wrap": "preserve",
+		"--config": "/Users/thanh/.prettierrc"
+	},
 
 	// ----------------------------------------------------------------------
 	// Prettier Options
@@ -234,6 +240,27 @@
 		// special comment, called a pragma, at the top of the file. This is
 		// very useful when gradually transitioning large, unformatted codebases
 		// to prettier.
-		"requirePragma": false
+		"requirePragma": false,
+
+		// (Markdown only) By default, Prettier will wrap markdown text as-is
+		// since some services use a linebreak-sensitive renderer, e.g. GitHub
+		// comment and BitBucket. In some cases you may want to rely on
+		// SublimeText soft wrapping instead, so this option allows you to opt
+		// out with "never".
+		//
+		// Valid options:
+		//
+		// "always" - Wrap prose if it exceeds the print width.
+		// "never" - Do not wrap prose.
+		// "preserve" (default) - Wrap prose as-is. available in v1.9.0+
+		"proseWrap": "preserve",
+
+		// Include parentheses around a sole arrow function parameter.
+		//
+		// Valid Options:
+		//
+		// - "avoid" (default) - Omit parentheses when possible. Example: `x => x`
+		// - "always" - Always include parentheses. Example: `(x) => x`
+		"arrowParens": "avoid"
 	}
 }
