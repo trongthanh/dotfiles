@@ -2,7 +2,15 @@
 	"added_words":
 	[
 		"css",
-		"inline"
+		"inline",
+		"Refactor",
+		"refactor",
+		"online",
+		"playlist",
+		"app",
+		"linting",
+		"Nau",
+		"config"
 	],
 	"auto_complete_delay": 250,
 	"auto_complete_selector": "source - comment, meta.tag - punctuation.definition.tag.begin, text.html.basic",
@@ -20,7 +28,7 @@
 	"caret_extra_bottom": 4,
 	"caret_extra_top": 4,
 	"caret_extra_width": 0,
-	"color_scheme": "Packages/Boxy Theme/schemes/Boxy Tomorrow.tmTheme",
+	"color_scheme": "Packages/User/SublimeLinter/Agila Oceanic Next (SL).tmTheme",
 	"dictionary": "Packages/Language - English/en_US.dic",
 	"enable_inline_error_tips": true,
 	"enable_typescript_language_service": true,
@@ -121,6 +129,7 @@
 		"muicss",
 		"nginx",
 		"nodejs",
+		"npm",
 		"parens",
 		"plusplus",
 		"rimraf",
@@ -148,7 +157,7 @@
 	"scroll_past_end": true,
 	"spell_check": false,
 	"tab_completion": false,
-	"theme": "Adaptive.sublime-theme",
+	"theme": "Boxy Tomorrow.sublime-theme",
 	"theme_accent_orange": true,
 	"theme_sidebar_folder_materialized": true,
 	"trim_trailing_white_space_on_save": true,

@@ -6,6 +6,7 @@
 	"installed_packages":
 	[
 		"A File Icon",
+		"Agila Theme",
 		"Alignment",
 		"All Autocomplete",
 		"auto-save",
@@ -44,7 +45,7 @@
 		"SassBeautify",
 		"SCSS",
 		"Select Quoted",
-		"SideBarEnhancements",
+		"SideBarTools",
 		"StringEncode",
 		"SublimeLinter",
 		"SublimeLinter-annotations",

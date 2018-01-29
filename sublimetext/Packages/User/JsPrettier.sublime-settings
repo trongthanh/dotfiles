@@ -104,7 +104,7 @@
 	//     ]
 	// ----------------------------------------------------------------------
 
-	"auto_format_on_save_excludes": ["*/node_modules/*", "*.json", "*.html", "*.hbs", "*.md"],
+	"auto_format_on_save_excludes": ["*/node_modules/*", "*.json", "*.html", "*.hbs"],
 
 	// ----------------------------------------------------------------------
 	// Allow Inline Formatting
@@ -187,7 +187,8 @@
 		"--print-width": "120",
 		"--trailing-comma": "es5",
 		"--prose-wrap": "preserve",
-		"--config": "/Users/thanh/.prettierrc"
+		// "--config": "/Users/thanh/.prettierrc",
+		// "--ignore-path": "/Users/thanh/work/projects/autogrill/autogrill-website/autogrillvn-website.gitlab/.prettierignore"
 	},
 
 	// ----------------------------------------------------------------------
