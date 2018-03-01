@@ -81,7 +81,6 @@
 	"ignored_packages":
 	[
 		"Markdown",
-		"SublimeCodeIntel",
 		"Vintage"
 	],
 	"ignored_words":

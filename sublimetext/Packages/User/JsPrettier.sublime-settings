@@ -104,7 +104,7 @@
 	//     ]
 	// ----------------------------------------------------------------------
 
-	"auto_format_on_save_excludes": ["*/node_modules/*", "*.json", "*.html", "*.hbs"],
+	"auto_format_on_save_excludes": ["*/node_modules/*", "*.json", "*.html", "*.hbs", "*.md"],
 
 	// ----------------------------------------------------------------------
 	// Allow Inline Formatting
@@ -183,11 +183,12 @@
 	// ----------------------------------------------------------------------
 
 	"additional_cli_args": {
+		"--config-precedence": "file-override",
+		"--config": "/Users/thanh/.prettierrc",
 		"--single-quote": "",
 		"--print-width": "120",
 		"--trailing-comma": "es5",
-		"--prose-wrap": "preserve",
-		// "--config": "/Users/thanh/.prettierrc",
+		"--prose-wrap": "preserve"
 		// "--ignore-path": "/Users/thanh/work/projects/autogrill/autogrill-website/autogrillvn-website.gitlab/.prettierignore"
 	},
 
