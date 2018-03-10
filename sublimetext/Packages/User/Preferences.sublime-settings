@@ -10,7 +10,12 @@
 		"app",
 		"linting",
 		"Nau",
-		"config"
+		"config",
+		"Goalify",
+		"apps",
+		"subdomain",
+		"goalify",
+		"nau"
 	],
 	"auto_complete_delay": 250,
 	"auto_complete_selector": "source - comment, meta.tag - punctuation.definition.tag.begin, text.html.basic",
@@ -28,7 +33,7 @@
 	"caret_extra_bottom": 4,
 	"caret_extra_top": 4,
 	"caret_extra_width": 0,
-	"color_scheme": "Packages/User/SublimeLinter/Agila Oceanic Next (SL).tmTheme",
+	"color_scheme": "Packages/User/An-Old-Hope.tmTheme",
 	"dictionary": "Packages/Language - English/en_US.dic",
 	"enable_inline_error_tips": true,
 	"enable_typescript_language_service": true,

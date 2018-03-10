@@ -1,125 +1,85 @@
+// SublimeLinter Settings - User
 {
-    "user": {
-        "debug": false, 
-        "delay": 0, 
-        "error_color": "D02000", 
-        "gutter_theme": "Packages/Boxy Theme/extras/SublimeLinter/Boxy.gutter-theme", 
-        "gutter_theme_excludes": [], 
-        "lint_mode": "background", 
-        "linters": {
-            "annotations": {
-                "@disable": false, 
-                "args": [], 
-                "errors": [
-                    "FIXME"
-                ], 
-                "excludes": [], 
-                "warnings": [
-                    "NOTE", 
-                    "README", 
-                    "TODO", 
-                    "XXX", 
-                    "@todo"
-                ]
-            }, 
-            "eslint": {
-                "@disable": true, 
-                "args": [
-                    "--stdin-filename", 
-                    "@"
-                ], 
-                "excludes": [
-                    ".eslintrc"
-                ]
-            }, 
-            "eslint_d": {
-                "@disable": false, 
-                "args": [
-                    "--stdin-filename", 
-                    "@"
-                ], 
-                "excludes": [
-                    ".eslintrc"
-                ]
-            }, 
-            "json": {
-                "@disable": false, 
-                "args": [], 
-                "excludes": [], 
-                "strict": true
-            }, 
-            "stylelint": {
-                "@disable": false, 
-                "args": [], 
-                "excludes": []
-            }, 
-            "tslint": {
-                "@disable": true, 
-                "args": [], 
-                "excludes": []
-            }
-        }, 
-        "mark_style": "squiggly underline", 
-        "no_column_highlights_line": false, 
-        "passive_warnings": false, 
-        "paths": {
-            "linux": [], 
-            "osx": [], 
-            "windows": []
-        }, 
-        "python_paths": {
-            "linux": [], 
-            "osx": [], 
-            "windows": []
-        }, 
-        "rc_search_limit": 3, 
-        "shell_timeout": 10, 
-        "show_errors_on_save": false, 
-        "show_marks_in_minimap": true, 
-        "syntax_map": {
-            "coffeescript (gulpfile)": "coffeescript", 
-            "html (django)": "html", 
-            "html (rails)": "html", 
-            "html 5": "html", 
-            "javascript (babel)": "javascript", 
-            "javascript (eslint)": "javascript", 
-            "javascript (gruntfile)": "javascript", 
-            "javascript (gulpfile)": "javascript", 
-            "javascript (postcss)": "javascript", 
-            "javascript (puglint)": "javascript", 
-            "javascript (stylelint)": "javascript", 
-            "javascript (webpack)": "javascript", 
-            "json (babel)": "json", 
-            "json (bower)": "json", 
-            "json (composer)": "json", 
-            "json (eslint)": "json", 
-            "json (npm)": "json", 
-            "json (postcss)": "json", 
-            "json (puglint)": "json", 
-            "json (settings)": "json", 
-            "json (stylelint)": "json", 
-            "json (sublime)": "json", 
-            "json (tern js)": "json", 
-            "php": "html", 
-            "python django": "python", 
-            "typescript": "javascript", 
-            "typescriptreact": "javascript", 
-            "xml (config)": "xml", 
-            "xml (svg)": "xml", 
-            "yaml (circleci)": "yaml", 
-            "yaml (docker)": "yaml", 
-            "yaml (eslint)": "yaml", 
-            "yaml (lock)": "yaml", 
-            "yaml (procfile)": "yaml", 
-            "yaml (stylelint)": "yaml", 
-            "yaml (yarn)": "yaml"
-        }, 
-        "tooltip_fontsize": "1rem", 
-        "tooltip_theme": "Packages/SublimeLinter/tooltip-themes/Default/Default.tooltip-theme", 
-        "tooltip_theme_excludes": [], 
-        "tooltips": false, 
-        "use_current_shell_path": false, 
-        "warning_color": "DDB700", 
-        "wrap_find": true
+    // Global styles for all linters.
+    // - mark_style options:
+    //   "fill", "outline",
+    //   "solid_underline", "squiggly_underline", "stippled_underline"
+    //   "none"
+    // - priority determines which mark is show in the gutter;
+    //   error marks will still always override warning marks.
+    // - scope is used to determine the color;
+    //   region.<colorish> are automatically generated scopes in ST > 3148.
+    // - types is an array which can contain "warning" and/or "error".
+    // - codes is an array which can contain error codes provided by a linter.
+    // - icon can be:
+    //   one of the default icons: "circle", "dot" or "bookmark"
+    //   or a path to an icon file like (e.g. "Packages/icons/warning.png")
+    //   or "none" to remove the icon
+    //   or one provided by a gutter theme (e.g. "warning" or "error")
+    //      in theme Default: "warning", "error", "cog", "x",
+    //      and "diamond", "heart", "pointer", "square", "star", "triangle" all
+    //      also have an -outline variant.
+    // Note: At least one of those targets is required: types or codes.
+    // Styles can also be specified per linter.
+    "styles": [
+        {
+            "mark_style": "squiggly_underline",
+            "priority": 1,
+            "scope": "region.yellowish markup.changed.sublime_linter markup.warning.sublime_linter",
+            "icon": "dot",
+            "types": [
+                "warning"
+            ]
+        },
+        {
+            "mark_style": "squiggly_underline",
+            "priority": 1,
+            "scope": "region.redish markup.deleted.sublime_linter markup.error.sublime_linter",
+            "icon": "dot",
+            "types": [
+                "error"
+            ]
+        }
+    ],
+	// Maps variant syntaxes to the syntax that you have a linter for.
+    // The syntax is the name of the syntax definition file, in lower case
+    // Run this in the console to find it: view.settings().get('syntax').lower()
+    "syntax_map": {
+        "coffeescript (gulpfile)": "coffeescript",
+        "html (django)": "html",
+        "html (rails)": "html",
+        "html 5": "html",
+        "javascript (babel)": "javascript",
+        "javascript (eslint)": "javascript",
+        "javascript (gruntfile)": "javascript",
+        "javascript (gulpfile)": "javascript",
+        "javascript (postcss)": "javascript",
+        "javascript (puglint)": "javascript",
+        "javascript (stylelint)": "javascript",
+        "javascript (webpack)": "javascript",
+        "json (babel)": "json",
+        "json (bower)": "json",
+        "json (composer)": "json",
+        "json (eslint)": "json",
+        "json (npm)": "json",
+        "json (postcss)": "json",
+        "json (puglint)": "json",
+        "json (settings)": "json",
+        "json (stylelint)": "json",
+        "json (sublime)": "json",
+        "json (tern js)": "json",
+        "php": "html",
+        "python django": "python",
+        "typescript": "javascript",
+        "typescriptreact": "javascript",
+        "xml (config)": "xml",
+        "xml (svg)": "xml",
+        "yaml (circleci)": "yaml",
+        "yaml (docker)": "yaml",
+        "yaml (eslint)": "yaml",
+        "yaml (lock)": "yaml",
+        "yaml (procfile)": "yaml",
+        "yaml (stylelint)": "yaml",
+        "yaml (yarn)": "yaml"
     }
 }
