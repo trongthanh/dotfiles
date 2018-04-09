@@ -52,6 +52,7 @@
 		"SublimeLinter-annotations",
 		"SublimeLinter-contrib-eslint_d",
 		"SublimeLinter-contrib-stylelint",
+		"SublimeLinter-contrib-yamllint",
 		"SublimeLinter-json",
 		"Swig",
 		"Terminal",

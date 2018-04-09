@@ -76,7 +76,7 @@
 		".meteor/local",
 		"platforms/**"
 	],
-	"font_face": "Fira Code",
+	"font_face": "IBM Plex Mono",
 	"font_options":
 	[
 		"no_round"

@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[<title>${1}</title>
+<meta name="description" content="$2">
+<meta property="og:url" content="${3:https://}">
+<meta property="og:type" content="${4:website|article}">
+<meta property="og:title" content="${1}">
+<meta property="og:description" content="$2">
+<meta property="og:image" content="${5}">
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>meta</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.html</scope>
+</snippet>
