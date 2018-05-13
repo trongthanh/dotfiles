@@ -1160,7 +1160,7 @@
 	<key>NSWindow Frame NSColorPanel</key>
 	<string>357 310 228 297 0 0 1440 878 </string>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>821 513 619 180 0 0 1440 878 </string>
+	<string>613 257 619 226 0 0 1440 878 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>256 267 599 502 0 0 1440 877 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
@@ -1170,26 +1170,26 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>418 112 606 469 0 0 1440 878 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>403 350 796 473 0 0 1440 878 </string>
+	<string>403 331 796 473 0 0 1440 878 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>99 294 592 584 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>61 33 1277 776 0 0 1440 878 </string>
+	<string>264 146 730 552 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>68 172 973 602 0 0 1440 878 </string>
+	<string>46 0 1394 878 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>138 81 730 602 0 0 1440 878 </string>
+	<string>209 142 730 577 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>213 57 650 548 0 0 1024 746 </string>
+	<string>569 223 730 600 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
-	<string>354 82 650 527 0 0 1440 878 </string>
+	<string>295 94 730 577 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 5</key>
-	<string>170 260 650 527 0 0 1440 878 </string>
+	<string>329 -18 730 577 0 0 1440 878 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
 			<key>ASCII Anti Aliased</key>
-			<false/>
+			<true/>
 			<key>ASCII Ligatures</key>
 			<true/>
 			<key>Allow Title Reporting</key>
@@ -1767,7 +1767,7 @@
 			<key>Non-ASCII Ligatures</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Monaco 13</string>
+			<string>Menlo-Regular 14</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -2141,7 +2141,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-02-08T04:08:52Z</date>
+	<date>2018-05-10T10:53:31Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -2195,7 +2195,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.5.beta.2</string>
+	<string>3.1.6beta5</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
