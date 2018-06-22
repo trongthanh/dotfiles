@@ -62,16 +62,13 @@
 		"platforms/**"
 	],
 	"font_face": "IBM Plex Mono",
-	"font_options":
-	[
-		"no_round"
-	],
-	"font_size": 15,
+	"font_size": 12,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
 		"JsPrettier",
 		"Markdown",
+		"Open Finder",
 		"Vintage"
 	],
 	"ignored_words":

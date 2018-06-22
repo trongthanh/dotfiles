@@ -14,4 +14,4 @@ else
 	fi
 fi
 unset doIt
-source ~/.profile
+source ~/.bashrc

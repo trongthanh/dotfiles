@@ -1,6 +1,6 @@
 [
-	{ "keys": ["ctrl+g"], "command": "find_next" },
-	{ "keys": ["shift+ctrl+g"], "command": "find_prev" },
+	{ "keys": ["super+g"], "command": "find_next" },
+	{ "keys": ["shift+super+g"], "command": "find_prev" },
 	{ "keys": ["ctrl+super+r"], "command": "reveal_in_side_bar" },
 	{ "keys": ["strl+f5"], "command": "insert_date_panel" },
 	{ "keys": ["f5"], "command": "sort_lines", "args": {"case_sensitive": false} },
@@ -14,4 +14,5 @@
 	},
 	{ "keys": ["ctrl+shift+space"], "command": "expand_selection", "args": {"to": "scope"} },
 	{ "keys": ["ctrl+space"], "command": "auto_complete" },
+	{ "keys": ["ctrl+super+g"], "command": "find_all_under" },
 ]
