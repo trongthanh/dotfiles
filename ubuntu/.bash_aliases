@@ -6,10 +6,6 @@ alias install="sudo apt-get install"
 alias remove="sudo apt-get remove"
 alias search="apt-cache search"
 
-# programs
-# Google Chrome with security disabled
-alias superchrome="google-chrome --disable-web-security --allow-file-access-from-files"
-
 # For Sublime Text, use WebUpd8 PPA, it will create alias for
 # subl
 
@@ -17,8 +13,16 @@ alias superchrome="google-chrome --disable-web-security --allow-file-access-from
 alias please=sudo
 alias hosts='sudo subl /etc/hosts'   # yes I occasionally 127.0.0.1 twitter.com ;)
 
+# List shortcuts
+alias la='ls -a'
+alias ll='ls -l'
+
 # List only directories
 alias lsd='ls -l | grep "^d"'
+
+# Some remove conveniences
+alias rmr='rm -r'
+alias rmf='rm -f'
 
 # `cat` with beautiful colors. requires Pygments installed.
 # 							   sudo easy_install Pygments
@@ -38,6 +42,9 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
+
+# Clean up node_modules folders
+alias npmcleanup="find . -name 'node_modules' -type d -exec rm -rfv '{}' +"
 
 # File size
 alias fs="stat -f \"%z bytes\""
@@ -75,3 +82,17 @@ function server() {
 	# And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
 	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
 }
+
+# nodejs command
+alias n="npm"
+alias ns="npm start"
+alias y="yarn"
+alias ys="yarn start"
+alias serve="live-server"
+
+
+# Vim command
+alias v="vim"
+
+# Terminal
+alias cls="echo -ne '\033c'"
