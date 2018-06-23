@@ -1,12 +1,14 @@
 [
 	{ "keys": ["super+g"], "command": "find_next" },
 	{ "keys": ["shift+super+g"], "command": "find_prev" },
+	{ "keys": ["super+g"], "command": "find_under" },
+	{ "keys": ["shift+super+g"], "command": "find_under_prev" },
 	{ "keys": ["ctrl+super+r"], "command": "reveal_in_side_bar" },
 	{ "keys": ["strl+f5"], "command": "insert_date_panel" },
 	{ "keys": ["f5"], "command": "sort_lines", "args": {"case_sensitive": false} },
 	{ "keys": ["shift+super+n"], "command": "new_window" },
 	{ "keys": ["shift+super+w"], "command": "close_window" },
-	{ "keys": ["ctrl+,"], "command": "edit_settings", "args":
+	{ "keys": ["super+,"], "command": "edit_settings", "args":
 		{
 			"base_file": "${packages}/Default/Preferences.sublime-settings",
 			"default": "// Settings in here override those in \"Default/Preferences.sublime-settings\",\n// and are overridden in turn by syntax-specific settings.\n{\n\t$0\n}\n"

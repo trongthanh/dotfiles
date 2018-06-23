@@ -2,7 +2,10 @@
 cd "$(dirname "$0")"
 git pull
 function doIt() {
-	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "sync.sh" --exclude "README.md" --exclude "initialize.sh" -av . ~
+
+	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "sync.sh" --exclude "README.md" --exclude "initialize.sh" --exclude "keybindings.dconf" -av . ~
+	# Load my preferred keybindings to dconf
+	dconf load /org/gnome/desktop/wm/keybindings/ < keybindings.dconf
 }
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
 	doIt

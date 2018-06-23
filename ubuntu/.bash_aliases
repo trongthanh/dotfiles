@@ -13,12 +13,8 @@ alias search="apt-cache search"
 alias please=sudo
 alias hosts='sudo subl /etc/hosts'   # yes I occasionally 127.0.0.1 twitter.com ;)
 
-# List shortcuts
-alias la='ls -a'
-alias ll='ls -l'
-
 # List only directories
-alias lsd='ls -l | grep "^d"'
+alias lsd='ll | grep "^d"'
 
 # Some remove conveniences
 alias rmr='rm -r'
@@ -96,3 +92,4 @@ alias v="vim"
 
 # Terminal
 alias cls="echo -ne '\033c'"
+alias open="gnome-open"
