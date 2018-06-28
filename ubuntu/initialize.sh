@@ -1,52 +1,37 @@
 #!/bin/bash
 
 # Add Sublime Text PPA (-y for unattended process)
-sudo apt-add-repository -y ppa:webupd8team/sublime-text-3
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+sudo apt-get install apt-transport-https
+echo "deb https://download.sublimetext.com/ apt/dev/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+
 # Add NodeJS PPA
-sudo apt-add-repository -y ppa:chris-lea/node.js
-# Add Ubuntu Tweak PPA
-#sudo apt-add-repository -y ppa:tualatrix/ppa
-#sudo apt-get install ubuntu-tweak
-#
-sudo apt-add-repository -y 'deb http://dl.google.com/linux/chrome/deb/ stable main'
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+
+# Add Yarn package PPA
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+# Add Google Chrome Stable PPA
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+
+# Add Firefox Beta PPA
+sudo add-apt-repository ppa:mozillateam/firefox-next
 
 # Update all repo
 sudo apt-get update
+sudo apt-get upgrade -y
 
-# Install neccessary packages:
-sudo apt-get install git subversion meld ubuntu-restricted-extras
+# Install all neccessary packages:
+sudo apt-get install -y git gitg ubuntu-restricted-extras sublime-text nodejs yarn build-essential google-chrome-stable fcitx
 
-# Install Google Chrome Canary
-sudo apt-get install google-chrome-unstable
-
-# Install Sublime Text
-sudo apt-get install sublime-text-installer
 
 # Sync my Sublime Text 3 settings
-rsync --exclude ".git/" --exclude ".DS_Store" --exclude "README.md" -av ../sublimetext/Packages ~/.config/sublime-text-3
+# TODO: symlink ST3 settings from this repo to ~/.config folder
+# rsync --exclude ".git/" --exclude ".DS_Store" --exclude "README.md" -av ../sublimetext/Packages ~/.config/sublime-text-3
 
-# Package Control for ST3: (ST3 will automatically install packages via previous settings)
-# cd ~/.config/sublime-text-3/Packages/
-# git clone https://github.com/wbond/sublime_package_control.git "Package Control"
-# cd "Package Control"
-# git checkout python3
 
-# Sublime Linter for ST3
-# TODO
-
-# Auto File Name for ST3
-# TODO
-
-# Install NodeJS
-sudo apt-get install python-software-properties python g++ make
-sudo apt-get install nodejs
-
-# Install Ubuntu Tweak
-sudo apt-get install unity-tweak-tool
-
-# Install ibus-unikey
-sudo apt-get install ibus-unikey
 # Mannual: Add ibus-daemon to start up program
 
-# TODO: install Source Code Pro fonts via git & command line
+# TODO: install my fonts
