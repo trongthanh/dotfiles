@@ -93,3 +93,26 @@ alias v="vim"
 # Terminal
 alias cls="echo -ne '\033c'"
 alias open="gnome-open"
+
+# Tizonia
+alias ti="tizonia"
+alias tistr="tizonia --spotify-tracks"
+alias tisar="tizonia --spotify-artist"
+alias tisal="tizonia --spotify-album"
+alias tispl="tizonia --spotify-owner 1189203964 --spotify-playlist"
+function tisop() {
+	#tiop spotify sleep
+	tizonia --spotify-owner "$1" --spotify-playlist "$2"
+}
+
+alias tiyst="tizonia --youtube-audio-stream"
+alias tiypl="tizonia --youtube-audio-playlist"
+alias tiymi="tizonia --youtube-audio-mix"
+alias tiyse="tizonia --youtube-audio-search"
+alias tiyms="tizonia --youtube-audio-mix-search"
+alias tiycp="tizonia --youtube-audio-channel-playlist"
+
+alias tigtr="tizonia --gmusic-tracks"
+alias tigar="tizonia --gmusic-artist"
+alias tigal="tizonia --gmusic-album"
+alias tigpl="tizonia --gmusic-playlist"
