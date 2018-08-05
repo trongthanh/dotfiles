@@ -1,6 +1,10 @@
 {
 	"added_words":
 	[
+		"Macbook",
+		"distro",
+		"blog",
+		"commenters"
 	],
 	"auto_complete_delay": 250,
 	"auto_complete_selector": "source - comment, meta.tag - punctuation.definition.tag.begin, text.html.basic",
@@ -74,27 +78,27 @@
 	"ignored_words":
 	[
 		"Goalify",
-		"goalify",
+		"Nau",
+		"acls",
+		"apt",
 		"browserslist",
+		"cjs",
+		"cli",
+		"cmd",
 		"dotenv",
-		"md",
-		"jsx",
 		"fs",
+		"goalify",
+		"jsx",
+		"md",
+		"mongod",
 		"mui",
 		"muicss",
-		"mongod",
+		"nau",
 		"parens",
 		"plusplus",
 		"rimraf",
 		"semver",
-		"systemctl",
-		"cjs",
-		"cli",
-		"cmd",
-		"apt",
-		"acls",
-		"Nau",
-		"nau"
+		"systemctl"
 	],
 	"index_exclude_patterns":
 	[
@@ -104,7 +108,8 @@
 		"dist/**/*",
 		"~dist/**/*",
 		"platforms/**",
-		".eslintcache"
+		".eslintcache",
+		".next/**"
 	],
 	"index_files": true,
 	"index_workers": 2,
