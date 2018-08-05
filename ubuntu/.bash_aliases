@@ -1,16 +1,20 @@
 # Package management
 alias addrepo="sudo apt-add-repository"
-alias update="sudo apt-get update"
-alias upgrade="sudo apt-get -qq update && sudo apt-get upgrade"
-alias install="sudo apt-get install"
-alias remove="sudo apt-get remove"
+alias update="sudo apt update && sudo apt list --upgradable"
+alias upgrade="sudo apt -qq update && sudo apt upgrade"
+alias install="sudo apt install"
+alias remove="sudo apt remove"
 alias search="apt-cache search"
 
-# For Sublime Text, use WebUpd8 PPA, it will create alias for
+# Quick CD
+alias ..="cd .."
+alias ...="cd ../.."
+
+# For Sublime Text, install with Ubuntu/Debian PPA, it will create alias for
 # subl
 
 # be nice
-alias please=sudo
+alias pl=sudo
 alias hosts='sudo subl /etc/hosts'   # yes I occasionally 127.0.0.1 twitter.com ;)
 
 # List only directories
@@ -44,6 +48,11 @@ alias npmcleanup="find . -name 'node_modules' -type d -exec rm -rfv '{}' +"
 
 # File size
 alias fs="stat -f \"%z bytes\""
+
+# find shorthand
+function f() {
+    find . -name "$1"
+}
 
 # Extract archives - use: extract <file>
 # Credits to http://dotfiles.org/~pseup/.bashrc
