@@ -105,6 +105,14 @@ alias open="gnome-open"
 
 # Tizonia
 alias ti="tizonia"
+function tis() {
+	echo "Shortcuts for tizonia --spotify-*"
+	echo "tistr arg        Search and play from Spotify by track name."
+	echo "tisar arg        Search and play from Spotify by artist name."
+	echo "tisal arg        Search and play from Spotify by album name."
+	echo "tispl arg        Search and play public playlists (owner is assumed current user, unless --spotify-owner is provided)."
+	echo "tisop ow pl      Search and play public playlist by an owner"
+}
 alias tistr="tizonia --spotify-tracks"
 alias tisar="tizonia --spotify-artist"
 alias tisal="tizonia --spotify-album"
@@ -114,13 +122,31 @@ function tisop() {
 	tizonia --spotify-owner "$1" --spotify-playlist "$2"
 }
 
+function tiy() {
+	echo "Shortcuts for tizonia --youtube-*"
+	echo "tiyst arg       Play a YouTube audio stream from a video url or video id."
+	echo "tiypl arg       Play a YouTube audio playlist from a playlist url or playlist id."
+	echo "tiymi arg       Play a YouTube mix from a video url or video id."
+	echo "tiyse arg       Search and play YouTube audio streams."
+	echo "tiyms arg       Play a YouTube mix from a search term."
+	echo "tiycu arg       Play all videos uploaded to a YouTube channel (arg = channel url or name)."
+	echo "tiycp arg       Play a playlist from particular YouTube channel (arg = '<channel-name[space]playlist-name>')."
+}
 alias tiyst="tizonia --youtube-audio-stream"
 alias tiypl="tizonia --youtube-audio-playlist"
 alias tiymi="tizonia --youtube-audio-mix"
 alias tiyse="tizonia --youtube-audio-search"
 alias tiyms="tizonia --youtube-audio-mix-search"
+alias tiycu="tizonia --youtube-audio-channel-uploads"
 alias tiycp="tizonia --youtube-audio-channel-playlist"
 
+function tig() {
+	echo "Shortcuts for tizonia --gmusic-*"
+	echo "tigtr arg        Play tracks from the user's library by track name."
+	echo "tigar arg        Play tracks from the user's library by artist."
+	echo "tigal arg        Play an album from the user's library."
+	echo "tigpl arg        A playlist from the user's library."
+}
 alias tigtr="tizonia --gmusic-tracks"
 alias tigar="tizonia --gmusic-artist"
 alias tigal="tizonia --gmusic-album"
