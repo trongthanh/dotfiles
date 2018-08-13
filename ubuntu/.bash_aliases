@@ -88,6 +88,12 @@ function server() {
 	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
 }
 
+# command cheatsheet
+function cheat() {
+	# try: $cheat find
+	curl "cheat.sh/$1"
+}
+
 # nodejs command
 alias n="npm"
 alias ns="npm start"
@@ -118,7 +124,7 @@ alias tisar="tizonia --spotify-artist"
 alias tisal="tizonia --spotify-album"
 alias tispl="tizonia --spotify-owner 1189203964 --spotify-playlist"
 function tisop() {
-	#tiop spotify sleep
+	#tisop spotify sleep
 	tizonia --spotify-owner "$1" --spotify-playlist "$2"
 }
 
