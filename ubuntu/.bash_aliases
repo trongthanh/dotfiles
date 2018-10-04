@@ -95,10 +95,18 @@ function cheat() {
 }
 
 # nodejs command
-alias n="npm"
+# no alias for n, since n is for the Node version manager
 alias ns="npm start"
+alias ni="npm install"
+alias nid="npm install --save-dev"
+alias nt="npm test"
+alias nb="npm run build"
 alias y="yarn"
+alias ya="yarn add"
+alias yad="yarn add --dev"
 alias ys="yarn start"
+alias yb="yarn build"
+alias yt="yarn test"
 alias serve="live-server"
 
 
