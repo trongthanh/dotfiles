@@ -8,7 +8,7 @@
 	],
 
 	// "color_scheme": "Packages/DA UI/DA Dark.tmTheme",
-	// "color_scheme": "Packages/Boxy Theme/schemes/Boxy Tomorrow.tmTheme",
+	"color_scheme": "Packages/Boxy Theme/schemes/Boxy Ocean.tmTheme",
 	// "color_scheme": "Packages/Monokai Extended/Monokai Extended.tmTheme",
 	// "color_scheme": "Packages/Color Scheme - Default/Breakers.sublime-color-scheme",
 	// "color_scheme": "Packages/Color Scheme - Default/Sixteen.sublime-color-scheme",
@@ -22,7 +22,7 @@
 	// "color_scheme": "Packages/Agila Theme/Markdown/Oceanic Next Markdown.tmTheme",
 	// "color_scheme": "Packages/Agila Theme/Markdown/Oceanic Next Origin Markdown.tmTheme",
 	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor.tmTheme",
-	"color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme",
+	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme",
 	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Yellow.tmTheme",
 
 	// This is a quick and dirty focus theme. In order to make it work, you've to
@@ -33,7 +33,7 @@
 	// "font_face": "Noto Serif",
 	"font_face": "IBM Plex Mono",
 	// "font_face": "iA Writer Duospace",
-	"font_size": 18,
+	"font_size": 12,
 
 	"tab_size": 4,
 	"translate_tabs_to_spaces": true,
@@ -49,7 +49,7 @@
 	// Line
     "gutter": true,
 	"line_numbers": false,
-	"highlight_line": true,
+	"highlight_line": false,
 	"line_padding_top": 3,
 	"line_padding_bottom": 3,
 
