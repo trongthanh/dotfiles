@@ -1,0 +1,4 @@
+{
+	// Character threshold to search
+	"search_threshold": 20000,
+}
