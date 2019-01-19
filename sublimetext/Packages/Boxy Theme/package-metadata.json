@@ -1,0 +1,1 @@
+{"platforms": ["*"], "url": "https://github.com/ihodev/sublime-boxy", "dependencies": [], "version": "5.2.0", "description": "The most hackable theme for Sublime Text 3", "sublime_text": ">=3103"}
