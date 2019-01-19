@@ -5,9 +5,11 @@
 	],
 	"installed_packages":
 	[
+		"A File Icon",
 		"Alignment",
 		"All Autocomplete",
 		"AutoFileName",
+		"ayu",
 		"Babel",
 		"Babel Snippets",
 		"Boxy Theme",
@@ -16,7 +18,6 @@
 		"ColorPicker",
 		"Comment-Snippets",
 		"CSS Extended Completions",
-		"DA UI",
 		"DocBlockr",
 		"Dockerfile Syntax Highlighting",
 		"EditorConfig",
@@ -42,7 +43,6 @@
 		"rsub",
 		"Sass",
 		"Select Quoted",
-		"SideBarTools",
 		"SRT",
 		"StringEncode",
 		"SublimeLinter",

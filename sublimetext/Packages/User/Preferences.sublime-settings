@@ -70,8 +70,7 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"A File Icon",
-		"Emmet",
+		"JsPrettier",
 		"Markdown",
 		"Open Finder",
 		"Vintage"
@@ -118,11 +117,10 @@
 	"line_padding_top": 3,
 	"scroll_past_end": true,
 	"scroll_speed": 0,
-	"skin": "DA UI/Minimal",
+	"spacegray_icons": true,
 	"spell_check": false,
 	"tab_completion": false,
-	"theme": "DA.sublime-theme",
-	"theme_accent_orange": true,
+	"theme": "ayu-mirage.sublime-theme",
 	"trim_trailing_white_space_on_save": true,
 	"typescript_tsdk": "/usr/local/lib/node_modules/typescript/lib",
 	"word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?"
