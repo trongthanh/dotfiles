@@ -150,4 +150,9 @@ function resetow() { # reset Open With
 	echo "Open With has been rebuilt, Finder will relaunch"
 }
 
+# command cheatsheet
+function cheat() {
+	# try: $cheat find
+	curl "cheat.sh/$1"
+}
 
