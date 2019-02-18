@@ -10,24 +10,20 @@ cd "$(dirname "$0")"
 echo "--> Installing Homebrew. This will also request OSX to install its commandline tools along the steps"
 
 # At this command, if XCode command line tools were not installed, it will be prompted
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-# Make sure brew is updated
-brew update
-# Check for issues
-brew doctor
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 echo "--> Installing NodeJS & npm"
 
-brew install node
+brew install node@10
+brew link --force --overwrite node@10
 
 echo "--> Installing Neccessary NodeJS packages"
 
-npm install -g grunt-cli jshint jscs csslint yo bower http-server marked
+npm install -g live-server eslint eslint_d prettier prettier_d typescript stylelint
 
-echo "--> Installing Neccessary Ruby Gems"
+echo "--> Install Pyments for code highlighted cat"
 
-sudo gem install sass scss-lint
+sudo easy_install Pygments
 
 echo "--> Syncing Sublime Text 3 standard settings (ST3 should be installed earlier)"
 # Sync Sublime Text 3 settings
