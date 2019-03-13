@@ -1,0 +1,9 @@
+// SublimeLinter Settings - User
+{
+	"linters": {
+		"eslint_d":
+		{
+			"selector": "source.js, source.jsx, source.ts, source.tsx"
+		}
+	}
+}
