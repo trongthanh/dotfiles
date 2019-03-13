@@ -184,11 +184,12 @@
 
 	"additional_cli_args": {
 		"--config-precedence": "file-override",
-		"--config": "/Users/thanh/.prettierrc",
+		"--semi": "",
 		"--single-quote": "",
 		"--print-width": "120",
 		"--trailing-comma": "es5",
 		"--prose-wrap": "preserve",
+		"--arrow-parens": "always",
 		// "--ignore-path": "/Users/thanh/work/projects/autogrill/autogrill-website/autogrillvn-website.gitlab/.prettierignore"
 	},
 
@@ -263,6 +264,6 @@
 		//
 		// - "avoid" (default) - Omit parentheses when possible. Example: `x => x`
 		// - "always" - Always include parentheses. Example: `(x) => x`
-		"arrowParens": "avoid"
+		"arrowParens": "always"
 	}
 }
