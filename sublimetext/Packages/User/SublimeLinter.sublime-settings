@@ -2,7 +2,7 @@
 	"linters": {
 		"eslint_d":
 		{
-			"selector": "source.js, source.jsx, source.ts, source.tsx"
+			"selector": "source.js, source.jsx, source.ts, source.tsx, text.html.vue"
 		}
 	},
 	"styles": [

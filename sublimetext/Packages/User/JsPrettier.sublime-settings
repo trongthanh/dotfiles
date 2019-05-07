@@ -11,7 +11,7 @@
 	// useful for troubleshooting purposes.
 	// ----------------------------------------------------------------------
 
-	"debug": false,
+	"debug": true,
 
 	// ----------------------------------------------------------------------
 	// Prettier CLI Path
@@ -135,7 +135,7 @@
 	// must be specified here, without the leading dot.
 	// ----------------------------------------------------------------------
 
-	"custom_file_extensions": [],
+	"custom_file_extensions": ["svelte"],
 
 	// ----------------------------------------------------------------------
 	// Maximum File Size Limit
@@ -189,8 +189,7 @@
 		"--print-width": "120",
 		"--trailing-comma": "es5",
 		"--prose-wrap": "preserve",
-		"--arrow-parens": "always",
-		// "--ignore-path": "/Users/thanh/work/projects/autogrill/autogrill-website/autogrillvn-website.gitlab/.prettierignore"
+		"--plugin-search-dir": "$folder",
 	},
 
 	// ----------------------------------------------------------------------

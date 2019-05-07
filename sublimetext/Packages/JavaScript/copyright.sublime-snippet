@@ -1,8 +1,8 @@
 <snippet>
-    <content><![CDATA[/* © 201${1:7} ${2:NauStud.io}
- * @author ${3:...}
+    <content><![CDATA[/* © 201${1:9} ${2:Int3ractive.com}
+ * @author ${3:Thanh Tran}
  */$0]]></content>
     <tabTrigger>copyright</tabTrigger>
-    <scope>source.js,source.ts,source.tsx,source.css,source.scss,source.php</scope>
+    <scope>source.js,source.ts,source.tsx,source.css,source.scss,source.php,source.svelte,source.vue</scope>
     <description>© copyright</description>
 </snippet>
