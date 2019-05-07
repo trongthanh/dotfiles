@@ -2,20 +2,11 @@
 	"linters": {
 		"eslint_d":
 		{
-			"selector": "source.js, source.jsx, source.ts, source.tsx, text.html.vue"
+			"selector": "source.js, source.jsx, source.ts, source.tsx, text.html.vue,  text.html.svelte",
+			"styles": [{
+				"types": ["warning", "error"],
+				"mark_style": "squiggly_underline"
+			}]
 		}
-	},
-	"styles": [
-        {
-            "scope": "region.yellowish markup.warning.sublime_linter",
-            "types": ["warning"],
-            "mark_style": "squiggly_underline",
-        },
-        {
-            "priority": 1,
-            "icon": "dot",
-            "mark_style": "squiggly_underline",
-            "scope": "region.redish markup.error.sublime_linter"
-        }
-    ],
+	}
 }
