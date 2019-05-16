@@ -1,0 +1,6 @@
+<snippet>
+    <content><![CDATA[import { ${1:r}${1/(r)|(w)|(d)|.*/(?1:eadable)(?2:ritable)(?3:erived)/} } from 'svelte/store';]]></content>
+    <tabTrigger>imss</tabTrigger>
+    <scope>source</scope>
+    <description>import Svelte store (r|w|d)</description>
+</snippet>
