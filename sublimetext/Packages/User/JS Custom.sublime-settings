@@ -1,0 +1,7 @@
+{
+	"defaults": {
+        "custom_template_tags": false,
+        "flow_types": false,
+        "jsx": true,
+    },
+}

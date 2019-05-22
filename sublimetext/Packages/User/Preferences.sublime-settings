@@ -117,7 +117,6 @@
 	"line_padding_top": 3,
 	"scroll_past_end": true,
 	"scroll_speed": 0,
-	"spacegray_icons": true,
 	"spell_check": false,
 	"tab_completion": false,
 	"theme": "ayu-mirage.sublime-theme",
