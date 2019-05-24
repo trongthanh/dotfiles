@@ -1,0 +1,10 @@
+{
+   "scope": "text.html.svelte, source.js, source.js.default",
+
+   "completions":
+   [
+      { "trigger": "r\timport", "contents": "import { readable } from 'svelte/store';" },
+      { "trigger": "w\timport", "contents": "import { writable } from 'svelte/store';" },
+      { "trigger": "d\timport", "contents": "import { derived } from 'svelte/store';" }
+   ]
+}

@@ -120,7 +120,7 @@
 	//     ]
 	// ----------------------------------------------------------------------
 
-	"auto_format_on_save_excludes": ["*/node_modules/*", "*.json", "*.html", "*.hbs", "*.md"],
+	"auto_format_on_save_excludes": ["*/node_modules/*", "*.json", "*.html", "*.hbs"],
 
 	// ----------------------------------------------------------------------
 	// Auto Format Requires Prettier Config File
@@ -170,7 +170,7 @@
 	// Additional file extensions MUST be specified here, and without the leading dot.
 	// ----------------------------------------------------------------------
 
-	"custom_file_extensions": ["svelte", "vue"],
+	"custom_file_extensions": ["svelte"],
 
 	// ----------------------------------------------------------------------
 	// Maximum File Size Limit
@@ -264,13 +264,14 @@
 	// ----------------------------------------------------------------------
 
 	"additional_cli_args": {
+		"--plugin-search-dir": "$folder",
 		// "--config-precedence": "file-override", // not working with eslint_d
-		// "--plugin-search-dir": "$folder",
-		"--semi": "",
-		"--single-quote": "",
-		"--print-width": "100",
-		"--trailing-comma": "es5",
-		"--prose-wrap": "preserve",
+		// "--semi": "",
+		// "--single-quote": "",
+		// "--print-width": "100",
+		// "--trailing-comma": "es5",
+		// "--prose-wrap": "preserve",
+		// "--arrow-parens": "always",
 	},
 
 	// ----------------------------------------------------------------------
