@@ -17,6 +17,9 @@ alias ...="cd ../.."
 alias pl=sudo
 alias hosts='sudo subl /etc/hosts'   # yes I occasionally 127.0.0.1 twitter.com ;)
 
+# Fix ls color
+export LS_COLORS='ow=01;36;40'
+
 # List only directories
 alias lsd='ll | grep "^d"'
 
@@ -127,10 +130,14 @@ function tis() {
 	echo "tisal arg        Search and play from Spotify by album name."
 	echo "tispl arg        Search and play public playlists (owner is assumed current user, unless --spotify-owner is provided)."
 	echo "tisop ow pl      Search and play public playlist by an owner"
+	echo "tisra            Search and play from related artists"
+	echo "tisfp            Search and play featured playlist by Spotify"
 }
 alias tistr="tizonia --spotify-tracks"
 alias tisar="tizonia --spotify-artist"
 alias tisal="tizonia --spotify-album"
+alias tisra="tizonia --spotify-related-artists"
+alias tisfp="tizonia --spotify-featured-playlist"
 alias tispl="tizonia --spotify-owner 1189203964 --spotify-playlist"
 function tisop() {
 	#tisop spotify sleep
