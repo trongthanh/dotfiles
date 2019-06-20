@@ -7,7 +7,8 @@
 		"commenters",
 		"intellisense",
 		"const",
-		"App"
+		"App",
+		"Stateful"
 	],
 	"auto_complete_delay": 250,
 	"auto_complete_selector": "meta.tag - punctuation.definition.tag.begin, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
@@ -78,6 +79,7 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
+		"JavaScript",
 		"Markdown",
 		"Vintage",
 		"WordCount"

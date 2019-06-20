@@ -1,0 +1,5 @@
+<snippet>
+	<content><![CDATA[// prettier-ignore]]></content>
+	<tabTrigger>prig</tabTrigger>
+	<scope>source.js,source.jsx,source.ts,source.tsx</scope>
+</snippet>
