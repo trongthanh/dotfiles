@@ -120,7 +120,7 @@
 	//     ]
 	// ----------------------------------------------------------------------
 
-	"auto_format_on_save_excludes": ["*/node_modules/*", "*.json", "*.html", "*.hbs"],
+	"auto_format_on_save_excludes": ["*/node_modules/*", "*.json", "*.html", "*.hbs", "*.css", "*.md"],
 
 	// ----------------------------------------------------------------------
 	// Auto Format Requires Prettier Config File
@@ -264,14 +264,7 @@
 	// ----------------------------------------------------------------------
 
 	"additional_cli_args": {
-		"--plugin-search-dir": "$folder",
-		// "--config-precedence": "file-override", // not working with eslint_d
-		// "--semi": "",
-		// "--single-quote": "",
-		// "--print-width": "100",
-		// "--trailing-comma": "es5",
-		// "--prose-wrap": "preserve",
-		// "--arrow-parens": "always",
+		"--config-precedence": "file-override",
 	},
 
 	// ----------------------------------------------------------------------
