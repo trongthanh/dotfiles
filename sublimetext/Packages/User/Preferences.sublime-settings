@@ -127,7 +127,7 @@
 	"scroll_speed": 0,
 	"spell_check": false,
 	"tab_completion": false,
-	"theme": "ayu-mirage.sublime-theme",
+	"theme": "Spacegray Oceanic.sublime-theme",
 	"trim_trailing_white_space_on_save": true,
 	"typescript_tsdk": "/usr/local/lib/node_modules/typescript/lib",
 	"word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?"
