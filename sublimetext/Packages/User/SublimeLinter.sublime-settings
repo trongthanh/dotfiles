@@ -1,7 +1,8 @@
 {
 	"linters": {
-		"eslint_d":
+		"eslint":
 		{
+			"executable": "/usr/local/bin/eslint_d",
 			"selector": "source.js,source.jsx,source.ts,source.tsx,text.html.vue,text.html.svelte",
 			"styles": [{
 				"types": ["warning", "error"],
