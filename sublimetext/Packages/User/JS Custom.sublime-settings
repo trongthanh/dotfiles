@@ -3,5 +3,7 @@
         "custom_template_tags": false,
         "flow_types": false,
         "jsx": true,
+        "string_object_keys": true,
+        "eslint_directives": true,
     },
 }
