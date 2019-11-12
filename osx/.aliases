@@ -44,6 +44,9 @@ alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
 
+# FASD jump command
+alias z='fasd_cd -d'
+
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
 alias grep='grep --color=auto'
@@ -79,7 +82,7 @@ alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
 
 # Clean up node_modules folders
-alias nodecleanup="find . -name 'node_modules' -type d -exec rm -rfv '{}' +"
+alias npmcleanup="find . -name 'node_modules' -type d -exec rm -rfv '{}' +"
 
 # File size
 alias fs="stat -f \"%z bytes\""
@@ -109,6 +112,7 @@ alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Re
 # Some remove conveniences
 alias rmr='rm -r'
 alias rmf='rm -f'
+alias rmrf='rm -rf'
 
 # nodejs command
 # no alias for n, since n is for the Node version manager

@@ -14,12 +14,17 @@ echo "--> Installing Homebrew. This will also request OSX to install its command
 
 echo "--> Installing NodeJS & npm"
 
-brew install node@10
-brew link --force --overwrite node@10
+brew install node
 
-echo "--> Installing Neccessary NodeJS packages"
+echo "--> Installing yarn CLI"
 
-npm install -g live-server eslint eslint_d prettier prettier_d typescript stylelint
+brew install yarn
+
+echo "--> Installing Neccessary global Node.js packages"
+
+npm install -g live-server eslint eslint_d prettier typescript stylelint
+# prettier_d is installed with git url
+npm install -g https://github.com/josephfrazier/prettier_d
 
 echo "--> Install Pyments for code highlighted cat"
 
