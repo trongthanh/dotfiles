@@ -1,0 +1,18 @@
+{
+	"user":
+	{
+		"0x_hex_values": true,
+		"gutter_icon": "circle",
+		"hex_values": true,
+		"highlight": false,
+		"highlight_values": true,
+		"hsl_values": true,
+		"hsv_values": true,
+		"hwb_values": true,
+		"lab_values": true,
+		"lch_values": true,
+		"named_values": true,
+		"rgb_values": true,
+		"xterm_color_values": true
+	}
+}

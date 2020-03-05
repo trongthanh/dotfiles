@@ -56,6 +56,7 @@
 		"*.class",
 		"*.psd",
 		"*.db",
+		"*.map",
 		"*.sublime-workspace",
 		".eslintcache",
 		"package-lock.json",
@@ -71,7 +72,8 @@
 		".sass-cache",
 		"node_modules",
 		".meteor/local",
-		"platforms/**"
+		"platforms/**",
+		".lighthouseci"
 	],
 	"font_face": "IBM Plex Mono",
 	"font_options":
@@ -119,7 +121,9 @@
 		"~dist/**/*",
 		"platforms/**",
 		".eslintcache",
-		".next/**"
+		".next/**/*",
+		"**/.next/**/*",
+		".lighthouseci/**/*"
 	],
 	"index_files": true,
 	"index_workers": 2,
