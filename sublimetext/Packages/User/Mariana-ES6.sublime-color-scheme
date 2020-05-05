@@ -334,7 +334,7 @@
         {
             "name": "JavaScript unquoted object literal key",
             "scope": "meta.mapping - variable.other.readwrite, meta.object-literal.key - meta.binding.name, meta.object-literal.key string - punctuation, meta.mapping.key string - punctuation, meta.structure.dictionary.key string - punctuation",
-            "foreground": "var(blue5)"
+            "foreground": "var(green)"
         },
     ]
 }
