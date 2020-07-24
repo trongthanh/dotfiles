@@ -120,7 +120,7 @@
 	//     ]
 	// ----------------------------------------------------------------------
 
-	"auto_format_on_save_excludes": ["*/node_modules/*", "*.yml", "*.json", "*.html", "*.hbs", "*.css", "*.scss", "*.md"],
+	"auto_format_on_save_excludes": ["*/node_modules/*", "*.yml", "*.json", "*.html", "*.hbs", "*.css", "*.scss", "*.md", "*.mdx"],
 
 	// ----------------------------------------------------------------------
 	// Auto Format Requires Prettier Config File
