@@ -14,7 +14,6 @@ contexts:
       push: front-matter
     - match: ""
       push:
-        - import-export
         - body
   front-matter:
     - match: (?<!\s)---\n$
@@ -42,6 +41,9 @@ contexts:
       pop: true
       push: body
   body:
+    - match: (?<!\.)\b(?>import|export|default|from|as)\b
+      comment: Highlight for import and export keywords
+      scope: keyword.control.import-export.js
     - match: |-
         (?x)^
         (?= [ ]{,3}>
@@ -105,7 +107,7 @@ contexts:
         - match: (?<=^</\1>$\n)
           pop: true
         - include: tag-kbd
-        - include: scope:source.js.react
+        - include: scope:source.jsx
     - match: '^(?=<(p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|noscript|form|fieldset|iframe|math|ins|del)\b[^>]*>)'
       comment: Same rule but for one line disables.
       push:
@@ -113,7 +115,7 @@ contexts:
         - match: $\n?
           pop: true
         - include: tag-kbd
-        - include: scope:source.js.react
+        - include: scope:source.jsx
     - match: |-
         (?x:
           \s*           # Leading whitespace
@@ -382,16 +384,6 @@ contexts:
         - include: link-ref
         - include: link-ref-literal
         - include: link-footnote
-  import-export:
-    - match: import{{identifier_break}}(?!{{nothing}}[.(])
-      scope: meta.import.js
-      set:
-        - meta_scope: meta.import.js
-        - match: (?=[.(]) # Recovery for import expressions
-        - match: (?=\S)
-
-    - match: export{{identifier_break}}
-      embed_scope: keyword.control.import-export.js
 
   bracket:
     - match: '<(?![a-zA-Z/?\$!])'
