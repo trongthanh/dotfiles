@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[/**
+ * @type {React.FC<{$0}>}
+ */
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>trfc</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.js,source.ts,source.tsx,source.jsx</scope>
+	<description>/** @type {React.FC} */</description>
+</snippet>
