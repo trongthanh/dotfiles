@@ -8,7 +8,10 @@ export ZSH="/Users/trantrongthanh/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="avit"
+ZSH_THEME="spaceship"
+
+# Spachip Prompt options
+SPACESHIP_DOCKER_SHOW=false
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -68,7 +71,7 @@ ZSH_THEME="avit"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fasd npm)
+plugins=(git fasd npm yarn)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,8 +108,18 @@ for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
 done
 unset file
 
-# Install: brew install zsh-syntax-highlighting
-# Load zsh syntax highlighting (always at bottom)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# ICU data for Node.js
+export NODE_ICU_DATA=/Users/trantrongthanh/.nvm/versions/node_modules/full-icu
+
+# Android platform-tools
+export PATH=/Users/trantrongthanh/Applications/android-sdk/platform-tools:$PATH
+
+# Load zsh syntax highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
+export GPG_TTY=$(tty)
