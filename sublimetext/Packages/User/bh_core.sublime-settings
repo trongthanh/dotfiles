@@ -1,4 +1,54 @@
 {
 	// Character threshold to search
 	"search_threshold": 20000,
+	"bracket_styles": {
+		"default": {
+			"icon": "dot",
+			"color": "region.yellowish brackethighlighter.default",
+			"style": "thin_underline"
+		},
+
+		"unmatched": {
+			"icon": "question",
+			"color": "region.redish",
+			"style": "outline"
+		},
+		// User defined region styles
+		"curly": {
+			"icon": "curly_bracket",
+			"color": "region.purplish"
+		},
+		"round": {
+			"icon": "round_bracket",
+			"color": "region.yellowish"
+		},
+		"square": {
+			"icon": "square_bracket",
+			"color": "region.bluish"
+		},
+		"angle": {
+			"icon": "angle_bracket",
+			"color": "region.orangish"
+		},
+		"tag": {
+			"icon": "tag",
+			"color": "region.orangish"
+		},
+		"c_define": {
+			"icon": "hash",
+			"color": "region.yellowish"
+		},
+		"single_quote": {
+			"icon": "single_quote",
+			"color": "region.greenish"
+		},
+		"double_quote": {
+			"icon": "double_quote",
+			"color": "region.greenish"
+		},
+		"regex": {
+			"icon": "star",
+			"color": "region.greenish"
+		}
+	}
 }

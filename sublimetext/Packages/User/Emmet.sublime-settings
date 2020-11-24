@@ -1,7 +1,7 @@
 {
 	"preferences":
 	{
-		"filter.commentAfter": "<!-- /<%= attr(\"id\", \"#\") %><%= attr(\"class\", \".\") %> -->"
+		"filter.commentAfter": "<!-- /<%= attr(\"id\", \"#\") %><%= attr(\"class\", \".\") %> -->",
 	},
 	"telemetry": false,
 }

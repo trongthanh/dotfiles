@@ -4,7 +4,7 @@
 		"0x_hex_values": true,
 		"gutter_icon": "circle",
 		"hex_values": true,
-		"highlight": false,
+		"highlight": true,
 		"highlight_values": true,
 		"hsl_values": true,
 		"hsv_values": true,

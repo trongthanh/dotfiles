@@ -11,7 +11,13 @@
 		"Stateful",
 		"app",
 		"devops",
-		"apps"
+		"apps",
+		"css",
+		"plugins",
+		"config",
+		"plugin",
+		"ui",
+		"npm"
 	],
 	"auto_complete_delay": 100,
 	"auto_complete_selector": "meta.tag - punctuation.definition.tag.begin, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
@@ -19,11 +25,11 @@
 	[
 		{
 			"characters": "<",
-			"selector": "text.html"
+			"selector": "text.html",
 		},
 		{
 			"characters": ".",
-			"selector": "source.js"
+			"selector": "source.js",
 		}
 	],
 	"caret_extra_bottom": 4,
@@ -32,7 +38,6 @@
 	"color_scheme": "Packages/User/Mariana-ES6.sublime-color-scheme",
 	"dictionary": "Packages/Language - English/en_US.dic",
 	"enable_inline_error_tips": true,
-	"enable_tab_scrolling": false,
 	"enable_typescript_language_service": true,
 	"ensure_newline_at_eof_on_save": true,
 	"file_exclude_patterns":
@@ -56,7 +61,7 @@
 		"*.class",
 		"*.psd",
 		"*.db",
-		"*.map",
+		"*.js.map",
 		"*.sublime-workspace",
 		".eslintcache",
 		"package-lock.json",
@@ -72,20 +77,31 @@
 		".sass-cache",
 		"node_modules",
 		".meteor/local",
-		"platforms/**",
-		".lighthouseci"
+		".lighthouseci",
+		".linaria-cache",
+		"dist"
 	],
-	"font_face": "IBM Plex Mono",
+	"font_face": "Cascadia Code",
 	"font_options":
 	[
-		"no_round"
+		"no_round",
+		"no_clig",
+		"no_calt"
 	],
-	"font_size": 14,
+	"font_size": 15,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
+		"All Autocomplete",
+		"LSP",
 		"Markdown",
-		"WordCount"
+		"nunjucks-extended",
+		"Svelte",
+		"Swig",
+		"TypeScript",
+		"Vintage",
+		"Vue Syntax Highlight",
+		"WordCount",
 	],
 	"ignored_words":
 	[
@@ -134,14 +150,18 @@
 	],
 	"index_files": true,
 	"index_workers": 2,
+	"ignore_vcs_packages": true,
 	"line_padding_bottom": 3,
 	"line_padding_top": 3,
 	"scroll_past_end": true,
 	"scroll_speed": 0,
 	"spell_check": false,
 	"tab_completion": false,
-	"theme": "Spacegray Oceanic.sublime-theme",
+	"tab_size": 2,
+	"theme": "Adaptive.sublime-theme",
 	"trim_trailing_white_space_on_save": true,
 	"typescript_tsdk": "/usr/local/lib/node_modules/typescript/lib",
-	"word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?"
+	"use_tab_stops": false,
+	"validate_on_save": true,
+	"word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?",
 }

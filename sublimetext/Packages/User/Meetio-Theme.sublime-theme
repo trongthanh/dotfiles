@@ -1,6 +1,0 @@
-{
-    "variables": {
-    	"statusbarBackground": "color(var(--background) l(10%))",
-    	"sidebarBackground": "color(var(--background) l(12%))",
-	}
-}

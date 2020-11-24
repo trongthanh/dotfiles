@@ -28,16 +28,16 @@
 		"JSCustom",
 		"JsPrettier",
 		"LESS",
+		"LSP",
+		"LSP-typescript",
 		"MarkdownEditing",
 		"MarkdownPreview",
 		"MarkdownTOC",
-		"Meetio Theme",
 		"Naomi",
 		"nginx",
 		"Node Completions",
 		"Open Finder",
 		"Package Control",
-		"Pretty JSON",
 		"Pug",
 		"rsub",
 		"Sass",
@@ -57,6 +57,6 @@
 		"TodoReview",
 		"TypeScript",
 		"Vue Syntax Highlight",
-		"WordCount"
-	]
+		"WordCount",
+	],
 }
