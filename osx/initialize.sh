@@ -1,5 +1,5 @@
 #!/bin/bash
-# Simple new OSX installation tolling set up
+# Simple new OSX installation tooling set up
 # Prerequisites:
 # - Install SublimeText 3
 # - XCode Command Line Tools (will be prompt to install while installing home brew)

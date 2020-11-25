@@ -44,9 +44,6 @@ alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
 
-# FASD jump command
-alias z='fasd_cd -d'
-
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
 alias grep='grep --color=auto'
@@ -114,22 +111,34 @@ alias rmr='rm -r'
 alias rmf='rm -f'
 alias rmrf='rm -rf'
 
+# FASD cd command
+alias z='fasd_cd -d'
+
 # nodejs command
-# no alias for n, since n is for the Node version manager
+alias n="npm" # comment this if Node version manager https://github.com/tj/n is installed
 alias ns="npm start"
 alias ni="npm install"
 alias nid="npm install --save-dev"
+alias nwh="npm list"
 alias nt="npm test"
 alias nb="npm run build"
 alias nr="npm run"
+alias nv="npm remove"
 alias y="yarn"
 alias ya="yarn add"
 alias yad="yarn add --dev"
 alias ys="yarn start"
 alias yb="yarn build"
 alias yt="yarn test"
+alias yv="yarn remove"
+alias ywh="yarn why"
 alias serve="live-server"
 
 # Vim command
 alias v="vim"
 
+# kubectl command
+alias k=kubectl
+
+# more git commands
+alias gitwho="git shortlog -sne | cat"
