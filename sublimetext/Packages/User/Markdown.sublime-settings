@@ -8,10 +8,10 @@
 	],
 
 	// "color_scheme": "Packages/Boxy Theme/schemes/Boxy Ocean.tmTheme",
-	// "color_scheme": "Packages/Color Scheme - Default/Breakers.sublime-color-scheme",
+	"color_scheme": "Packages/Color Scheme - Default/Breakers.sublime-color-scheme",
 	// "color_scheme": "Packages/Color Scheme - Default/Sixteen.sublime-color-scheme",
 	// "color_scheme": "Packages/User/Mariana-ES6.sublime-color-scheme",
-	"color_scheme": "Packages/MarkdownEditing/MarkdownEditor-ArcDark.tmTheme",
+	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-ArcDark.tmTheme",
 	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme",
 	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Yellow.tmTheme",
 
