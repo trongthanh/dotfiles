@@ -10,12 +10,6 @@
 # or do it once:
 # sudo ln -s /Applications/Sublime\ Merge.app/Contents/SharedSupport/bin/smerge /usr/local/bin/merge
 
-# Code
-# alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
-# or do it once:
-# sudo ln -s /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code /usr/local/bin/
-
-
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
@@ -108,8 +102,7 @@ alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Re
 
 # Some remove conveniences
 alias rmr='rm -r'
-alias rmf='rm -f'
-alias rmrf='rm -rf'
+alias rmf='rm -rf'
 
 # FASD cd command
 alias z='fasd_cd -d'
@@ -142,3 +135,8 @@ alias k=kubectl
 
 # more git commands
 alias gitwho="git shortlog -sne | cat"
+
+# switch main display
+alias dpstand='displayplacer "id:F2FB810B-588C-ECCC-6EC8-4E8C4A8E2106 res:1920x1080 origin:(0,0)" "id:FF10FB8B-2C4F-DB90-1132-54624B0B6982 res:1440x900 origin:(1920,180)"'
+
+alias dpsit='displayplacer "id:FF10FB8B-2C4F-DB90-1132-54624B0B6982 res:1440x900 origin:(0,0)" "id:F2FB810B-588C-ECCC-6EC8-4E8C4A8E2106 res:1920x1080 origin:(-1920,-180)"'
