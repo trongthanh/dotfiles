@@ -29,6 +29,7 @@
 		"JsPrettier",
 		"LESS",
 		"LSP",
+		"LSP-css",
 		"LSP-typescript",
 		"MarkdownEditing",
 		"MarkdownPreview",

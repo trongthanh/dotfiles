@@ -4,4 +4,5 @@
 		"filter.commentAfter": "<!-- /<%= attr(\"id\", \"#\") %><%= attr(\"class\", \".\") %> -->",
 	},
 	"telemetry": false,
+	"uid": "f7040a45-18a0-4b5c-a774-465ed9b83ae2",
 }

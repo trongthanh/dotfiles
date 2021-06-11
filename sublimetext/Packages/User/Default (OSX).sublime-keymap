@@ -8,5 +8,6 @@
 	{ "keys": ["ctrl+tab"], "command": "next_view" },
 	{ "keys": ["ctrl+shift+tab"], "command": "prev_view" },
 	// ↓↓↓ still need Color Highlighter/Default (OSX).sublime-keymap
-	{"keys": ["option+shift+a"], "command": "color_convert"}
+	{"keys": ["option+shift+a"], "command": "color_convert"},
+	{ "keys": ["shift+ctrl+d"], "command": "insert_date" },
 ]
