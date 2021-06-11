@@ -13,6 +13,6 @@
 		"lch_values": true,
 		"named_values": true,
 		"rgb_values": true,
-		"xterm_color_values": true
-	}
+		"xterm_color_values": true,
+	},
 }
