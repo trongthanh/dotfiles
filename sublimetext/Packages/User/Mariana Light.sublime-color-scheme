@@ -1,9 +1,10 @@
 {
-    "name": "Mariana-ES6-light",
+    "name": "Mariana Light",
     "author": "Sublime HQ Pty Ltd, Dmitri Voronianski",
+    "modifier": "Thanh Tran (int3ractive.com)",
     "variables":
     {
-        "black": "hsl(0, 0%, 0%)",
+        "black": "hsl(0, 0%, 5%)",
         "blue": "hsl(210, 50%, 50%)",
         "blue2": "hsl(209, 13%, 35%)",
         "blue3": "hsl(210, 15%, 24%)",
@@ -300,7 +301,7 @@
         {
             "name": "CSS Properties",
             "scope": "support.type.property-name",
-            "foreground": "var(white3)"
+            "foreground": "var(grey)"
         },
         {
             "scope": "constant.numeric.line-number.match",

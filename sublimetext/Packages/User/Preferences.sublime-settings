@@ -163,6 +163,6 @@
 	"word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?",
 	"dark_theme": "Adaptive.sublime-theme",
 	"light_theme": "Adaptive.sublime-theme",
-	"dark_color_scheme": "Packages/User/Mariana-ES6.sublime-color-scheme",
-	"light_color_scheme": "Packages/User/Mariana-ES6-light.sublime-color-scheme",
+	"dark_color_scheme": "Packages/User/Mariana Plus.sublime-color-scheme",
+	"light_color_scheme": "Packages/User/Mariana Light.sublime-color-scheme",
 }

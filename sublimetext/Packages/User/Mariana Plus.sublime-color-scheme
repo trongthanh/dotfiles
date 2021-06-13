@@ -1,6 +1,7 @@
 {
-    "name": "Mariana-ES6",
+    "name": "Mariana Plus",
     "author": "Sublime HQ Pty Ltd, Dmitri Voronianski",
+    "modifier": "Thanh Tran (int3ractive.com)",
     "variables":
     {
         "black": "hsl(0, 0%, 0%)",
