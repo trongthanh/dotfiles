@@ -1,6 +1,7 @@
 *(SL).tmTheme
 *.crt
 *.cache/
+*.chback
 
 # OS generated files #
 ######################
