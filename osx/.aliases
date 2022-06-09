@@ -24,16 +24,16 @@ alias ..="cd .."
 alias ...="cd ../.."
 
 # List all files colorized in long format
-alias l="ls -lF ${colorflag}"
+alias l="ls -lhF ${colorflag}"
 
 # List all files colorized in long format, including dot files
-alias la="ls -laF ${colorflag}"
+alias la="ls -lahF ${colorflag}"
 
 # list file with file permission as octal number
-alias lso="ls -laG | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
+alias lso="ls -lahG | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
 
 # List only directories
-alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
+alias lsd="ls -lhF ${colorflag} | grep --color=never '^d'"
 
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
@@ -47,9 +47,9 @@ alias egrep='egrep --color=auto'
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
-# `cat` with beautiful colors. requires Pygments installed.
-# 							   sudo easy_install Pygments
-alias c='pygmentize -O style=monokai -f console256 -g'
+# `cat` with beautiful colors. requires bat install
+# 							   brew install bat
+alias c='bat --theme OneHalfDark -P'
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade --all; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
@@ -60,7 +60,7 @@ alias localip="ipconfig getifaddr en0"
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
 # Enhanced WHOIS lookups
-alias whois="whois -h whois-servers.net"
+# alias whois="whois -h name.com"
 
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
@@ -104,39 +104,84 @@ alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Re
 alias rmr='rm -r'
 alias rmf='rm -rf'
 
-# FASD cd command
-alias z='fasd_cd -d'
-
 # nodejs command
 alias n="npm" # comment this if Node version manager https://github.com/tj/n is installed
-alias ns="npm start"
+alias nb="npm run build"
+alias nd="npm run dev"
 alias ni="npm install"
 alias nid="npm install --save-dev"
-alias nwh="npm list"
-alias nt="npm test"
-alias nb="npm run build"
 alias nr="npm run"
-alias nv="npm remove"
+alias ns="npm start"
+alias nt="npm test"
+alias nrm="npm remove"
+alias nwh="npm list"
 alias y="yarn"
 alias ya="yarn add"
 alias yad="yarn add --dev"
-alias ys="yarn start"
 alias yb="yarn build"
+alias ys="yarn start"
 alias yt="yarn test"
-alias yv="yarn remove"
+alias yrm="yarn remove"
 alias ywh="yarn why"
 alias serve="live-server"
 
-# Vim command
-alias v="vim"
+alias p='pnpm'
+# packages
+alias pa='pnpm add'
+alias pad='pnpm add --save-dev'
+alias pap='pnpm add --save-peer'
+alias prm='pnpm remove'
+alias pi='pnpm install'
+alias pun='pnpm uninstall'
+alias pls='pnpm list'
+alias pout='pnpm outdated'
+alias pau='pnpm audit'
+alias pwhy='pnpm why'
+alias pup='pnpm update'
+alias pui='pnpm update --interactive'
+alias puil='pnpm update --interactive --latest'
+
+# global packages
+alias pga='pnpm add --global'
+alias pgls='pnpm list --global'
+alias pgrm='pnpm remove --global'
+alias pgu='pnpm update --global'
+
+# scripts
+alias pr='pnpm run'
+alias pd='pnpm run dev'
+alias pb='pnpm run build'
+alias ps='pnpm start'
+alias pt='pnpm test'
+alias ptc='pnpm test --coverage'
+alias pln='pnpm run lint'
+alias pdoc='pnpm run doc'
+alias pdocs='pnpm run docs'
+
+# miscs
+alias ph='pnpm help'
+alias pini='pnpm init'
+alias ppub='pnpm publish'
+alias psv='pnpm server'
+alias pc='pnpm create'
+alias px='pnpx'
+
+# npmrc
+alias npmcm='npmrc cmco && yarn config set registry https://npmjs.cmco.io'
+alias npmct='npmrc chotot && yarn config set registry https://npmjs.chotot.org'
+alias npmos='npmrc oss && yarn config set registry https://registry.npmjs.org'
+
+# Vim command with fuzzy search by fasd
+alias v="f -e vim"
 
 # kubectl command
 alias k=kubectl
 
 # more git commands
 alias gitwho="git shortlog -sne | cat"
+alias gcm="git checkout main"
+alias gcd="git checkout dev"
 
 # switch main display
 alias dpstand='displayplacer "id:F2FB810B-588C-ECCC-6EC8-4E8C4A8E2106 res:1920x1080 origin:(0,0)" "id:FF10FB8B-2C4F-DB90-1132-54624B0B6982 res:1440x900 origin:(1920,180)"'
-
 alias dpsit='displayplacer "id:FF10FB8B-2C4F-DB90-1132-54624B0B6982 res:1440x900 origin:(0,0)" "id:F2FB810B-588C-ECCC-6EC8-4E8C4A8E2106 res:1920x1080 origin:(-1920,-180)"'

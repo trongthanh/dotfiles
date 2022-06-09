@@ -5,7 +5,7 @@ function md() {
 
 
 # find shorthand
-function f() {
+function fnd() {
     find . -name "$1"
 }
 
@@ -148,9 +148,9 @@ function cheat() {
 	curl "cheat.sh/$1"
 }
 
-# Timing URL with cURL
+# Timing URL
 function timecurl() {
-	curl -w @- -I -s "$@" <<'EOF'
+	curl -w @- -s "$@" <<'EOF'
     time_namelookup:  %{time_namelookup}\n
        time_connect:  %{time_connect}\n
     time_appconnect:  %{time_appconnect}\n
