@@ -170,7 +170,7 @@
 	// Additional file extensions MUST be specified here, and without the leading dot.
 	// ----------------------------------------------------------------------
 
-	"custom_file_extensions": ["svelte"],
+	"custom_file_extensions": ["svelte", "hbs", "handlebars"],
 
 	// ----------------------------------------------------------------------
 	// Maximum File Size Limit
@@ -264,7 +264,7 @@
 	// ----------------------------------------------------------------------
 
 	"additional_cli_args": {
-		"--config-precedence": "file-override",
+
 	},
 
 	// ----------------------------------------------------------------------

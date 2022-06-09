@@ -36,7 +36,7 @@
 	"caret_extra_bottom": 4,
 	"caret_extra_top": 4,
 	"caret_extra_width": 1,
-	"color_scheme": "auto",
+	"color_scheme": "Mariana Plus.sublime-color-scheme",
 	"dictionary": "Packages/Language - English/en_US.dic",
 	"enable_inline_error_tips": true,
 	"enable_typescript_language_service": true,
@@ -81,11 +81,7 @@
 		".lighthouseci",
 		".linaria-cache",
 	],
-	"font_face": "Cascadia Code",
-	"font_options":
-	[
-		"no_round",
-	],
+	"font_face": "Liberation Mono",
 	"font_size": 15,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
@@ -97,7 +93,6 @@
 		"Swig",
 		"TypeScript",
 		"Vintage",
-		"Vue Syntax Highlight",
 		"WordCount",
 	],
 	"ignored_words":
@@ -150,6 +145,7 @@
 	"ignore_vcs_packages": true,
 	"line_padding_bottom": 3,
 	"line_padding_top": 3,
+	"mde.auto_fold_link.enabled": false,
 	"scroll_past_end": true,
 	"scroll_speed": 0,
 	"spell_check": false,
@@ -163,6 +159,8 @@
 	"word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?",
 	"dark_theme": "Adaptive.sublime-theme",
 	"light_theme": "Adaptive.sublime-theme",
-	"dark_color_scheme": "Packages/User/Mariana Plus.sublime-color-scheme",
-	"light_color_scheme": "Packages/User/Mariana Light.sublime-color-scheme",
+	"dark_color_scheme": "Mariana Plus.sublime-color-scheme",
+	"light_color_scheme": "Mariana Light.sublime-color-scheme",
+	"show_git_status": true,
+	"hardware_acceleration": "opengl",
 }

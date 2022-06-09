@@ -11,7 +11,7 @@
 		"hwb_values": true,
 		"lab_values": true,
 		"lch_values": true,
-		"named_values": true,
+		"named_values": false,
 		"rgb_values": true,
 		"xterm_color_values": true,
 	},
