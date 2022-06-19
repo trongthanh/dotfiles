@@ -1,0 +1,6 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript"],
+  "javascript.format.enabled": false,
+  "typescript.format.enabled": false,
+  "tsserver.formatOnType": false
+}

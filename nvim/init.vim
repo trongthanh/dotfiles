@@ -2,33 +2,35 @@
 :set autoindent               " auto indent when enter
 :set tabstop=2                " length of a \t
 :set shiftwidth=2             " width of code indent
-:set smarttab                 " 
+:set smarttab                 " use tab charater base on previous indent tab
+:set expandtab                " indent with space
 :set mouse=a                  " enable mouse
 :set clipboard+=unnamedplus   " copy paste with clipboard
 :set listchars=tab:>·,trail:~,extends:>,precedes:< "space:·
-:set list " show hidden chars
+:set list                     " show hidden chars
 :set completeopt-=preview     " For No Previews
-
-" set color scheme
+:set nowrap                   " Don't wrap line
 
 call plug#begin()
 
 Plug 'preservim/nerdtree' " NerdTree
 Plug 'vim-airline/vim-airline' " Status bar
 Plug 'Xuyuanp/nerdtree-git-plugin' " git status for nerdtree, must come before vim-devicons
-Plug 'tpope/vim-surround' " Surrounding ysw)
+Plug 'tpope/vim-surround' " Surrounding cs'` ysw)
+Plug 'lukas-reineke/indent-blankline.nvim' " Show indent guide
 Plug 'tpope/vim-commentary' " For Commenting gcc & gc
 Plug 'ap/vim-css-color' " CSS Color Preview
 Plug 'rafi/awesome-vim-colorschemes' " Retro Scheme
 Plug 'neoclide/coc.nvim'  " Auto Completion
 Plug 'ryanoasis/vim-devicons' " Developer Icons
 " Plug 'tc50cal/vim-terminal' " Vim Terminal
-Plug 'preservim/tagbar' " Tagbar for code navigation
+" Plug 'preservim/tagbar' " Tagbar for code navigation
 Plug 'mg979/vim-visual-multi' " Multiple cursor
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mustache/vim-mustache-handlebars'
 " Fuzzy search, require `brew install fzy ripgrep`
 Plug 'cloudhead/neovim-fuzzy'
+Plug 'mattn/emmet-vim'
 
 set encoding=UTF-8
 
@@ -41,8 +43,10 @@ nnoremap <C-f> :NERDTreeFocus<CR>
 nnoremap <C-e> :NERDTree<CR>
 nnoremap <C-b> :NERDTreeToggle<CR>
 nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>
 
-nmap <F8> :TagbarToggle<CR>
+" nmap <F8> :TagbarToggle<CR>
 
 " Visual Multi settings
 let g:VM_leader = '\'
@@ -64,5 +68,9 @@ let NERDTreeIgnore = ['\.git$[[dir]]', '\.sass-cache$[[dir]]', 'node_modules$[[d
 let g:airline_powerline_fonts = 1
 
 if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
+
+" create :Prettier command
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+
