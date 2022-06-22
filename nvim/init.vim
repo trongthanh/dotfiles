@@ -8,7 +8,7 @@
 " :set clipboard+=unnamedplus   " copy paste with clipboard
 :set listchars=tab:>·,trail:~,extends:>,precedes:< "space:·
 :set list                     " show hidden chars
-:set completeopt-=preview     " For No Previews
+" :set completeopt-=preview     " For No Previews
 :set nowrap                   " Don't wrap line
 
 call plug#begin()
@@ -16,6 +16,8 @@ call plug#begin()
 Plug 'preservim/nerdtree' " NerdTree
 Plug 'vim-airline/vim-airline' " Status bar
 Plug 'Xuyuanp/nerdtree-git-plugin' " git status for nerdtree, must come before vim-devicons
+Plug 'rafi/awesome-vim-colorschemes' " Retro Scheme
+" Plug 'ray-x/starry.nvim' " Mariana, Dracular, Monokai... with italic styles
 Plug 'tpope/vim-surround' " Surrounding cs'` ysw)
 Plug 'matze/vim-move' " Move text <M-hjkl>
 Plug 'lukas-reineke/indent-blankline.nvim' " Show indent guide
@@ -23,7 +25,6 @@ Plug 'tpope/vim-commentary' " For Commenting gcc & gc
 Plug 'ap/vim-css-color' " CSS Color Preview
 Plug 'pangloss/vim-javascript' " Better JS syntax highlight
 Plug 'MaxMEllon/vim-jsx-pretty' " JSX syntax highlight
-Plug 'rafi/awesome-vim-colorschemes' " Retro Scheme
 Plug 'neoclide/coc.nvim'  " Auto Completion
 Plug 'ryanoasis/vim-devicons' " Developer Icons
 " Plug 'tc50cal/vim-terminal' " Vim Terminal
@@ -49,14 +50,19 @@ nnoremap <M-r>   :NERDTreeFind<CR>
 nnoremap <C-l>   :call CocActionAsync('jumpDefinition')<CR>
 
 " save shortcut
-noremap <C-s> <Esc>:w<CR>
-inoremap <C-s> <Esc>:w<CR>
+noremap <M-s> <Esc>:w<CR>
+inoremap <M-s> <Esc>:w<CR>
 " close window
 noremap <M-w> <Esc>:q!<CR>
 inoremap <M-w> <Esc>:q!<CR>
-" quit app
+" quit app, prompt enter to confirm
 noremap <M-q> <Esc>:qa!
 inoremap <M-q> <Esc>:qa!
+" ctrl-c copy
+vnoremap <C-c> "+y<CR>
+" scroll horizontal with Shift
+nnoremap <S-ScrollWheelUp> <ScrollWheelLeft>
+nnoremap <S-ScrollWheelDown> <ScrollWheelRight>
 
 " nmap <F8> :TagbarToggle<CR>
 
@@ -67,12 +73,12 @@ let g:VM_maps['Find Under']             = '<C-d>'
 let g:VM_maps['Find Subword Under']     = '<C-d>'
 let g:VM_maps["Select l"]               = '<S-Right>'     " start selecting left
 let g:VM_maps["Select h"]               = '<S-Left>'      " start selecting right
-let g:VM_maps["Select Cursor Down"]     = '<C-Down>'      " start selecting down
 let g:VM_maps["Select Cursor Up"]       = '<C-Up>'        " start selecting up
+let g:VM_maps["Select Cursor Down"]     = '<C-Down>'      " start selecting down
 let g:VM_mouse_mappings = 1
-let g:VM_maps["Mouse Cursor"]                = '<C-RightMouse>'
-let g:VM_maps["Mouse Word"]                  = '<M-LeftMouse>'
-let g:VM_maps["Mouse Column"]                = '<M-C-RightMouse>'
+let g:VM_maps["Mouse Cursor"]                = '<S-LeftMouse>'
+let g:VM_maps["Mouse Word"]                  = '<C-RightMouse>'
+let g:VM_maps["Mouse Column"]                = '<S-RightMouse>'
 
 " show hidden files in NERDTree
 let NERDTreeShowHidden = 1
@@ -93,11 +99,12 @@ autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 " Close the tab if NERDTree is the only window remaining in it.
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+" autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    " \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " air-line
 let g:airline_powerline_fonts = 1
+let g:airline_theme = 'oceanicnext'
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
