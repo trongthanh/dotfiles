@@ -16,6 +16,7 @@ call plug#begin()
 Plug 'preservim/nerdtree' " NerdTree
 Plug 'vim-airline/vim-airline' " Status bar
 Plug 'Xuyuanp/nerdtree-git-plugin' " git status for nerdtree, must come before vim-devicons
+Plug 'lewis6991/gitsigns.nvim' " git gutter
 Plug 'rafi/awesome-vim-colorschemes' " Retro Scheme
 " Plug 'ray-x/starry.nvim' " Mariana, Dracular, Monokai... with italic styles
 Plug 'tpope/vim-surround' " Surrounding cs'` ysw)
@@ -26,15 +27,14 @@ Plug 'ap/vim-css-color' " CSS Color Preview
 Plug 'pangloss/vim-javascript' " Better JS syntax highlight
 Plug 'MaxMEllon/vim-jsx-pretty' " JSX syntax highlight
 Plug 'neoclide/coc.nvim'  " Auto Completion
-Plug 'ryanoasis/vim-devicons' " Developer Icons
 " Plug 'tc50cal/vim-terminal' " Vim Terminal
 " Plug 'preservim/tagbar' " Tagbar for code navigation
 Plug 'mg979/vim-visual-multi' " Multiple cursor
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mustache/vim-mustache-handlebars'
-" Fuzzy search, require `brew install fzy ripgrep`
-Plug 'cloudhead/neovim-fuzzy'
-Plug 'mattn/emmet-vim'
+Plug 'cloudhead/neovim-fuzzy' " Fuzzy search, require `brew install fzy ripgrep`
+Plug 'mattn/emmet-vim' " Emmet
+Plug 'ryanoasis/vim-devicons' " Developer Icons
 
 set encoding=UTF-8
 
@@ -106,6 +106,9 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'oceanicnext'
 
+" devicons
+let g:WebDevIconsOS = 'Darwin'
+
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -115,3 +118,7 @@ command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
 " vim-javascript, enable jsdoc highlight
 let g:javascript_plugin_jsdoc = 1
+
+lua << EOF
+require('gitsigns').setup()
+EOF
