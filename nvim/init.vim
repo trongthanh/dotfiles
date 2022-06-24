@@ -10,13 +10,16 @@
 :set list                     " show hidden chars
 " :set completeopt-=preview     " For No Previews
 :set nowrap                   " Don't wrap line
+:set updatetime=300           " For faster git gutter refresh
 
 call plug#begin()
 
 Plug 'preservim/nerdtree' " NerdTree
+Plug 'neoclide/coc.nvim'  " Auto Completion
 Plug 'vim-airline/vim-airline' " Status bar
 Plug 'Xuyuanp/nerdtree-git-plugin' " git status for nerdtree, must come before vim-devicons
-Plug 'lewis6991/gitsigns.nvim' " git gutter
+Plug 'airblade/vim-gitgutter' " Git gutter
+Plug 'petertriho/nvim-scrollbar' " Scroll bar with gutter highlight
 Plug 'rafi/awesome-vim-colorschemes' " Retro Scheme
 " Plug 'ray-x/starry.nvim' " Mariana, Dracular, Monokai... with italic styles
 Plug 'tpope/vim-surround' " Surrounding cs'` ysw)
@@ -26,7 +29,6 @@ Plug 'tpope/vim-commentary' " For Commenting gcc & gc
 Plug 'ap/vim-css-color' " CSS Color Preview
 Plug 'pangloss/vim-javascript' " Better JS syntax highlight
 Plug 'MaxMEllon/vim-jsx-pretty' " JSX syntax highlight
-Plug 'neoclide/coc.nvim'  " Auto Completion
 " Plug 'tc50cal/vim-terminal' " Vim Terminal
 " Plug 'preservim/tagbar' " Tagbar for code navigation
 Plug 'mg979/vim-visual-multi' " Multiple cursor
@@ -80,6 +82,10 @@ let g:VM_maps["Mouse Cursor"]                = '<S-LeftMouse>'
 let g:VM_maps["Mouse Word"]                  = '<C-RightMouse>'
 let g:VM_maps["Mouse Column"]                = '<S-RightMouse>'
 
+" gitgutter
+let g:gitgutter_sign_added = '│'      " look nicer and signal by color
+let g:gitgutter_sign_modified = '│'   " look nicer and signal by color
+
 " show hidden files in NERDTree
 let NERDTreeShowHidden = 1
 let NERDTreeMouseMode = 2             " click to open folder, d-click to open file
@@ -102,16 +108,20 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 " autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     " \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
-" air-line
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'oceanicnext'
-
-" devicons
-let g:WebDevIconsOS = 'Darwin'
+" airline
+let g:airline#extensions#tabline#enabled = 1 " replace default tabline with airline's
+let g:airline#extensions#tabline#show_tab_type = 0 " omit the tab type label
+let g:airline#extensions#tabline#show_buffers = 0 " don't open use multiple buffers in one tabs
+let g:airline#extensions#hunks#enabled = 1 " show git change summary
+let g:airline#extensions#hunks#non_zero_only = 1 " don't show zero hunks
+" let g:airline_theme = 'oceanicnext'
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
+
+" devicons
+let g:WebDevIconsOS = 'Darwin'
 
 " create :Prettier command
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
@@ -119,6 +129,20 @@ command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 " vim-javascript, enable jsdoc highlight
 let g:javascript_plugin_jsdoc = 1
 
+" setup lua plugins
 lua << EOF
-require('gitsigns').setup()
+require("scrollbar").setup({
+  handle = {
+    color = "#292e42",
+  },
+  marks = {
+    Search = { color = "#ff9e64"},
+    Error = { color = "#db4b4b"},
+    Warn = { color = "#e0af68"},
+    Info = { color = "#0db9d7"},
+    Hint = { color = "#1abc9c"},
+    Misc = { color = "#9d7cd8"},
+  }
+})
 EOF
+
