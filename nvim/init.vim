@@ -1,4 +1,5 @@
-:set number                   " show line number 
+:set signcolumn=yes           " always display signcolumn
+:set number                   " show line number
 :set autoindent               " auto indent when enter
 :set tabstop=2                " length of a \t
 :set shiftwidth=2             " width of code indent
@@ -6,43 +7,56 @@
 :set expandtab                " indent with space
 :set mouse=a                  " enable mouse
 " :set clipboard+=unnamedplus   " copy paste with clipboard
-:set listchars=tab:>·,trail:~,extends:>,precedes:< "space:·
+:set listchars=tab:‣‣,trail:~,extends:›,precedes:‹ " space:·
 :set list                     " show hidden chars
 " :set completeopt-=preview     " For No Previews
 :set nowrap                   " Don't wrap line
 :set updatetime=300           " For faster git gutter refresh
-
 call plug#begin()
 
+"""" UI enhancement
 Plug 'preservim/nerdtree' " NerdTree
 Plug 'neoclide/coc.nvim'  " Auto Completion
-Plug 'vim-airline/vim-airline' " Status bar
 Plug 'Xuyuanp/nerdtree-git-plugin' " git status for nerdtree, must come before vim-devicons
+Plug 'vim-airline/vim-airline' " Status bar
 Plug 'airblade/vim-gitgutter' " Git gutter
 Plug 'petertriho/nvim-scrollbar' " Scroll bar with gutter highlight
-Plug 'rafi/awesome-vim-colorschemes' " Retro Scheme
-" Plug 'ray-x/starry.nvim' " Mariana, Dracular, Monokai... with italic styles
+" Plug 'tc50cal/vim-terminal' " Vim Terminal
+" Plug 'rafi/awesome-vim-colorschemes' " Retro Scheme
+Plug 'sainnhe/sonokai' " Sonokai colorscheme
+" Plug 'mhartington/oceanic-next' " Oceanic Next scheme
+" Plug 'rakr/vim-one' " One color scheme
+" Plug 'joshdick/onedark.vim' " OneDark color scheme
+Plug 'ryanoasis/vim-devicons' " Developer Icons
+
+"""" Motion and shortcuts
 Plug 'tpope/vim-surround' " Surrounding cs'` ysw)
 Plug 'matze/vim-move' " Move text <M-hjkl>
 Plug 'lukas-reineke/indent-blankline.nvim' " Show indent guide
 Plug 'tpope/vim-commentary' " For Commenting gcc & gc
+Plug 'mg979/vim-visual-multi' " Multiple cursor
+Plug 'cloudhead/neovim-fuzzy' " Fuzzy search, require `brew install fzy ripgrep`
+
+"""" Language enhancement
+Plug 'editorconfig/editorconfig-vim'
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown' " Better markdown support
 Plug 'ap/vim-css-color' " CSS Color Preview
 Plug 'pangloss/vim-javascript' " Better JS syntax highlight
 Plug 'MaxMEllon/vim-jsx-pretty' " JSX syntax highlight
-" Plug 'tc50cal/vim-terminal' " Vim Terminal
 " Plug 'preservim/tagbar' " Tagbar for code navigation
-Plug 'mg979/vim-visual-multi' " Multiple cursor
-Plug 'editorconfig/editorconfig-vim'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'cloudhead/neovim-fuzzy' " Fuzzy search, require `brew install fzy ripgrep`
 Plug 'mattn/emmet-vim' " Emmet
-Plug 'ryanoasis/vim-devicons' " Developer Icons
+
 
 set encoding=UTF-8
 
 call plug#end()
 
-:colorscheme oceanicnext
+" :colorscheme onedark
+:colorscheme sonokai
+" :colorscheme one
+:set termguicolors
 
 nnoremap <C-p>   :FuzzyOpen<CR>
 nnoremap <C-f>   :NERDTreeFocus<CR>
@@ -53,20 +67,25 @@ nnoremap <C-l>   :call CocActionAsync('jumpDefinition')<CR>
 
 " save shortcut
 noremap <M-s> <Esc>:w<CR>
-inoremap <M-s> <Esc>:w<CR>
+inoremap <M-s> <Esc>:w<CR>a
 " close window
 noremap <M-w> <Esc>:q!<CR>
 inoremap <M-w> <Esc>:q!<CR>
 " quit app, prompt enter to confirm
 noremap <M-q> <Esc>:qa!
 inoremap <M-q> <Esc>:qa!
-" ctrl-c copy
+" ctrl-c copy to clipboard
 vnoremap <C-c> "+y<CR>
 " scroll horizontal with Shift
 nnoremap <S-ScrollWheelUp> <ScrollWheelLeft>
 nnoremap <S-ScrollWheelDown> <ScrollWheelRight>
+" clear highlight
+nnoremap <C-h> <Esc>:noh<CR>
 
 " nmap <F8> :TagbarToggle<CR>
+
+" vim-move settings
+let g:move_key_modifier_visualmode = 'M'
 
 " Visual Multi settings
 let g:VM_leader = '\'
@@ -125,15 +144,29 @@ let g:WebDevIconsOS = 'Darwin'
 
 " create :Prettier command
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+" use <c-space>for trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+" Use <Tab> and <S-Tab> to navigate the completion list
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " vim-javascript, enable jsdoc highlight
 let g:javascript_plugin_jsdoc = 1
 
+" vim markdown
+let g:vim_markdown_folding_disabled = 1
+
 " setup lua plugins
 lua << EOF
+-- vim.opt.termguicolors = true
+vim.cmd [[highlight IndentBlanklineChar guifg=#333f33]]
+-- vim.cmd [[highlight Normal guibg=none ctermbg=none]]
+-- vim.cmd [[highlight NonText guibg=none ctermbg=none]]
+-- require("indent_blankline").setup {}
+
 require("scrollbar").setup({
   handle = {
-    color = "#292e42",
+    color = "#333f33",
   },
   marks = {
     Search = { color = "#ff9e64"},
