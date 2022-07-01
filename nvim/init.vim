@@ -7,11 +7,14 @@
 :set expandtab                " indent with space
 :set mouse=a                  " enable mouse
 " :set clipboard+=unnamedplus   " copy paste with clipboard
-:set listchars=tab:‣‣,trail:~,extends:›,precedes:‹ " space:·
+:set listchars=tab:‣·,trail:~,extends:›,precedes:‹ " space:·
 :set list                     " show hidden chars
 " :set completeopt-=preview     " For No Previews
 :set nowrap                   " Don't wrap line
 :set updatetime=300           " For faster git gutter refresh
+
+let mapleader=","
+
 call plug#begin()
 
 """" UI enhancement
@@ -36,6 +39,7 @@ Plug 'lukas-reineke/indent-blankline.nvim' " Show indent guide
 Plug 'tpope/vim-commentary' " For Commenting gcc & gc
 Plug 'mg979/vim-visual-multi' " Multiple cursor
 Plug 'cloudhead/neovim-fuzzy' " Fuzzy search, require `brew install fzy ripgrep`
+Plug 'dyng/ctrlsf.vim' " Find in files similar to ctrl-shift-f in ST3
 
 """" Language enhancement
 Plug 'editorconfig/editorconfig-vim'
@@ -58,9 +62,8 @@ call plug#end()
 " :colorscheme one
 :set termguicolors
 
+noremap  <C-S-f> <Plug>CtrlSFPrompt
 nnoremap <C-p>   :FuzzyOpen<CR>
-nnoremap <C-f>   :NERDTreeFocus<CR>
-nnoremap <C-e>   :NERDTree<CR>
 nnoremap <C-b>   :NERDTreeToggle<CR>
 nnoremap <M-r>   :NERDTreeFind<CR>
 nnoremap <C-l>   :call CocActionAsync('jumpDefinition')<CR>
@@ -80,7 +83,7 @@ vnoremap <C-c> "+y<CR>
 nnoremap <S-ScrollWheelUp> <ScrollWheelLeft>
 nnoremap <S-ScrollWheelDown> <ScrollWheelRight>
 " clear highlight
-nnoremap <C-h> <Esc>:noh<CR>
+nnoremap <silent> <C-h> <Esc>:noh<CR>
 
 " nmap <F8> :TagbarToggle<CR>
 
@@ -144,11 +147,46 @@ let g:WebDevIconsOS = 'Darwin'
 
 " create :Prettier command
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
-" use <c-space>for trigger completion
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => COC keymaps
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use tab to trigger completion and navigate.
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" ctrl-space to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
-" Use <Tab> and <S-Tab> to navigate the completion list
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Use <cr> to comfirm completion.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Keys for gotos.
+" Add any filetype with an lsp to this au.
+" autocmd FileType c,cpp nmap <silent> gd <Plug>(coc-declaration)
+nmap <silent> gw <Plug>(coc-type-definition)
+nmap <silent> gy <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window (Or :help for vim keywords).
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Close a help floating window.
+nmap <silent> <c-[> <esc>:noh<cr><Plug>(coc-float-hide)
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+" END COC Keymaps
 
 " vim-javascript, enable jsdoc highlight
 let g:javascript_plugin_jsdoc = 1
@@ -166,7 +204,7 @@ vim.cmd [[highlight IndentBlanklineChar guifg=#333f33]]
 
 require("scrollbar").setup({
   handle = {
-    color = "#333f33",
+    color = "#333333",
   },
   marks = {
     Search = { color = "#ff9e64"},
@@ -179,3 +217,18 @@ require("scrollbar").setup({
 })
 EOF
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Helper functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocActionAsync('doHover')
+  endif
+endfunction
