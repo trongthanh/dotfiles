@@ -7,11 +7,12 @@
 :set expandtab                " indent with space
 :set mouse=a                  " enable mouse
 " :set clipboard+=unnamedplus   " copy paste with clipboard
-:set listchars=tab:‣·,trail:~,extends:›,precedes:‹ " space:·
+:set listchars=tab:‣─,trail:~,extends:›,precedes:‹ " space:·
 :set list                     " show hidden chars
 " :set completeopt-=preview     " For No Previews
 :set nowrap                   " Don't wrap line
 :set updatetime=300           " For faster git gutter refresh
+:set ignorecase               " ignore case during search
 
 let mapleader=","
 
@@ -19,7 +20,6 @@ call plug#begin()
 
 """" UI enhancement
 Plug 'preservim/nerdtree' " NerdTree
-Plug 'neoclide/coc.nvim'  " Auto Completion
 Plug 'Xuyuanp/nerdtree-git-plugin' " git status for nerdtree, must come before vim-devicons
 Plug 'vim-airline/vim-airline' " Status bar
 Plug 'airblade/vim-gitgutter' " Git gutter
@@ -28,8 +28,8 @@ Plug 'petertriho/nvim-scrollbar' " Scroll bar with gutter highlight
 " Plug 'rafi/awesome-vim-colorschemes' " Retro Scheme
 Plug 'sainnhe/sonokai' " Sonokai colorscheme
 " Plug 'mhartington/oceanic-next' " Oceanic Next scheme
-" Plug 'rakr/vim-one' " One color scheme
-" Plug 'joshdick/onedark.vim' " OneDark color scheme
+" Plug 'adrian5/oceanic-next-vim'
+Plug 'joshdick/onedark.vim' " OneDark color scheme
 Plug 'ryanoasis/vim-devicons' " Developer Icons
 
 """" Motion and shortcuts
@@ -42,6 +42,7 @@ Plug 'cloudhead/neovim-fuzzy' " Fuzzy search, require `brew install fzy ripgrep`
 Plug 'dyng/ctrlsf.vim' " Find in files similar to ctrl-shift-f in ST3
 
 """" Language enhancement
+Plug 'neoclide/coc.nvim'  " Auto Completion
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown' " Better markdown support
@@ -57,8 +58,8 @@ set encoding=UTF-8
 
 call plug#end()
 
-" :colorscheme onedark
-:colorscheme sonokai
+:colorscheme onedark
+" :colorscheme sonokai
 " :colorscheme one
 :set termguicolors
 
@@ -72,8 +73,8 @@ nnoremap <C-l>   :call CocActionAsync('jumpDefinition')<CR>
 noremap <M-s> <Esc>:w<CR>
 inoremap <M-s> <Esc>:w<CR>a
 " close window
-noremap <M-w> <Esc>:q!<CR>
-inoremap <M-w> <Esc>:q!<CR>
+noremap <M-w> <Esc>:q<CR>
+inoremap <M-w> <Esc>:q<CR>
 " quit app, prompt enter to confirm
 noremap <M-q> <Esc>:qa!
 inoremap <M-q> <Esc>:qa!
@@ -91,7 +92,7 @@ nnoremap <silent> <C-h> <Esc>:noh<CR>
 let g:move_key_modifier_visualmode = 'M'
 
 " Visual Multi settings
-let g:VM_leader = '\'
+let g:VM_leader = '_'
 let g:VM_maps = {}
 let g:VM_maps['Find Under']             = '<C-d>'
 let g:VM_maps['Find Subword Under']     = '<C-d>'
@@ -149,8 +150,9 @@ let g:WebDevIconsOS = 'Darwin'
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => COC keymaps
+" => COC configs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:coc_node_path = '/usr/local/bin/node'
 " Use tab to trigger completion and navigate.
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
@@ -167,7 +169,7 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Keys for gotos.
 " Add any filetype with an lsp to this au.
-" autocmd FileType c,cpp nmap <silent> gd <Plug>(coc-declaration)
+nmap <silent> gd <Plug>(coc-declaration)
 nmap <silent> gw <Plug>(coc-type-definition)
 nmap <silent> gy <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
@@ -193,6 +195,7 @@ let g:javascript_plugin_jsdoc = 1
 
 " vim markdown
 let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_fenced_languages = ['jsx=javascript', 'js=javascript', 'bash=sh', 'shell=sh']
 
 " setup lua plugins
 lua << EOF
@@ -204,7 +207,7 @@ vim.cmd [[highlight IndentBlanklineChar guifg=#333f33]]
 
 require("scrollbar").setup({
   handle = {
-    color = "#333333",
+    color = "#3f3f3f",
   },
   marks = {
     Search = { color = "#ff9e64"},
