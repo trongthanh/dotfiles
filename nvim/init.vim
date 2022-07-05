@@ -13,7 +13,9 @@
 :set nowrap                   " Don't wrap line
 :set updatetime=300           " For faster git gutter refresh
 :set ignorecase               " ignore case during search
+:set title                    " set terminal title
 
+" define leader character
 let mapleader=","
 
 call plug#begin()
@@ -27,8 +29,7 @@ Plug 'petertriho/nvim-scrollbar' " Scroll bar with gutter highlight
 " Plug 'tc50cal/vim-terminal' " Vim Terminal
 " Plug 'rafi/awesome-vim-colorschemes' " Retro Scheme
 Plug 'sainnhe/sonokai' " Sonokai colorscheme
-" Plug 'mhartington/oceanic-next' " Oceanic Next scheme
-" Plug 'adrian5/oceanic-next-vim'
+Plug 'mhartington/oceanic-next' " Oceanic Next scheme
 Plug 'joshdick/onedark.vim' " OneDark color scheme
 Plug 'ryanoasis/vim-devicons' " Developer Icons
 
@@ -42,6 +43,7 @@ Plug 'cloudhead/neovim-fuzzy' " Fuzzy search, require `brew install fzy ripgrep`
 Plug 'dyng/ctrlsf.vim' " Find in files similar to ctrl-shift-f in ST3
 
 """" Language enhancement
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Improved language support
 Plug 'neoclide/coc.nvim'  " Auto Completion
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
@@ -58,9 +60,9 @@ set encoding=UTF-8
 
 call plug#end()
 
-:colorscheme onedark
+" :colorscheme onedark
 " :colorscheme sonokai
-" :colorscheme one
+:colorscheme oceanicnext
 :set termguicolors
 
 noremap  <C-S-f> <Plug>CtrlSFPrompt
@@ -201,11 +203,15 @@ let g:vim_markdown_fenced_languages = ['jsx=javascript', 'js=javascript', 'bash=
 lua << EOF
 -- vim.opt.termguicolors = true
 vim.cmd [[highlight IndentBlanklineChar guifg=#333f33]]
+vim.cmd [[highlight IndentBlanklineContextChar guifg=#6699cc gui=nocombine]]
 -- vim.cmd [[highlight Normal guibg=none ctermbg=none]]
 -- vim.cmd [[highlight NonText guibg=none ctermbg=none]]
--- require("indent_blankline").setup {}
+require('indent_blankline').setup({
+  show_current_context = true,
+  -- show_current_context_start = true,
+})
 
-require("scrollbar").setup({
+require('scrollbar').setup({
   handle = {
     color = "#3f3f3f",
   },
@@ -218,14 +224,42 @@ require("scrollbar").setup({
     Misc = { color = "#9d7cd8"},
   }
 })
+
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { "javascript", "html", "css" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- List of parsers to ignore installing (for "all")
+  ignore_install = { },
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+    -- the name of the parser)
+    -- list of language that will be disabled
+    disable = { },
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
 EOF
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 function! s:show_documentation()
