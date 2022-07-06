@@ -45,7 +45,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Improved language 
 Plug 'neoclide/coc.nvim'  " Auto Completion
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
-" Plug 'preservim/vim-markdown' " Better markdown support
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+Plug 'preservim/vim-markdown' " Better markdown support
 Plug 'ap/vim-css-color' " CSS Color Preview
 " Plug 'pangloss/vim-javascript' " Better JS syntax highlight
 " Plug 'MaxMEllon/vim-jsx-pretty' " JSX syntax highlight
@@ -81,8 +82,8 @@ inoremap <M-q> <Esc>:qa!
 " ctrl-c copy to clipboard
 vnoremap <C-c> "+y<CR>
 " scroll horizontal with Shift
-nnoremap <S-ScrollWheelUp> <ScrollWheelLeft>
-nnoremap <S-ScrollWheelDown> <ScrollWheelRight>
+noremap <S-ScrollWheelUp> <ScrollWheelLeft>
+noremap <S-ScrollWheelDown> <ScrollWheelRight>
 " clear highlight
 nnoremap <silent> <C-h> <Esc>:noh<CR>
 
@@ -122,6 +123,14 @@ let NERDTreeIgnore = [
 \ 'package-lock\.json',
 \ 'yarn\.lock'
 \]
+" Open new tab on ENTER
+let NERDTreeCustomOpenArgs = {'file':{'where': 't', 'reuse': 'all', 'keepopen': 1}, 'dir': {}}
+
+function NERDTreeMyOpenInTab(node)
+    call a:node.open({'reuse': "all", 'where': 't', 'keepopen': 1})
+endfunction
+autocmd VimEnter * :call NERDTreeAddKeyMap({'key': 't', 'callback': 'NERDTreeMyOpenInTab', 'scope': 'FileNode', 'override': 1 })
+autocmd VimEnter * :call NERDTreeAddKeyMap({ 'key': '<2-LeftMouse>', 'callback': 'NERDTreeMyOpenInTab', 'scope': "FileNode", 'override': 1})
 
 " Open the existing NERDTree on each new tab.
 autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
@@ -130,6 +139,8 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 " autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     " \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+autocmd FileType apache setlocal commentstring=#\ %s
 
 " airline
 let g:airline#extensions#tabline#enabled = 1 " replace default tabline with airline's
@@ -150,8 +161,6 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
 
-" create :Prettier command
-command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => COC configs
@@ -192,6 +201,12 @@ nmap <leader>rn <Plug>(coc-rename)
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+
+" create :Prettier command
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
 " END COC Keymaps
 
 " vim-javascript, enable jsdoc highlight
@@ -203,16 +218,22 @@ let g:vim_markdown_fenced_languages = ['jsx=javascript', 'js=javascript', 'bash=
 
 " setup lua plugins
 lua << EOF
--- vim.opt.termguicolors = true
+-- improve indentline color
 vim.cmd [[highlight IndentBlanklineChar guifg=#333f33]]
 vim.cmd [[highlight IndentBlanklineContextChar guifg=#6699cc gui=nocombine]]
 
-require('indent_blankline').setup({
+require'indent_blankline'.setup {
   show_current_context = true,
   -- show_current_context_start = true,
-})
+}
 
-require('scrollbar').setup({
+require'nvim-treesitter.configs'.setup {
+  context_commentstring = {
+    enable = true
+  }
+}
+
+require'scrollbar'.setup {
   handle = {
     color = "#3f3f3f",
   },
@@ -224,7 +245,7 @@ require('scrollbar').setup({
     Hint = { color = "#1abc9c"},
     Misc = { color = "#9d7cd8"},
   }
-})
+}
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
