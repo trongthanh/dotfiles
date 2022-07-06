@@ -1,15 +1,13 @@
-:set signcolumn=yes           " always display signcolumn
 :set number                   " show line number
 :set autoindent               " auto indent when enter
 :set tabstop=2                " length of a \t
 :set shiftwidth=2             " width of code indent
-:set smarttab                 " use tab charater base on previous indent tab
+:set smarttab                 " use tab charater base on previous indent charater
 :set expandtab                " indent with space
 :set mouse=a                  " enable mouse
-" :set clipboard+=unnamedplus   " copy paste with clipboard
+" :set clipboard+=unnamedplus   " register use clipboard
 :set listchars=tab:‣─,trail:~,extends:›,precedes:‹ " space:·
 :set list                     " show hidden chars
-" :set completeopt-=preview     " For No Previews
 :set nowrap                   " Don't wrap line
 :set updatetime=300           " For faster git gutter refresh
 :set ignorecase               " ignore case during search
@@ -47,10 +45,10 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Improved language 
 Plug 'neoclide/coc.nvim'  " Auto Completion
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
-Plug 'preservim/vim-markdown' " Better markdown support
+" Plug 'preservim/vim-markdown' " Better markdown support
 Plug 'ap/vim-css-color' " CSS Color Preview
-Plug 'pangloss/vim-javascript' " Better JS syntax highlight
-Plug 'MaxMEllon/vim-jsx-pretty' " JSX syntax highlight
+" Plug 'pangloss/vim-javascript' " Better JS syntax highlight
+" Plug 'MaxMEllon/vim-jsx-pretty' " JSX syntax highlight
 " Plug 'preservim/tagbar' " Tagbar for code navigation
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'mattn/emmet-vim' " Emmet
@@ -139,7 +137,6 @@ let g:airline#extensions#tabline#show_tab_type = 0 " omit the tab type label
 let g:airline#extensions#tabline#show_buffers = 0 " don't open use multiple buffers in one tabs
 let g:airline#extensions#hunks#enabled = 1 " show git change summary
 let g:airline#extensions#hunks#non_zero_only = 1 " don't show zero hunks
-" let g:airline_theme = 'oceanicnext'
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -147,6 +144,11 @@ endif
 
 " devicons
 let g:WebDevIconsOS = 'Darwin'
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:NERDTreeGitStatusUseNerdFonts = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
 
 " create :Prettier command
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
@@ -204,8 +206,7 @@ lua << EOF
 -- vim.opt.termguicolors = true
 vim.cmd [[highlight IndentBlanklineChar guifg=#333f33]]
 vim.cmd [[highlight IndentBlanklineContextChar guifg=#6699cc gui=nocombine]]
--- vim.cmd [[highlight Normal guibg=none ctermbg=none]]
--- vim.cmd [[highlight NonText guibg=none ctermbg=none]]
+
 require('indent_blankline').setup({
   show_current_context = true,
   -- show_current_context_start = true,
