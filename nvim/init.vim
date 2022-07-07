@@ -84,8 +84,8 @@ vnoremap <C-c> "+y<CR>
 " scroll horizontal with Shift
 noremap <S-ScrollWheelUp> <ScrollWheelLeft>
 noremap <S-ScrollWheelDown> <ScrollWheelRight>
-" clear highlight
-nnoremap <silent> <C-h> <Esc>:noh<CR>
+" toggle highlight
+nnoremap <silent> <C-h> <Esc>:set nohlsearch!<CR>
 
 " nmap <F8> :TagbarToggle<CR>
 
@@ -140,12 +140,12 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 " autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     " \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
-autocmd FileType apache setlocal commentstring=#\ %s
-
 " airline
 let g:airline#extensions#tabline#enabled = 1 " replace default tabline with airline's
 let g:airline#extensions#tabline#show_tab_type = 0 " omit the tab type label
+let g:airline#extensions#tabline#show_splits = 0 " omit splits number
 let g:airline#extensions#tabline#show_buffers = 0 " don't open use multiple buffers in one tabs
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
 let g:airline#extensions#hunks#enabled = 1 " show git change summary
 let g:airline#extensions#hunks#non_zero_only = 1 " don't show zero hunks
 
