@@ -1,4 +1,4 @@
-:set number                   " show line number
+:set number relativenumber    " show line number
 :set autoindent               " auto indent when enter
 :set tabstop=2                " length of a \t
 :set shiftwidth=2             " width of code indent
@@ -19,44 +19,44 @@ let mapleader=","
 call plug#begin()
 
 """" UI enhancement
-Plug 'preservim/nerdtree' " NerdTree
-Plug 'Xuyuanp/nerdtree-git-plugin' " git status for nerdtree, must come before vim-devicons
-Plug 'vim-airline/vim-airline' " Status bar
-Plug 'airblade/vim-gitgutter' " Git gutter
-Plug 'petertriho/nvim-scrollbar' " Scroll bar with gutter highlight
-" Plug 'tc50cal/vim-terminal' " Vim Terminal
+Plug 'preservim/nerdtree'              " NerdTree
+Plug 'Xuyuanp/nerdtree-git-plugin'     " git status for nerdtree, must come before vim-devicons
+Plug 'vim-airline/vim-airline'         " Status bar
+Plug 'airblade/vim-gitgutter'          " Git gutter
+Plug 'tpope/vim-fugitive'              " Git inside vim
+Plug 'petertriho/nvim-scrollbar'       " Scroll bar with gutter highlight
+" Plug 'tc50cal/vim-terminal'          " Vim Terminal
 " Plug 'rafi/awesome-vim-colorschemes' " Retro Scheme
-Plug 'sainnhe/sonokai' " Sonokai colorscheme
-Plug 'mhartington/oceanic-next' " Oceanic Next scheme
-Plug 'joshdick/onedark.vim' " OneDark color scheme
-Plug 'ryanoasis/vim-devicons' " Developer Icons
+Plug 'sainnhe/sonokai'                 " Sonokai colorscheme
+Plug 'mhartington/oceanic-next'        " Oceanic Next scheme
+Plug 'joshdick/onedark.vim'            " OneDark color scheme
+Plug 'ryanoasis/vim-devicons'          " Developer Icons
 
 """" Motion and shortcuts
-Plug 'tpope/vim-surround' " Surrounding cs'` ysw)
-Plug 'matze/vim-move' " Move text <M-hjkl>
+Plug 'tpope/vim-surround'                  " Surrounding cs'` ysw)
+Plug 'matze/vim-move'                      " Move text <M-hjkl>
 Plug 'lukas-reineke/indent-blankline.nvim' " Show indent guide
-Plug 'tpope/vim-commentary' " For Commenting gcc & gc
-Plug 'mg979/vim-visual-multi' " Multiple cursor
-Plug 'cloudhead/neovim-fuzzy' " Fuzzy search, require `brew install fzy ripgrep`
-Plug 'dyng/ctrlsf.vim' " Find in files similar to ctrl-shift-f in ST3
+Plug 'tpope/vim-commentary'                " For Commenting gcc & gc
+Plug 'mg979/vim-visual-multi'              " Multiple cursor
+Plug 'cloudhead/neovim-fuzzy'              " Fuzzy search, require `brew install fzy ripgrep`
+Plug 'dyng/ctrlsf.vim'                     " Find in files similar to ctrl-shift-f in ST3
 
 """" Language enhancement
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Improved language support
-Plug 'neoclide/coc.nvim'  " Auto Completion
+Plug 'neoclide/coc.nvim'                            " Auto Completion
 Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular'
-Plug 'JoosepAlviste/nvim-ts-context-commentstring'
-Plug 'preservim/vim-markdown' " Better markdown support
-Plug 'ap/vim-css-color' " CSS Color Preview
-" Plug 'pangloss/vim-javascript' " Better JS syntax highlight
-" Plug 'MaxMEllon/vim-jsx-pretty' " JSX syntax highlight
-" Plug 'preservim/tagbar' " Tagbar for code navigation
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'  " Contextual commentstring
+Plug 'preservim/vim-markdown'                       " Better markdown support
+Plug 'ap/vim-css-color'                             " CSS Color Preview
+" Plug 'pangloss/vim-javascript'                    " Better JS syntax highlight
+" Plug 'MaxMEllon/vim-jsx-pretty'                   " JSX syntax highlight
+" Plug 'preservim/tagbar'                           " Tagbar for code navigation
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'mattn/emmet-vim' " Emmet
+Plug 'mattn/emmet-vim'                              " Emmet
 
 
 set encoding=UTF-8
-
 call plug#end()
 
 " :colorscheme onedark
@@ -85,7 +85,7 @@ vnoremap <C-c> "+y<CR>
 noremap <S-ScrollWheelUp> <ScrollWheelLeft>
 noremap <S-ScrollWheelDown> <ScrollWheelRight>
 " toggle highlight
-nnoremap <silent> <C-h> <Esc>:set nohlsearch!<CR>
+nnoremap <silent> <C-h> <Esc>:nohlsearch<CR>
 
 " nmap <F8> :TagbarToggle<CR>
 
@@ -95,16 +95,15 @@ let g:move_key_modifier_visualmode = 'M'
 " Visual Multi settings
 let g:VM_leader = '_'
 let g:VM_maps = {}
+let g:VM_maps["Exit"]                   = '<C-c>'        " quit VM
 let g:VM_maps['Find Under']             = '<C-d>'
 let g:VM_maps['Find Subword Under']     = '<C-d>'
-let g:VM_maps["Select l"]               = '<S-Right>'     " start selecting left
-let g:VM_maps["Select h"]               = '<S-Left>'      " start selecting right
-let g:VM_maps["Select Cursor Up"]       = '<C-Up>'        " start selecting up
-let g:VM_maps["Select Cursor Down"]     = '<C-Down>'      " start selecting down
+let g:VM_maps["Select Cursor Up"]       = '<M-C-Up>'     " start selecting up
+let g:VM_maps["Select Cursor Down"]     = '<M-C-Down>'   " start selecting down
 let g:VM_mouse_mappings = 1
-let g:VM_maps["Mouse Cursor"]                = '<S-LeftMouse>'
-let g:VM_maps["Mouse Word"]                  = '<C-RightMouse>'
-let g:VM_maps["Mouse Column"]                = '<S-RightMouse>'
+let g:VM_maps["Mouse Cursor"]           = '<S-LeftMouse>'
+let g:VM_maps["Mouse Word"]             = '<C-RightMouse>'
+let g:VM_maps["Mouse Column"]           = '<S-RightMouse>'
 
 " gitgutter
 let g:gitgutter_sign_added = '│'      " look nicer and signal by color
@@ -152,6 +151,8 @@ let g:airline#extensions#hunks#non_zero_only = 1 " don't show zero hunks
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
+
+let g:airline_theme = 'onedark'
 
 " devicons
 let g:WebDevIconsOS = 'Darwin'
