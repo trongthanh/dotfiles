@@ -54,7 +54,7 @@ Plug 'ap/vim-css-color'                             " CSS Color Preview
 " Plug 'preservim/tagbar'                           " Tagbar for code navigation
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'mattn/emmet-vim'                              " Emmet
-
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }  " :MarkdownPreview
 
 set encoding=UTF-8
 call plug#end()
@@ -70,9 +70,13 @@ nnoremap <C-b>   :NERDTreeToggle<CR>
 nnoremap <M-r>   :NERDTreeFind<CR>
 nnoremap <C-l>   :call CocActionAsync('jumpDefinition')<CR>
 
+" Ctrl-Option-Left or Right to move prev / next tab
+noremap <silent> <C-Left> <Esc>:tabprevious<CR>
+noremap <silent> <C-Right> <Esc>:tabnext<CR>
+
 " save shortcut
 noremap <M-s> <Esc>:w<CR>
-inoremap <M-s> <Esc>:w<CR>a
+inoremap <M-s> <Esc>:w<CR>
 " close window
 noremap <M-w> <Esc>:q<CR>
 inoremap <M-w> <Esc>:q<CR>
@@ -84,10 +88,16 @@ vnoremap <C-c> "+y<CR>
 " scroll horizontal with Shift
 noremap <S-ScrollWheelUp> <ScrollWheelLeft>
 noremap <S-ScrollWheelDown> <ScrollWheelRight>
-" toggle highlight
+" turnoff  highlight
 nnoremap <silent> <C-h> <Esc>:nohlsearch<CR>
+" toggle word wrap
+nnoremap <silent> <C-S-w> <Esc>:set wrap!<CR>
 
 " nmap <F8> :TagbarToggle<CR>
+
+" custom vim-surround
+" wrap text with **bold** format when surround with * character
+autocmd FileType markdown let g:surround_42 = "**\r**"
 
 " vim-move settings
 let g:move_key_modifier_visualmode = 'M'
@@ -215,6 +225,7 @@ let g:javascript_plugin_jsdoc = 1
 
 " vim markdown
 let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_fenced_languages = ['jsx=javascript', 'js=javascript', 'bash=sh', 'shell=sh']
 
 " setup lua plugins
