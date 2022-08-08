@@ -8,9 +8,11 @@
 " :set clipboard+=unnamedplus   " register use clipboard
 :set listchars=tab:‣─,trail:~,extends:›,precedes:‹ " space:·
 :set list                     " show hidden chars
-:set nowrap                   " Don't wrap line
+:set nowrap                   " Don't wrap line, see shortcut to toggle wrap below
 :set updatetime=300           " For faster git gutter refresh
 :set ignorecase               " ignore case during search
+:set splitright               " vsplit new window to the right of current one
+:set splitbelow               " split new window below current one
 :set title                    " set terminal title
 
 " define leader character
