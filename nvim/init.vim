@@ -29,7 +29,7 @@ Plug 'tpope/vim-fugitive'              " Git inside vim
 Plug 'petertriho/nvim-scrollbar'       " Scroll bar with gutter highlight
 " Plug 'tc50cal/vim-terminal'          " Vim Terminal
 " Plug 'rafi/awesome-vim-colorschemes' " Retro Scheme
-Plug 'sainnhe/sonokai'                 " Sonokai colorscheme
+" Plug 'sainnhe/sonokai'                 " Sonokai colorscheme
 Plug 'mhartington/oceanic-next'        " Oceanic Next scheme
 Plug 'joshdick/onedark.vim'            " OneDark color scheme
 Plug 'ryanoasis/vim-devicons'          " Developer Icons
@@ -45,9 +45,9 @@ Plug 'dyng/ctrlsf.vim'                     " Find in files similar to ctrl-shift
 
 """" Language enhancement
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Improved language support
-Plug 'neoclide/coc.nvim'                            " Auto Completion
-Plug 'editorconfig/editorconfig-vim'
-Plug 'godlygeek/tabular'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}     " Conquer Of Completion Node.js auto completion
+Plug 'editorconfig/editorconfig-vim'                " Editor config
+Plug 'godlygeek/tabular'                            " :Tabularize \,
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'  " Contextual commentstring
 Plug 'preservim/vim-markdown'                       " Better markdown support
 Plug 'ap/vim-css-color'                             " CSS Color Preview
@@ -58,12 +58,13 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'mattn/emmet-vim'                              " Emmet
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }  " :MarkdownPreview
 
-set encoding=UTF-8
+set encoding=utf-8
+
 call plug#end()
 
 " :colorscheme onedark
 " :colorscheme sonokai
-:colorscheme oceanicnext
+:colorscheme OceanicNext
 :set termguicolors
 
 noremap  <C-S-f> <Plug>CtrlSFPrompt
@@ -132,7 +133,8 @@ let NERDTreeIgnore = [
 \ '\.linaria-cache$[[dir]]',
 \ '\.DS_Store',
 \ 'package-lock\.json',
-\ 'yarn\.lock'
+\ 'yarn\.lock',
+\ 'pnpm-lock\.yaml'
 \]
 " Open new tab on ENTER
 let NERDTreeCustomOpenArgs = {'file':{'where': 't', 'reuse': 'all', 'keepopen': 1}, 'dir': {}}
@@ -175,19 +177,28 @@ let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
 
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => COC configs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:coc_node_path = '/usr/local/bin/node'
-" Use tab to trigger completion and navigate.
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackSpace() ? "\<Tab>" :
+      \ coc#refresh()
+
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " ctrl-space to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to comfirm completion.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -200,8 +211,9 @@ nmap <silent> gw <Plug>(coc-type-definition)
 nmap <silent> gy <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window (Or :help for vim keywords).
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
 " Close a help floating window.
 nmap <silent> <c-[> <esc>:noh<cr><Plug>(coc-float-hide)
 
@@ -220,7 +232,22 @@ command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
-" END COC Keymaps
+" Helper functions
+function! CheckBackSpace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" END COC Configs
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " vim-javascript, enable jsdoc highlight
 let g:javascript_plugin_jsdoc = 1
@@ -290,18 +317,3 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Helper functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocActionAsync('doHover')
-  endif
-endfunction
