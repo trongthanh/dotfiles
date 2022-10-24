@@ -15,14 +15,11 @@
 :set splitbelow               " split new window below current one
 :set title                    " set terminal title
 
-" define leader character
-let mapleader=","
-
 call plug#begin()
 
 """" UI enhancement
-Plug 'preservim/nerdtree'              " NerdTree
-Plug 'Xuyuanp/nerdtree-git-plugin'     " git status for nerdtree, must come before vim-devicons
+Plug 'nvim-tree/nvim-web-devicons'     " optional, for file icons
+Plug 'nvim-tree/nvim-tree.lua'         " NvimTree plugin
 Plug 'vim-airline/vim-airline'         " Status bar
 Plug 'airblade/vim-gitgutter'          " Git gutter
 Plug 'tpope/vim-fugitive'              " Git inside vim
@@ -32,11 +29,10 @@ Plug 'petertriho/nvim-scrollbar'       " Scroll bar with gutter highlight
 " Plug 'sainnhe/sonokai'                 " Sonokai colorscheme
 Plug 'mhartington/oceanic-next'        " Oceanic Next scheme
 Plug 'joshdick/onedark.vim'            " OneDark color scheme
-Plug 'ryanoasis/vim-devicons'          " Developer Icons
 
 """" Motion and shortcuts
 Plug 'tpope/vim-surround'                  " Surrounding cs'` ysw)
-Plug 'matze/vim-move'                      " Move text <M-hjkl>
+Plug 'matze/vim-move'                      " Move text <S-hjkl>
 Plug 'lukas-reineke/indent-blankline.nvim' " Show indent guide
 Plug 'tpope/vim-commentary'                " For Commenting gcc & gc
 Plug 'mg979/vim-visual-multi'              " Multiple cursor
@@ -49,6 +45,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}     " Conquer Of Completion Node
 Plug 'editorconfig/editorconfig-vim'                " Editor config
 Plug 'godlygeek/tabular'                            " :Tabularize \,
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'  " Contextual commentstring
+Plug 'windwp/nvim-ts-autotag'                       " Auto close tag with treesitter
 Plug 'preservim/vim-markdown'                       " Better markdown support
 Plug 'ap/vim-css-color'                             " CSS Color Preview
 " Plug 'pangloss/vim-javascript'                    " Better JS syntax highlight
@@ -67,10 +64,19 @@ call plug#end()
 :colorscheme OceanicNext
 :set termguicolors
 
-noremap  <C-S-f> <Plug>CtrlSFPrompt
+" Ctrl-Shift-F find in files
+nmap     <C-S-f> <Plug>CtrlSFPrompt
+vmap     <C-f>f <Plug>CtrlSFVwordPath
+vmap     <C-f>F <Plug>CtrlSFVwordExec
+nmap     <C-f>n <Plug>CtrlSFCwordPath
+nmap     <C-f>p <Plug>CtrlSFPwordPath
+nnoremap <C-f>o :CtrlSFOpen<CR>
+nnoremap <C-f>t :CtrlSFToggle<CR>
+inoremap <C-f>t <Esc>:CtrlSFToggle<CR>
+
 nnoremap <C-p>   :FuzzyOpen<CR>
-nnoremap <C-b>   :NERDTreeToggle<CR>
-nnoremap <M-r>   :NERDTreeFind<CR>
+nnoremap <C-b>   :NvimTreeToggle<CR>
+nnoremap <M-r>   :NvimTreeFindFile<CR>
 nnoremap <C-l>   :call CocActionAsync('jumpDefinition')<CR>
 
 " Ctrl-Option-Left or Right to move prev / next tab
@@ -94,7 +100,13 @@ noremap <S-ScrollWheelDown> <ScrollWheelRight>
 " turnoff  highlight
 nnoremap <silent> <C-h> <Esc>:nohlsearch<CR>
 " toggle word wrap
-nnoremap <silent> <C-S-w> <Esc>:set wrap!<CR>
+nnoremap <silent> <C-M-Z> <Esc>:set wrap!<CR>
+" insert current ISO date time
+inoremap <silent> <C-M-t> <C-r>=strftime('%FT%T%z')<CR>
+nnoremap <silent> <C-M-t> "=strftime('%FT%T%z')<CR>P
+" sort lines
+vnoremap <silent> <F5> :'<, '>sort<CR>
+nnoremap <silent> <C-F5> :%sort<CR>
 
 " nmap <F8> :TagbarToggle<CR>
 
@@ -103,10 +115,11 @@ nnoremap <silent> <C-S-w> <Esc>:set wrap!<CR>
 autocmd FileType markdown let g:surround_42 = "**\r**"
 
 " vim-move settings
-let g:move_key_modifier_visualmode = 'M'
+let g:move_key_modifier = 'S'
+let g:move_key_modifier_visualmode = 'S'
 
 " Visual Multi settings
-let g:VM_leader = '_'
+let g:VM_leader = '='
 let g:VM_maps = {}
 let g:VM_maps["Exit"]                   = '<C-c>'        " quit VM
 let g:VM_maps['Find Under']             = '<C-d>'
@@ -122,37 +135,6 @@ let g:VM_maps["Mouse Column"]           = '<S-RightMouse>'
 let g:gitgutter_sign_added = '│'      " look nicer and signal by color
 let g:gitgutter_sign_modified = '│'   " look nicer and signal by color
 
-" show hidden files in NERDTree
-let NERDTreeShowHidden = 1
-let NERDTreeMouseMode = 2             " click to open folder, d-click to open file
-let NERDTreeIgnore = [
-\ '\.git$[[dir]]',
-\ '\.sass-cache$[[dir]]',
-\ 'node_modules$[[dir]]',
-\ '\.lighthouseci$',
-\ '\.linaria-cache$[[dir]]',
-\ '\.DS_Store',
-\ 'package-lock\.json',
-\ 'yarn\.lock',
-\ 'pnpm-lock\.yaml'
-\]
-" Open new tab on ENTER
-let NERDTreeCustomOpenArgs = {'file':{'where': 't', 'reuse': 'all', 'keepopen': 1}, 'dir': {}}
-
-function NERDTreeMyOpenInTab(node)
-    call a:node.open({'reuse': "all", 'where': 't', 'keepopen': 1})
-endfunction
-autocmd VimEnter * :call NERDTreeAddKeyMap({'key': 't', 'callback': 'NERDTreeMyOpenInTab', 'scope': 'FileNode', 'override': 1 })
-autocmd VimEnter * :call NERDTreeAddKeyMap({ 'key': '<2-LeftMouse>', 'callback': 'NERDTreeMyOpenInTab', 'scope': "FileNode", 'override': 1})
-
-" Open the existing NERDTree on each new tab.
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
-" Close the tab if NERDTree is the only window remaining in it.
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-" autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    " \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
 " airline
 let g:airline#extensions#tabline#enabled = 1 " replace default tabline with airline's
 let g:airline#extensions#tabline#show_tab_type = 0 " omit the tab type label
@@ -167,15 +149,6 @@ if !exists('g:airline_symbols')
 endif
 
 let g:airline_theme = 'onedark'
-
-" devicons
-let g:WebDevIconsOS = 'Darwin'
-let g:DevIconsEnableFoldersOpenClose = 1
-let g:NERDTreeGitStatusUseNerdFonts = 1
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -232,6 +205,10 @@ command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
 " Helper functions
 function! CheckBackSpace() abort
   let col = col('.') - 1
@@ -259,6 +236,55 @@ let g:vim_markdown_fenced_languages = ['jsx=javascript', 'js=javascript', 'bash=
 
 " setup lua plugins
 lua << EOF
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- setup NVimTree
+require("nvim-tree").setup {
+  open_on_tab = true, -- open tree on new tab
+  git = {
+    enable = true,
+    ignore = false,
+    show_on_dirs = true,
+    timeout = 200,
+  },
+  renderer = {
+    highlight_git = true,
+  },
+  filters = {
+    dotfiles = false,
+    custom = { 
+      "\\.DS_Store",
+      "\\.cache",
+      "\\.git$",
+      "\\.linaria-cache",
+      "\\.sass-cache",
+      "__coverage__",
+      "node_modules",
+      "package-lock\\.json",
+      "pnpm-lock\\.yaml",
+      "yarn\\.lock",
+    },
+  },
+  view = {
+    mappings = {
+      list = {
+        { key = "<CR>", action = "tabnew" }
+      }
+    }
+  }
+}
+-- close NVimTree if it is the last buffer
+vim.o.confirm = true
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = vim.api.nvim_create_augroup("NvimTreeClose", {clear = true}),
+  callback = function()
+  local layout = vim.api.nvim_call_function("winlayout", {})
+  if layout[1] == "leaf" and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree" and layout[3] == nil then vim.cmd("quit") end
+    end
+})
+
 -- improve indentline color
 vim.cmd [[highlight IndentBlanklineChar guifg=#333f33]]
 vim.cmd [[highlight IndentBlanklineContextChar guifg=#6699cc gui=nocombine]]
@@ -269,6 +295,9 @@ require'indent_blankline'.setup {
 }
 
 require'nvim-treesitter.configs'.setup {
+  autotag = {
+    enable = true,
+  },
   context_commentstring = {
     enable = true
   }
