@@ -294,15 +294,6 @@ require'indent_blankline'.setup {
   -- show_current_context_start = true,
 }
 
-require'nvim-treesitter.configs'.setup {
-  autotag = {
-    enable = true,
-  },
-  context_commentstring = {
-    enable = true
-  }
-}
-
 require'scrollbar'.setup {
   handle = {
     color = "#3f3f3f",
@@ -319,7 +310,15 @@ require'scrollbar'.setup {
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "javascript", "html", "css" },
+  autotag = {
+    enable = true,
+  },
+
+  context_commentstring = {
+    enable = true
+  },
+
+  ensure_installed = { "javascript", "html", "css", "scss", "bash", "dockerfile", "gitignore", "json", "typescript", "yaml" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
