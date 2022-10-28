@@ -14,13 +14,15 @@
 :set splitright               " vsplit new window to the right of current one
 :set splitbelow               " split new window below current one
 :set title                    " set terminal title
+:set colorcolumn=+1           " show column limit when textwidth is defined
 
 call plug#begin()
 
 """" UI enhancement
 Plug 'nvim-tree/nvim-web-devicons'     " optional, for file icons
 Plug 'nvim-tree/nvim-tree.lua'         " NvimTree plugin
-Plug 'vim-airline/vim-airline'         " Status bar
+Plug 'nvim-lualine/lualine.nvim'       " Status bar
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' } " Bufferline
 Plug 'airblade/vim-gitgutter'          " Git gutter
 Plug 'tpope/vim-fugitive'              " Git inside vim
 Plug 'petertriho/nvim-scrollbar'       " Scroll bar with gutter highlight
@@ -87,8 +89,8 @@ noremap <silent> <C-Right> <Esc>:tabnext<CR>
 noremap <M-s> <Esc>:w<CR>
 inoremap <M-s> <Esc>:w<CR>
 " close window
-noremap <M-w> <Esc>:q<CR>
-inoremap <M-w> <Esc>:q<CR>
+noremap <M-w> <Esc>:bd<CR>
+inoremap <M-w> <Esc>:bd<CR>
 " quit app, prompt enter to confirm
 noremap <M-q> <Esc>:qa!
 inoremap <M-q> <Esc>:qa!
@@ -107,8 +109,12 @@ nnoremap <silent> <C-M-t> "=strftime('%FT%T%z')<CR>P
 " sort lines
 vnoremap <silent> <F5> :'<, '>sort<CR>
 nnoremap <silent> <C-F5> :%sort<CR>
-
-" nmap <F8> :TagbarToggle<CR>
+" exit terminal with Esc
+tnoremap <Esc> <C-\><C-n>
+" bufferline pick
+nnoremap <silent> gb :BufferLinePick<CR>
+nnoremap <silent> b] :BufferLineCycleNext<CR>
+nnoremap <silent> b[ :BufferLineCyclePrev<CR>
 
 " custom vim-surround
 " wrap text with **bold** format when surround with * character
@@ -134,22 +140,6 @@ let g:VM_maps["Mouse Column"]           = '<S-RightMouse>'
 " gitgutter
 let g:gitgutter_sign_added = '│'      " look nicer and signal by color
 let g:gitgutter_sign_modified = '│'   " look nicer and signal by color
-
-" airline
-let g:airline#extensions#tabline#enabled = 1 " replace default tabline with airline's
-let g:airline#extensions#tabline#show_tab_type = 0 " omit the tab type label
-let g:airline#extensions#tabline#show_splits = 0 " omit splits number
-let g:airline#extensions#tabline#show_buffers = 0 " don't open use multiple buffers in one tabs
-let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
-let g:airline#extensions#hunks#enabled = 1 " show git change summary
-let g:airline#extensions#hunks#non_zero_only = 1 " don't show zero hunks
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-let g:airline_theme = 'onedark'
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => COC configs
@@ -234,20 +224,95 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_fenced_languages = ['jsx=javascript', 'js=javascript', 'bash=sh', 'shell=sh']
 
+" highlight focused file in nvim-tree
+autocmd BufEnter NvimTree* set cursorline
+
 " setup lua plugins
 lua << EOF
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- setup lualine
+require('lualine').setup {
+  highlights = {
+    background = {
+      italic = true,
+    },
+    buffer_selected = {
+      bold = true,
+    },
+  },
+  options = {
+    mode = "buffers",
+    icons_enabled = true,
+    theme = 'auto',
+    color_icons = true,
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
+    always_divide_middle = true,
+    globalstatus = true,
+    disabled_filetypes = {
+      'NvimTree'
+    },
+    ignore_focus = {'NvimTree'},
+  },
+  -- tabline = {
+  --   lualine_a = {
+  --     {
+  --       'buffers',
+  --       mode = 2, -- Shows buffer name + buffer index
+  --       filetype_names = {
+  --         NvimTree = 'File Tree',
+  --       }
+  --     },
+  --   },
+  --   lualine_b = {},
+  --   lualine_c = {},
+  --   lualine_x = {},
+  --   lualine_y = {},
+  --   lualine_z = {{'tabs', mode = 0}}, -- show only tab number
+  -- },
+  extensions = {'nvim-tree'}
+}
+
+-- setup bufferline
+require("bufferline").setup {
+  options = {
+    offsets = {
+      {
+        filetype = "NvimTree",
+        text = "File Explorer",
+        text_align = "center",
+        separator = true,
+      },
+    },
+    diagnostics = "coc",
+    indicator = {
+      style = 'underline',
+    },
+    show_close_icon = true,
+  },
+}
+
 -- setup NVimTree
 require("nvim-tree").setup {
-  open_on_tab = true, -- open tree on new tab
+  hijack_cursor = true,   -- 
+  open_on_tab = true,     -- open tree on new tab
+  update_focused_file = {
+    enable = true,
+    update_cwd = true,
+    ignore_list = {},
+  },
   git = {
     enable = true,
     ignore = false,
     show_on_dirs = true,
     timeout = 200,
+  },
+  diagnostics = {
+    enable = true,
+    show_on_dirs = true,
   },
   renderer = {
     highlight_git = true,
@@ -270,20 +335,12 @@ require("nvim-tree").setup {
   view = {
     mappings = {
       list = {
-        { key = "<CR>", action = "tabnew" }
+        { key = "?", action = "toggle_help" },
+        { key = "v", action = "vsplit" },
       }
     }
-  }
+  },
 }
--- close NVimTree if it is the last buffer
-vim.o.confirm = true
-vim.api.nvim_create_autocmd("BufEnter", {
-  group = vim.api.nvim_create_augroup("NvimTreeClose", {clear = true}),
-  callback = function()
-  local layout = vim.api.nvim_call_function("winlayout", {})
-  if layout[1] == "leaf" and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree" and layout[3] == nil then vim.cmd("quit") end
-    end
-})
 
 -- improve indentline color
 vim.cmd [[highlight IndentBlanklineChar guifg=#333f33]]
@@ -311,6 +368,10 @@ require'scrollbar'.setup {
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
   autotag = {
+    enable = true,
+  },
+  -- Indentation based on treesitter for the = operator
+  indent = {
     enable = true,
   },
 
