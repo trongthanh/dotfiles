@@ -5,6 +5,7 @@
 :set smarttab                 " use tab charater base on previous indent charater
 :set expandtab                " indent with space
 :set mouse=a                  " enable mouse
+:set mousescroll=ver:1,hor:4
 " :set clipboard+=unnamedplus   " register use clipboard
 :set listchars=tab:‣─,trail:~,extends:›,precedes:‹ " space:·
 :set list                     " show hidden chars
@@ -48,6 +49,7 @@ Plug 'editorconfig/editorconfig-vim'                " Editor config
 Plug 'godlygeek/tabular'                            " :Tabularize \,
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'  " Contextual commentstring
 Plug 'windwp/nvim-ts-autotag'                       " Auto close tag with treesitter
+Plug 'windwp/nvim-autopairs'                        " Auto close brackets and quotes
 Plug 'preservim/vim-markdown'                       " Better markdown support
 Plug 'ap/vim-css-color'                             " CSS Color Preview
 " Plug 'pangloss/vim-javascript'                    " Better JS syntax highlight
@@ -96,8 +98,10 @@ noremap <M-q> <Esc>:qa!
 inoremap <M-q> <Esc>:qa!
 " ctrl-c copy to clipboard
 vnoremap <C-c> "+y<CR>
-" scroll horizontal with Shift
+" scroll horizontal with Shift or Ctrl (real mouse wheel only work with Ctrl)
+noremap <C-ScrollWheelUp> <ScrollWheelLeft>
 noremap <S-ScrollWheelUp> <ScrollWheelLeft>
+noremap <C-ScrollWheelDown> <ScrollWheelRight>
 noremap <S-ScrollWheelDown> <ScrollWheelRight>
 " turnoff  highlight
 nnoremap <silent> <C-h> <Esc>:nohlsearch<CR>
@@ -121,8 +125,8 @@ nnoremap <silent> b[ :BufferLineCyclePrev<CR>
 autocmd FileType markdown let g:surround_42 = "**\r**"
 
 " vim-move settings
-let g:move_key_modifier = 'S'
-let g:move_key_modifier_visualmode = 'S'
+let g:move_key_modifier = 'M'
+let g:move_key_modifier_visualmode = 'M'
 
 " Visual Multi settings
 let g:VM_leader = '='
@@ -364,6 +368,8 @@ require'scrollbar'.setup {
     Misc = { color = "#9d7cd8"},
   }
 }
+
+require('nvim-autopairs').setup {}
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
