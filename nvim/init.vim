@@ -17,6 +17,8 @@
 :set title                    " set terminal title
 :set colorcolumn=+1           " show column limit when textwidth is defined
 
+let mapleader = "," " map leader to comma
+
 call plug#begin()
 
 """" UI enhancement
@@ -29,7 +31,7 @@ Plug 'tpope/vim-fugitive'              " Git inside vim
 Plug 'petertriho/nvim-scrollbar'       " Scroll bar with gutter highlight
 " Plug 'tc50cal/vim-terminal'          " Vim Terminal
 " Plug 'rafi/awesome-vim-colorschemes' " Retro Scheme
-" Plug 'sainnhe/sonokai'                 " Sonokai colorscheme
+Plug 'sainnhe/sonokai'                 " Sonokai colorscheme
 Plug 'mhartington/oceanic-next'        " Oceanic Next scheme
 Plug 'joshdick/onedark.vim'            " OneDark color scheme
 
@@ -39,19 +41,20 @@ Plug 'matze/vim-move'                      " Move text <S-hjkl>
 Plug 'lukas-reineke/indent-blankline.nvim' " Show indent guide
 Plug 'tpope/vim-commentary'                " For Commenting gcc & gc
 Plug 'mg979/vim-visual-multi'              " Multiple cursor
-Plug 'cloudhead/neovim-fuzzy'              " Fuzzy search, require `brew install fzy ripgrep`
+Plug 'nvim-lua/plenary.nvim'               " telescope prerequisite
+Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' } " Pick files or command (similar to cmd-P in ST3)
 Plug 'dyng/ctrlsf.vim'                     " Find in files similar to ctrl-shift-f in ST3
 
 """" Language enhancement
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Improved language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}     " Conquer Of Completion Node.js auto completion
-Plug 'editorconfig/editorconfig-vim'                " Editor config
+Plug 'gpanders/editorconfig.nvim'                   " Better Editorconfig with custom properties
 Plug 'godlygeek/tabular'                            " :Tabularize \,
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'  " Contextual commentstring
 Plug 'windwp/nvim-ts-autotag'                       " Auto close tag with treesitter
 Plug 'windwp/nvim-autopairs'                        " Auto close brackets and quotes
 Plug 'preservim/vim-markdown'                       " Better markdown support
-Plug 'ap/vim-css-color'                             " CSS Color Preview
+Plug 'norcalli/nvim-colorizer.lua'                  " Color code highlighter
 " Plug 'pangloss/vim-javascript'                    " Better JS syntax highlight
 " Plug 'MaxMEllon/vim-jsx-pretty'                   " JSX syntax highlight
 " Plug 'preservim/tagbar'                           " Tagbar for code navigation
@@ -80,6 +83,7 @@ inoremap <C-f>t <Esc>:CtrlSFToggle<CR>
 
 nnoremap <C-p>   :FuzzyOpen<CR>
 nnoremap <C-b>   :NvimTreeToggle<CR>
+nnoremap <C-S-b> :NvimTreeFocus<CR>
 nnoremap <M-r>   :NvimTreeFindFile<CR>
 nnoremap <C-l>   :call CocActionAsync('jumpDefinition')<CR>
 
@@ -145,80 +149,8 @@ let g:VM_maps["Mouse Column"]           = '<S-RightMouse>'
 let g:gitgutter_sign_added = '│'      " look nicer and signal by color
 let g:gitgutter_sign_modified = '│'   " look nicer and signal by color
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => COC configs
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" the rest of COC config is in lua.init
 let g:coc_node_path = '/usr/local/bin/node'
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1):
-      \ CheckBackSpace() ? "\<Tab>" :
-      \ coc#refresh()
-
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice.
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" ctrl-space to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use `[g` and `]g` to navigate diagnostics.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Keys for gotos.
-" Add any filetype with an lsp to this au.
-nmap <silent> gd <Plug>(coc-declaration)
-nmap <silent> gw <Plug>(coc-type-definition)
-nmap <silent> gy <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call ShowDocumentation()<CR>
-
-" Close a help floating window.
-nmap <silent> <c-[> <esc>:noh<cr><Plug>(coc-float-hide)
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-" create :Prettier command
-command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Helper functions
-function! CheckBackSpace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction
-
-" END COC Configs
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " vim-javascript, enable jsdoc highlight
 let g:javascript_plugin_jsdoc = 1
@@ -371,6 +303,8 @@ require'scrollbar'.setup {
 
 require('nvim-autopairs').setup {}
 
+require'colorizer'.setup()
+
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
   autotag = {
@@ -385,13 +319,13 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   },
 
-  ensure_installed = { "javascript", "html", "css", "scss", "bash", "dockerfile", "gitignore", "json", "typescript", "yaml" },
+  ensure_installed = { "javascript", "css", "scss", "bash", "dockerfile", "gitignore", "json", "typescript", "tsx", "yaml" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
 
   -- List of parsers to ignore installing (for "all")
-  ignore_install = { },
+  ignore_install = { "html", "markdown" },
 
   highlight = {
     -- `false` will disable the whole extension
@@ -410,5 +344,185 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+--
+-- COC Config move to lua to avoid mapping conflict with other lua plugins
+--
+local keyset = vim.keymap.set
+-- Auto complete
+function _G.check_back_space()
+    local col = vim.fn.col('.') - 1
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+end
+
+-- Use tab for trigger completion with characters ahead and navigate.
+-- NOTE: There's always complete item selected by default, you may want to enable
+-- no select by `"suggest.noselect": true` in your configuration file.
+-- NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+-- other plugin before putting this into your config.
+local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
+keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
+keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
+
+-- Make <CR> to accept selected completion item or notify coc.nvim to format
+-- <C-g>u breaks current undo, please make your own choice.
+keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
+
+-- Use <c-j> to trigger snippets
+keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
+-- Use <c-space> to trigger completion.
+keyset("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
+
+-- Use `[g` and `]g` to navigate diagnostics
+-- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+keyset("n", "[g", "<Plug>(coc-diagnostic-prev)", {silent = true})
+keyset("n", "]g", "<Plug>(coc-diagnostic-next)", {silent = true})
+
+-- GoTo code navigation.
+keyset("n", "gd", "<Plug>(coc-definition)", {silent = true})
+keyset("n", "gy", "<Plug>(coc-type-definition)", {silent = true})
+keyset("n", "gi", "<Plug>(coc-implementation)", {silent = true})
+keyset("n", "gr", "<Plug>(coc-references)", {silent = true})
+
+-- Use K to show documentation in preview window.
+function _G.show_docs()
+    local cw = vim.fn.expand('<cword>')
+    if vim.fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
+        vim.api.nvim_command('h ' .. cw)
+    elseif vim.api.nvim_eval('coc#rpc#ready()') then
+        vim.fn.CocActionAsync('doHover')
+    else
+        vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+    end
+end
+keyset("n", "K", '<CMD>lua _G.show_docs()<CR>', {silent = true})
+
+-- Highlight the symbol and its references when holding the cursor.
+vim.api.nvim_create_augroup("CocGroup", {})
+vim.api.nvim_create_autocmd("CursorHold", {
+    group = "CocGroup",
+    command = "silent call CocActionAsync('highlight')",
+    desc = "Highlight symbol under cursor on CursorHold"
+})
+
+-- Symbol renaming.
+keyset("n", "<leader>rn", "<Plug>(coc-rename)", {silent = true})
+
+-- Formatting selected code.
+keyset("x", "<leader>f", "<Plug>(coc-format-selected)", {silent = true})
+keyset("n", "<leader>f", "<Plug>(coc-format-selected)", {silent = true})
+
+-- Setup formatexpr specified filetype(s).
+vim.api.nvim_create_autocmd("FileType", {
+    group = "CocGroup",
+    pattern = "typescript,json",
+    command = "setl formatexpr=CocAction('formatSelected')",
+    desc = "Setup formatexpr specified filetype(s)."
+})
+
+-- Update signature help on jump placeholder.
+vim.api.nvim_create_autocmd("User", {
+    group = "CocGroup",
+    pattern = "CocJumpPlaceholder",
+    command = "call CocActionAsync('showSignatureHelp')",
+    desc = "Update signature help on jump placeholder"
+})
+
+
+-- Applying codeAction to the selected region.
+-- Example: `<leader>aap` for current paragraph
+local opts = {silent = true, nowait = true}
+keyset("x", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
+keyset("n", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
+
+-- Remap keys for applying codeAction to the current buffer.
+keyset("n", "<leader>ac", "<Plug>(coc-codeaction)", opts)
+
+
+-- Apply AutoFix to problem on the current line.
+keyset("n", "<leader>qf", "<Plug>(coc-fix-current)", opts)
+
+
+-- Run the Code Lens action on the current line.
+keyset("n", "<leader>cl", "<Plug>(coc-codelens-action)", opts)
+
+
+-- Map function and class text objects
+-- NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+keyset("x", "if", "<Plug>(coc-funcobj-i)", opts)
+keyset("o", "if", "<Plug>(coc-funcobj-i)", opts)
+keyset("x", "af", "<Plug>(coc-funcobj-a)", opts)
+keyset("o", "af", "<Plug>(coc-funcobj-a)", opts)
+keyset("x", "ic", "<Plug>(coc-classobj-i)", opts)
+keyset("o", "ic", "<Plug>(coc-classobj-i)", opts)
+keyset("x", "ac", "<Plug>(coc-classobj-a)", opts)
+keyset("o", "ac", "<Plug>(coc-classobj-a)", opts)
+
+
+-- Remap <C-f> and <C-b> for scroll float windows/popups.
+---@diagnostic disable-next-line: redefined-local
+-- local opts = {silent = true, nowait = true, expr = true}
+-- keyset("n", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', opts)
+-- keyset("n", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', opts)
+-- keyset("i", "<C-f>",
+--        'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', opts)
+-- keyset("i", "<C-b>",
+--        'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', opts)
+-- keyset("v", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', opts)
+-- keyset("v", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', opts)
+
+
+-- Use CTRL-S for selections ranges.
+-- Requires 'textDocument/selectionRange' support of language server.
+-- keyset("n", "<C-s>", "<Plug>(coc-range-select)", {silent = true})
+-- keyset("x", "<C-s>", "<Plug>(coc-range-select)", {silent = true})
+
+
+-- Add `:Format` command to format current buffer.
+vim.api.nvim_create_user_command("Format", "call CocAction('format')", {})
+
+-- " Add `:Fold` command to fold current buffer.
+vim.api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", {nargs = '?'})
+
+-- Add `:OR` command for organize imports of the current buffer.
+vim.api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'editor.action.organizeImport')", {})
+
+-- Add (Neo)Vim's native statusline support.
+-- NOTE: Please see `:h coc-status` for integrations with external plugins that
+-- provide custom statusline: lightline.vim, vim-airline.
+vim.opt.statusline:prepend("%{coc#status()}%{get(b:,'coc_current_function','')}")
+
+-- Mappings for CoCList
+-- code actions and coc stuff
+---@diagnostic disable-next-line: redefined-local
+local opts = {silent = true, nowait = true}
+-- Show all diagnostics.
+keyset("n", "<space>a", ":<C-u>CocList diagnostics<cr>", opts)
+-- Manage extensions.
+keyset("n", "<space>e", ":<C-u>CocList extensions<cr>", opts)
+-- Show commands.
+keyset("n", "<space>c", ":<C-u>CocList commands<cr>", opts)
+-- Find symbol of current document.
+keyset("n", "<space>o", ":<C-u>CocList outline<cr>", opts)
+-- Search workspace symbols.
+keyset("n", "<space>s", ":<C-u>CocList -I symbols<cr>", opts)
+-- Do default action for next item.
+keyset("n", "<space>j", ":<C-u>CocNext<cr>", opts)
+-- Do default action for previous item.
+keyset("n", "<space>k", ":<C-u>CocPrev<cr>", opts)
+-- Resume latest coc list.
+keyset("n", "<space>p", ":<C-u>CocListResume<cr>", opts)
+
+-- Telescope
+require('telescope').setup{}
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<C-p>', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set('n', '<C-S-p>', builtin.commands, {})
+vim.keymap.set('n', '<C-M-f>', builtin.current_buffer_fuzzy_find, {})
+
 EOF
 
