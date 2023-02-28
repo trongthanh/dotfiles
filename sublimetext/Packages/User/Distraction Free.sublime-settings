@@ -1,0 +1,6 @@
+// Settings in here override those in "Default/Distraction Free.sublime-settings",
+// and are overridden in turn by syntax-specific settings.
+{
+	"mde.keep_centered": false,
+	"line_numbers": true,
+}

@@ -36,7 +36,7 @@
 	"caret_extra_bottom": 4,
 	"caret_extra_top": 4,
 	"caret_extra_width": 1,
-	"color_scheme": "Mariana Plus.sublime-color-scheme",
+	"color_scheme": "Mariana.sublime-color-scheme",
 	"dictionary": "Packages/Language - English/en_US.dic",
 	"enable_inline_error_tips": true,
 	"enable_typescript_language_service": true,
@@ -66,7 +66,9 @@
 		"*.sublime-workspace",
 		".eslintcache",
 		"package-lock.json",
-		"yarn.lock"
+		"yarn.lock",
+		"*.css.map",
+		"*.js.map"
 	],
 	"findreplace_small": true,
 	"folder_exclude_patterns":
@@ -88,12 +90,12 @@
 	[
 		"All Autocomplete",
 		"BracketHighlighter",
-		"Markdown",
+		"ColorPicker",
+		"LiveServer",
 		"rsub",
+		"Sass",
 		"Swig",
 		"TypeScript",
-		"Vintage",
-		"WordCount",
 	],
 	"ignored_words":
 	[
@@ -125,7 +127,8 @@
 		"plusplus",
 		"rimraf",
 		"semver",
-		"systemctl"
+		"stylesheet",
+		"systemctl",
 	],
 	"index_exclude_patterns":
 	[
@@ -138,7 +141,9 @@
 		".eslintcache",
 		".next/**/*",
 		"**/.next/**/*",
-		".lighthouseci/**/*"
+		".lighthouseci/**/*",
+		"*.css.map",
+		"*.js.map"
 	],
 	"index_files": true,
 	"index_workers": 2,
@@ -146,6 +151,7 @@
 	"line_padding_bottom": 3,
 	"line_padding_top": 3,
 	"mde.auto_fold_link.enabled": false,
+	"relative_line_numbers": true,
 	"scroll_past_end": true,
 	"scroll_speed": 0,
 	"spell_check": false,

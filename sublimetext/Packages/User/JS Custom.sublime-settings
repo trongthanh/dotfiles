@@ -5,10 +5,6 @@
 		"eslint_directives": true,
 		"custom_templates": {
 			"styled_components": true,
-			"clear_all_scopes": false,
-			"tags": {
-				"css": "scope:source.scss"
-			}
 		}
 	}
 }
