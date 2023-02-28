@@ -28,6 +28,7 @@ Plug 'nvim-lualine/lualine.nvim'       " Status bar
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' } " Bufferline
 Plug 'airblade/vim-gitgutter'          " Git gutter
 Plug 'tpope/vim-fugitive'              " Git inside vim
+Plug 'f-person/git-blame.nvim'         " Git blame status
 Plug 'petertriho/nvim-scrollbar'       " Scroll bar with gutter highlight
 " Plug 'tc50cal/vim-terminal'          " Vim Terminal
 " Plug 'rafi/awesome-vim-colorschemes' " Retro Scheme
@@ -39,7 +40,7 @@ Plug 'joshdick/onedark.vim'            " OneDark color scheme
 Plug 'tpope/vim-surround'                  " Surrounding cs'` ysw)
 Plug 'matze/vim-move'                      " Move text <S-hjkl>
 Plug 'lukas-reineke/indent-blankline.nvim' " Show indent guide
-Plug 'tpope/vim-commentary'                " For Commenting gcc & gc
+Plug 'numToStr/Comment.nvim'               " Commenting code with gcc & gbc
 Plug 'mg979/vim-visual-multi'              " Multiple cursor
 Plug 'nvim-lua/plenary.nvim'               " telescope prerequisite
 Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' } " Pick files or command (similar to cmd-P in ST3)
@@ -47,6 +48,7 @@ Plug 'dyng/ctrlsf.vim'                     " Find in files similar to ctrl-shift
 
 """" Language enhancement
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Improved language support
+Plug 'nvim-treesitter/nvim-tree-docs'               " Doc comments powered by treesitter (gdd)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}     " Conquer Of Completion Node.js auto completion
 Plug 'gpanders/editorconfig.nvim'                   " Better Editorconfig with custom properties
 Plug 'godlygeek/tabular'                            " :Tabularize \,
@@ -73,15 +75,14 @@ call plug#end()
 
 " Ctrl-Shift-F find in files
 nmap     <C-S-f> <Plug>CtrlSFPrompt
-vmap     <C-f>f <Plug>CtrlSFVwordPath
-vmap     <C-f>F <Plug>CtrlSFVwordExec
-nmap     <C-f>n <Plug>CtrlSFCwordPath
-nmap     <C-f>p <Plug>CtrlSFPwordPath
-nnoremap <C-f>o :CtrlSFOpen<CR>
-nnoremap <C-f>t :CtrlSFToggle<CR>
-inoremap <C-f>t <Esc>:CtrlSFToggle<CR>
+"vmap     <C-f>f <Plug>CtrlSFVwordPath
+"vmap     <C-f>F <Plug>CtrlSFVwordExec
+"nmap     <C-f>n <Plug>CtrlSFCwordPath
+"nmap     <C-f>p <Plug>CtrlSFPwordPath
+nnoremap <leader>fo :CtrlSFOpen<CR>
+nnoremap <leader>ft :CtrlSFToggle<CR>
+inoremap <S-f>t <Esc>:CtrlSFToggle<CR>
 
-nnoremap <C-p>   :FuzzyOpen<CR>
 nnoremap <C-b>   :NvimTreeToggle<CR>
 nnoremap <C-S-b> :NvimTreeFocus<CR>
 nnoremap <M-r>   :NvimTreeFindFile<CR>
@@ -169,71 +170,9 @@ lua << EOF
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- setup lualine
-require('lualine').setup {
-  highlights = {
-    background = {
-      italic = true,
-    },
-    buffer_selected = {
-      bold = true,
-    },
-  },
-  options = {
-    mode = "buffers",
-    icons_enabled = true,
-    theme = 'auto',
-    color_icons = true,
-    component_separators = { left = "", right = "" },
-    section_separators = { left = "", right = "" },
-    always_divide_middle = true,
-    globalstatus = true,
-    disabled_filetypes = {
-      'NvimTree'
-    },
-    ignore_focus = {'NvimTree'},
-  },
-  -- tabline = {
-  --   lualine_a = {
-  --     {
-  --       'buffers',
-  --       mode = 2, -- Shows buffer name + buffer index
-  --       filetype_names = {
-  --         NvimTree = 'File Tree',
-  --       }
-  --     },
-  --   },
-  --   lualine_b = {},
-  --   lualine_c = {},
-  --   lualine_x = {},
-  --   lualine_y = {},
-  --   lualine_z = {{'tabs', mode = 0}}, -- show only tab number
-  -- },
-  extensions = {'nvim-tree'}
-}
-
--- setup bufferline
-require("bufferline").setup {
-  options = {
-    offsets = {
-      {
-        filetype = "NvimTree",
-        text = "File Explorer",
-        text_align = "center",
-        separator = true,
-      },
-    },
-    diagnostics = "coc",
-    indicator = {
-      style = 'underline',
-    },
-    show_close_icon = true,
-  },
-}
-
 -- setup NVimTree
 require("nvim-tree").setup {
-  hijack_cursor = true,   -- 
+  hijack_cursor = true,
   open_on_tab = true,     -- open tree on new tab
   update_focused_file = {
     enable = true,
@@ -278,6 +217,127 @@ require("nvim-tree").setup {
   },
 }
 
+-- auto close if last window (use @PROxZIMA)
+-- local modifiedBufs = function(bufs)
+--     local t = 0
+--     for k,v in pairs(bufs) do
+--         if v.name:match("NvimTree_") == nil then
+--             t = t + 1
+--         end
+--     end
+--     return t
+-- end
+--
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--     nested = true,
+--     callback = function()
+--         if #vim.api.nvim_list_wins() == 1 and
+--         vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil and
+--         modifiedBufs(vim.fn.getbufinfo({bufmodified = 1})) == 0 then
+--             vim.cmd "quit"
+--         end
+--     end
+-- })
+
+-- open on setup for directory or noname buffer
+local function open_nvim_tree(data)
+
+  -- buffer is a [No Name]
+  local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+  -- buffer is a directory
+  local directory = vim.fn.isdirectory(data.file) == 1
+
+  if not no_name and not directory then
+    return
+  end
+
+  -- change to the directory
+  if directory then
+    vim.cmd.cd(data.file)
+  end
+
+  -- open the tree
+  require("nvim-tree.api").tree.open()
+end
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+
+-- setup lualine
+vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text
+vim.g.gitblame_date_format = '%r'
+vim.g.gitblame_message_template = '<author>, <date>'
+local git_blame = require('gitblame')
+
+require('lualine').setup {
+  highlights = {
+    background = {
+      italic = true,
+    },
+    buffer_selected = {
+      bold = true,
+    },
+  },
+  options = {
+    mode = "buffers",
+    icons_enabled = true,
+    theme = 'auto',
+    color_icons = true,
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
+    always_divide_middle = true,
+    globalstatus = true,
+    disabled_filetypes = {
+      'NvimTree'
+    },
+    ignore_focus = {'NvimTree'},
+  },
+  sections = {
+    lualine_b = {
+      'branch',
+      'diff',
+      { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available },
+      'diagnostics',
+    },
+  },
+  -- tabline = {
+  --   lualine_a = {
+  --     {
+  --       'buffers',
+  --       mode = 2, -- Shows buffer name + buffer index
+  --       filetype_names = {
+  --         NvimTree = 'File Tree',
+  --       }
+  --     },
+  --   },
+  --   lualine_b = {},
+  --   lualine_c = {},
+  --   lualine_x = {},
+  --   lualine_y = {},
+  --   lualine_z = {{'tabs', mode = 0}}, -- show only tab number
+  -- },
+  extensions = {'nvim-tree'}
+}
+
+-- setup bufferline
+require("bufferline").setup {
+  options = {
+    offsets = {
+      {
+        filetype = "NvimTree",
+        text = "File Explorer",
+        text_align = "center",
+        separator = true,
+      },
+    },
+    diagnostics = "coc",
+    indicator = {
+      style = 'underline',
+    },
+    show_close_icon = true,
+  },
+}
+
 -- improve indentline color
 vim.cmd [[highlight IndentBlanklineChar guifg=#333f33]]
 vim.cmd [[highlight IndentBlanklineContextChar guifg=#6699cc gui=nocombine]]
@@ -305,7 +365,13 @@ require('nvim-autopairs').setup {}
 
 require'colorizer'.setup()
 
+require('Comment').setup()
+
 require'nvim-treesitter.configs'.setup {
+  -- Treesitter doc
+  tree_docs = {
+    enable = true
+  },
   -- A list of parser names, or "all"
   autotag = {
     enable = true,
@@ -514,7 +580,35 @@ keyset("n", "<space>k", ":<C-u>CocPrev<cr>", opts)
 keyset("n", "<space>p", ":<C-u>CocListResume<cr>", opts)
 
 -- Telescope
-require('telescope').setup{}
+local actions = require('telescope.actions')
+local dropdown_theme = require('telescope.themes').get_dropdown({
+  results_height = 20;
+  winblend = 20;
+  width = 0.8;
+  previewer = false;
+})
+
+require('telescope').setup {
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close
+      },
+    },
+  },
+  pickers = {
+    find_files = {
+    --   theme = "dropdown",
+      find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+    },
+    current_buffer_fuzzy_find = {
+      theme = "dropdown",
+    },
+    treesitter = {
+      theme = "dropdown",
+    },
+  },
+}
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<C-p>', builtin.find_files, {})
@@ -522,7 +616,8 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<C-S-p>', builtin.commands, {})
-vim.keymap.set('n', '<C-M-f>', builtin.current_buffer_fuzzy_find, {})
+vim.keymap.set('n', '<C-f>', builtin.current_buffer_fuzzy_find, {})
+vim.keymap.set('n', '<C-j>', builtin.treesitter, {})
 
 EOF
 
