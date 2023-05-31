@@ -35,6 +35,7 @@ Plug 'petertriho/nvim-scrollbar'       " Scroll bar with gutter highlight
 Plug 'sainnhe/sonokai'                 " Sonokai colorscheme
 Plug 'mhartington/oceanic-next'        " Oceanic Next scheme
 Plug 'joshdick/onedark.vim'            " OneDark color scheme
+Plug 'github/copilot.vim'              " github copilot
 
 """" Motion and shortcuts
 Plug 'tpope/vim-surround'                  " Surrounding cs'` ysw)
@@ -73,6 +74,9 @@ call plug#end()
 :colorscheme OceanicNext
 :set termguicolors
 
+" map command shift-Q to qa
+:command-bang Q qa<bang>
+
 " Ctrl-Shift-F find in files
 nmap     <C-S-f> <Plug>CtrlSFPrompt
 "vmap     <C-f>f <Plug>CtrlSFVwordPath
@@ -103,11 +107,9 @@ noremap <M-q> <Esc>:qa!
 inoremap <M-q> <Esc>:qa!
 " ctrl-c copy to clipboard
 vnoremap <C-c> "+y<CR>
-" scroll horizontal with Shift or Ctrl (real mouse wheel only work with Ctrl)
+" scroll horizontal with Ctrl
 noremap <C-ScrollWheelUp> <ScrollWheelLeft>
-noremap <S-ScrollWheelUp> <ScrollWheelLeft>
 noremap <C-ScrollWheelDown> <ScrollWheelRight>
-noremap <S-ScrollWheelDown> <ScrollWheelRight>
 " turnoff  highlight
 nnoremap <silent> <C-h> <Esc>:nohlsearch<CR>
 " toggle word wrap
@@ -161,6 +163,9 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_fenced_languages = ['jsx=javascript', 'js=javascript', 'bash=sh', 'shell=sh']
 
+"Copilot settings
+let g:copilot_node_command = '/usr/local/bin/node'
+
 " highlight focused file in nvim-tree
 autocmd BufEnter NvimTree* set cursorline
 
@@ -171,7 +176,20 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- setup NVimTree
+local function on_attach(bufnr)
+  local api = require('nvim-tree.api')
+
+  local function opts(desc)
+    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  -- Custom mapping
+  vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
+  vim.keymap.set('n', 'v', api.node.open.vertical, opts('Open: Vertical Split'))
+end
+
 require("nvim-tree").setup {
+  -- on_attach = on_attach,
   hijack_cursor = true,
   open_on_tab = true,     -- open tree on new tab
   update_focused_file = {
@@ -208,12 +226,6 @@ require("nvim-tree").setup {
     },
   },
   view = {
-    mappings = {
-      list = {
-        { key = "?", action = "toggle_help" },
-        { key = "v", action = "vsplit" },
-      }
-    }
   },
 }
 
@@ -427,8 +439,9 @@ end
 -- NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 -- other plugin before putting this into your config.
 local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
-keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
-keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
+keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#confirm() : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
+-- keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
+-- keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 
 -- Make <CR> to accept selected completion item or notify coc.nvim to format
 -- <C-g>u breaks current undo, please make your own choice.
