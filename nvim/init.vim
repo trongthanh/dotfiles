@@ -65,6 +65,8 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 " Plug 'ray-x/go.nvim'                                " Better Go language support
 Plug 'gpanders/editorconfig.nvim'                   " Better Editorconfig with custom properties
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --production', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 Plug 'godlygeek/tabular'                            " :Tabularize \,
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'  " Contextual commentstring
 Plug 'windwp/nvim-ts-autotag'                       " Auto close tag with treesitter
@@ -100,7 +102,6 @@ inoremap <S-f>t <Esc>:CtrlSFToggle<CR>
 nnoremap <C-b>   :NvimTreeToggle<CR>
 nnoremap <C-S-b> :NvimTreeFocus<CR>
 nnoremap <M-r>   :NvimTreeFindFile<CR>
-" nnoremap <C-l>   :call CocActionAsync('jumpDefinition')<CR>
 
 " Ctrl-Option-Left or Right to move prev / next tab
 noremap <silent> <C-Left> <Esc>:tabprevious<CR>
@@ -137,7 +138,7 @@ nnoremap <silent> bg :BufferLinePick<CR>
 nnoremap <silent> b] :BufferLineCycleNext<CR>
 nnoremap <silent> b[ :BufferLineCyclePrev<CR>
 
-" select quotes
+" select quotes in visual mode
 vnoremap <silent> ' i'
 vnoremap <silent> " i"
 vnoremap <silent> ` i`
@@ -147,6 +148,13 @@ vnoremap <silent> } i}
 " custom vim-surround
 " wrap text with **bold** format when surround with * character
 autocmd FileType markdown let g:surround_42 = "**\r**"
+
+" highlight focused file in nvim-tree
+autocmd BufEnter NvimTree* set cursorline
+
+" vim-prettier auto format on save, without @format pragma
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
 
 " vim-move settings
 let g:move_key_modifier = 'M'
@@ -168,12 +176,6 @@ let g:VM_maps["Mouse Column"]           = '<S-RightMouse>'
 " gitgutter
 let g:gitgutter_sign_added = '│'      " look nicer and signal by color
 let g:gitgutter_sign_modified = '│'   " look nicer and signal by color
-
-" the rest of COC config is in lua.init
-" let g:coc_node_path = '/usr/local/bin/node'
-
-" vim-javascript, enable jsdoc highlight
-let g:javascript_plugin_jsdoc = 1
 
 " vim markdown
 let g:vim_markdown_folding_disabled = 1
@@ -594,7 +596,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
       close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
       border = false, --'rounded',
       source = 'always',
-      prefix = ' ',
+      -- prefix = ' ',
       scope = 'cursor',
     }
     vim.diagnostic.open_float(nil, opts)
@@ -639,10 +641,17 @@ cmp.setup {
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
+    ['<CR>'] = cmp.mapping({
+      i = function(fallback)
+        if cmp.visible() and cmp.get_active_entry() then
+          cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+        else
+          fallback()
+        end
+      end,
+      s = cmp.mapping.confirm({ select = true }),
+      c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+    }),
     ["<Down>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
