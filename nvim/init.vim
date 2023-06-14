@@ -26,7 +26,7 @@ call plug#begin()
 Plug 'nvim-tree/nvim-web-devicons'     " optional, for file icons
 Plug 'nvim-tree/nvim-tree.lua'         " NvimTree plugin
 Plug 'nvim-lualine/lualine.nvim'       " Status bar
-Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' } " Bufferline
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' } " Bufferline (tab-like bar for buffers)
 Plug 'airblade/vim-gitgutter'          " Git gutter
 Plug 'tpope/vim-fugitive'              " Git inside vim
 Plug 'f-person/git-blame.nvim'         " Git blame status
@@ -61,7 +61,8 @@ Plug 'hrsh7th/cmp-cmdline'                 " Command line source for cmp
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help' " signature helper source
 Plug 'hrsh7th/nvim-cmp'                    " The Autocompletion engine
 " For luasnip users.
-Plug 'L3MON4D3/LuaSnip'
+Plug 'rafamadriz/friendly-snippets'        " Snippets collection
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*', 'do': 'make install_jsregexp'}
 Plug 'saadparwaiz1/cmp_luasnip'
 " Plug 'ray-x/go.nvim'                                " Better Go language support
 Plug 'gpanders/editorconfig.nvim'                   " Better Editorconfig with custom properties
@@ -185,9 +186,6 @@ let g:vim_markdown_fenced_languages = ['jsx=javascript', 'js=javascript', 'bash=
 "Copilot settings
 let g:copilot_node_command = '/usr/local/bin/node'
 
-" highlight focused file in nvim-tree
-autocmd BufEnter NvimTree* set cursorline
-
 " setup lua plugins
 lua << EOF
 -- disable netrw at the very start of your init.lua (strongly advised)
@@ -208,11 +206,12 @@ local function on_attach(bufnr)
 end
 
 require("nvim-tree").setup {
-  -- on_attach = on_attach,
+  -- on_attach = on_attach, -- must define all keymaps if use
   hijack_cursor = true,
-  open_on_tab = true,     -- open tree on new tab
+  -- open_on_tab = true,     -- open tree on new tab
   update_focused_file = {
     enable = true,
+    debounce_delay = 15,
     update_cwd = true,
     ignore_list = {},
   },
@@ -224,10 +223,17 @@ require("nvim-tree").setup {
   },
   diagnostics = {
     enable = true,
-    show_on_dirs = true,
+    show_on_dirs = false,
+    show_on_open_dirs = true,
+    debounce_delay = 50,
   },
   renderer = {
     highlight_git = true,
+  },
+  filesystem_watchers = {
+    enable = true,
+    debounce_delay = 50,
+    ignore_dirs = {},
   },
   filters = {
     dotfiles = false,
@@ -247,28 +253,6 @@ require("nvim-tree").setup {
   view = {
   },
 }
-
--- auto close if last window (use @PROxZIMA)
--- local modifiedBufs = function(bufs)
---     local t = 0
---     for k,v in pairs(bufs) do
---         if v.name:match("NvimTree_") == nil then
---             t = t + 1
---         end
---     end
---     return t
--- end
---
--- vim.api.nvim_create_autocmd("BufEnter", {
---     nested = true,
---     callback = function()
---         if #vim.api.nvim_list_wins() == 1 and
---         vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil and
---         modifiedBufs(vim.fn.getbufinfo({bufmodified = 1})) == 0 then
---             vim.cmd "quit"
---         end
---     end
--- })
 
 -- open on setup for directory or noname buffer
 local function open_nvim_tree(data)
@@ -353,6 +337,7 @@ require('lualine').setup {
 -- setup bufferline
 require("bufferline").setup {
   options = {
+    mode = "buffers",
     offsets = {
       {
         filetype = "NvimTree",
@@ -361,7 +346,7 @@ require("bufferline").setup {
         separator = true,
       },
     },
-    -- diagnostics = "coc",
+    diagnostics = "nvim_lsp",
     indicator = {
       style = 'underline',
     },
@@ -613,7 +598,7 @@ end
 -- Luasnip ---------------------------------------------------------------------
 -- Load as needed by filetype by the luasnippets folder in the config dir
 local luasnip = require("luasnip")
-require("luasnip.loaders.from_lua").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load()
 -- set keybinds for both INSERT and VISUAL.
 vim.api.nvim_set_keymap("i", "<C-n>", "<Plug>luasnip-next-choice", {})
 vim.api.nvim_set_keymap("s", "<C-n>", "<Plug>luasnip-next-choice", {})
@@ -666,27 +651,27 @@ cmp.setup {
         fallback()
       end
     end, { "i", "s"}),
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      -- elseif has_words_before() then
-      --   cmp.complete()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
+    -- ["<Tab>"] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_next_item()
+    --   elseif luasnip.expand_or_jumpable() then
+    --     luasnip.expand_or_jump()
+    --   -- elseif has_words_before() then
+    --   --   cmp.complete()
+    --   else
+    --     fallback()
+    --   end
+    -- end, { "i", "s" }),
+    --
+    -- ["<S-Tab>"] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_prev_item()
+    --   elseif luasnip.jumpable(-1) then
+    --     luasnip.jump(-1)
+    --   else
+    --     fallback()
+    --   end
+    -- end, { "i", "s" }),
   },
   sources = {
     { name = 'nvim_lsp' },
