@@ -87,7 +87,7 @@ call plug#end()
 :colorscheme OceanicNext
 :set termguicolors
 
-" map command shift-Q to qa
+" map command shift-Q to qa, and support ! bang
 :command-bang Q qa<bang>
 
 " Ctrl-Shift-F find in files
@@ -145,6 +145,17 @@ vnoremap <silent> " i"
 vnoremap <silent> ` i`
 vnoremap <silent> ] i]
 vnoremap <silent> } i}
+
+" Map CMD+Up / Down arrow to jump to the top / bottom of the buffer
+nnoremap <D-Up> gg
+nnoremap <D-Down> G
+" Map CMD+Left / Right arrow to jump to the start / end of the line
+nnoremap <D-Left> 0
+nnoremap <D-Right> $
+" Toggle comment with CMD+/
+nnoremap <D-/> gcc
+" Save buffer with CMD+S in all mode
+noremap <D-s> :w<CR>
 
 " custom vim-surround
 " wrap text with **bold** format when surround with * character
