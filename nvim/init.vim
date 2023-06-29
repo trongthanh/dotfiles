@@ -50,8 +50,7 @@ Plug 'dyng/ctrlsf.vim'                     " Find in files similar to ctrl-shift
 
 """" Language enhancement
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Improved language support
-Plug 'nvim-treesitter/nvim-tree-docs'               " Doc comments powered by treesitter (gdd)
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}     " Conquer Of Completion Node.js auto completion
+" Plug 'nvim-treesitter/nvim-tree-docs'               " Doc comments powered by treesitter (to fix gd lag due to: gdd)
 " Modern LSP completion replacing CoC
 Plug 'neovim/nvim-lspconfig'               " LSP configuration
 Plug 'hrsh7th/cmp-nvim-lsp'                " LSP source for nvim-cmp
@@ -64,10 +63,9 @@ Plug 'hrsh7th/nvim-cmp'                    " The Autocompletion engine
 Plug 'rafamadriz/friendly-snippets'        " Snippets collection
 Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*', 'do': 'make install_jsregexp'}
 Plug 'saadparwaiz1/cmp_luasnip'
-" Plug 'ray-x/go.nvim'                                " Better Go language support
 Plug 'gpanders/editorconfig.nvim'                   " Better Editorconfig with custom properties
 " post install (yarn install | npm install) then load plugin only for editing supported files
-Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --production', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --production', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'graphql', 'vue', 'svelte', 'yaml', 'html'] }
 Plug 'godlygeek/tabular'                            " :Tabularize \,
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'  " Contextual commentstring
 Plug 'windwp/nvim-ts-autotag'                       " Auto close tag with treesitter
@@ -77,6 +75,7 @@ Plug 'norcalli/nvim-colorizer.lua'                  " Color code highlighter
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'mattn/emmet-vim'                              " Emmet
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }  " :MarkdownPreview
+Plug 'edluffy/hologram.nvim'                        " View image in neovim with Kitty Graphics Protocol
 
 set encoding=utf-8
 
@@ -139,12 +138,19 @@ nnoremap <silent> bg :BufferLinePick<CR>
 nnoremap <silent> b] :BufferLineCycleNext<CR>
 nnoremap <silent> b[ :BufferLineCyclePrev<CR>
 
-" select quotes in visual mode
+" select quotes in visual mode (v', v", v`, v], v})
 vnoremap <silent> ' i'
 vnoremap <silent> " i"
 vnoremap <silent> ` i`
 vnoremap <silent> ] i]
 vnoremap <silent> } i}
+vnoremap <silent> ) i)
+
+" vim line text-objects, excluding leading and trailing whitespace, eg: vil, dal
+xnoremap il g_o^
+onoremap il :normal vil<CR>
+xnoremap al $o0
+onoremap al :normal val<CR>
 
 " Map CMD+Up / Down arrow to jump to the top / bottom of the buffer
 nnoremap <D-Up> gg
@@ -163,6 +169,11 @@ autocmd FileType markdown let g:surround_42 = "**\r**"
 
 " highlight focused file in nvim-tree
 autocmd BufEnter NvimTree* set cursorline
+" esc to normal when entering nvim-tree
+autocmd FileType NvimTree au! BufEnter * stopinsert
+
+" highlight yanked text
+au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=300}
 
 " vim-prettier auto format on save, without @format pragma
 let g:prettier#autoformat = 1
@@ -204,18 +215,6 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- setup NVimTree
-local function on_attach(bufnr)
-  local api = require('nvim-tree.api')
-
-  local function opts(desc)
-    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-  end
-
-  -- Custom mapping
-  vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
-  vim.keymap.set('n', 'v', api.node.open.vertical, opts('Open: Vertical Split'))
-end
-
 require("nvim-tree").setup {
   -- on_attach = on_attach, -- must define all keymaps if use
   hijack_cursor = true,
@@ -396,9 +395,13 @@ require('Comment').setup()
 
 require'nvim-treesitter.configs'.setup {
   -- Treesitter doc
-  tree_docs = {
-    enable = true
-  },
+  -- tree_docs = {
+  --   enable = true,
+  --   keymaps = {
+  --     -- refer to https://github.com/nvim-treesitter/nvim-tree-docs/issues/8
+  --     doc_node_at_cursor = "yd",
+  --   },
+  -- },
   -- A list of parser names, or "all"
   autotag = {
     enable = true,
@@ -484,19 +487,6 @@ vim.keymap.set('n', '<C-S-p>', builtin.commands, {})
 vim.keymap.set('n', '<C-f>', builtin.current_buffer_fuzzy_find, {})
 vim.keymap.set('n', '<C-j>', builtin.treesitter, {})
 
---- enable go plugin
--- require('go').setup()
-
---- add go lang format on save
--- local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
--- vim.api.nvim_create_autocmd("BufWritePre", {
---   pattern = "*.go",
---   callback = function()
---    require('go.format').goimport()
---   end,
---   group = format_sync_grp,
--- })
-
 -- LSP Mappings + Settings -----------------------------------------------------
 -- modified from: https://github.com/neovim/nvim-lspconfig#suggested-configuration
 local opts = { noremap=true, silent=true }
@@ -514,16 +504,26 @@ local on_attach = function(client, bufnr)
 
   -- Mappings to magical LSP functions!
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', '<C-l>', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'gk', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', 'gK', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', 'td', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<space>r', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<space>a', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+  -- Enable hover documentation in a floating window (disable as shortcut is enough)
+  -- vim.api.nvim_exec([[
+  --   augroup lsp_hover_doc
+  --   autocmd!
+  --   autocmd CursorHold * silent! lua vim.lsp.buf.hover()
+  --   autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()
+  --   autocmd CursorMoved * lua vim.lsp.buf.clear_references()
+  --   augroup END
+  -- ]], false)
 end
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
@@ -560,20 +560,24 @@ lspconfig.html.setup {
 -- util = require "lspconfig/util"
 lspconfig.gopls.setup{
   on_attach = on_attach,
-  capabilities = capabilities
+  capabilities = capabilities,
+  -- cmd = {"gopls", "serve"},
+  -- filetypes = {"go", "gomod"},
+  -- root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+  -- settings = {
+  --   gopls = {
+  --     hoverKind = "FullDocumentation",
+  --   },
+  -- },
 }
 
--- lspconfig.gopls.setup {
---   cmd = {"gopls", "serve"},
---   filetypes = {"go", "gomod"},
---   root_dir = util.root_pattern("go.work", "go.mod", ".git"),
---   settings = {
---     gopls = {
---       analyses = {
---         unusedparams = true,
---       },
---       staticcheck = true,
---     },
+-- [LSP] Organize imports on save
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.go',
+  callback = function()
+    vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
+  end
+})
 
 -- [LSP] Change inline diagnostic text to hover popup
 vim.diagnostic.config({
@@ -637,17 +641,21 @@ cmp.setup {
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping({
-      i = function(fallback)
-        if cmp.visible() and cmp.get_active_entry() then
-          cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-        else
-          fallback()
-        end
-      end,
-      s = cmp.mapping.confirm({ select = true }),
-      c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-    }),
+    -- ['<CR>'] = cmp.mapping({
+    --   i = function(fallback)
+    --     if cmp.visible() and cmp.get_active_entry() then
+    --       cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+    --     else
+    --       fallback()
+    --     end
+    --   end,
+    --   s = cmp.mapping.confirm({ select = true }),
+    --   c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+    -- }),
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
     ["<Down>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -691,6 +699,11 @@ cmp.setup {
     { name = 'buffer' },
     { name = 'path' }
   },
+}
+
+-- view Image
+require('hologram').setup{
+  auto_display = true -- WIP automatic markdown image display, may be prone to breaking
 }
 
 EOF
