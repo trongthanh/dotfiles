@@ -92,6 +92,7 @@
 		"BracketHighlighter",
 		"ColorPicker",
 		"LiveServer",
+		"LSP-copilot",
 		"rsub",
 		"Sass",
 		"Swig",

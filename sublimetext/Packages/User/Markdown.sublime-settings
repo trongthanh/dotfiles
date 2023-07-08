@@ -8,12 +8,15 @@
 	],
 
 	// "color_scheme": "Packages/Boxy Theme/schemes/Boxy Ocean.tmTheme",
-	"color_scheme": "Packages/Color Scheme - Default/Breakers.sublime-color-scheme",
-	// "color_scheme": "Packages/Color Scheme - Default/Sixteen.sublime-color-scheme",
+	// "color_scheme": "Breakers.sublime-color-scheme",
+	// "color_scheme": "Mariana.sublime-color-scheme",
+	// "color_scheme": "Monokai.sublime-color-scheme",
+	// "color_scheme": "Sixteen.sublime-color-scheme",
 	// "color_scheme": "Packages/User/Mariana-ES6.sublime-color-scheme",
-	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-ArcDark.tmTheme",
-	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme",
-	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Yellow.tmTheme",
+	// "color_scheme": "MarkdownEditor.sublime-color-scheme",
+	// "color_scheme": "MarkdownEditor-ArcDark.sublime-color-scheme",
+	// "color_scheme": "MarkdownEditor-Dark.sublime-color-scheme",
+	// "color_scheme": "MarkdownEditor-Yellow.sublime-color-scheme",
 
 	// This is a quick and dirty focus theme. In order to make it work, you've to
 	// set `"highlight_line": true,` in this settings file. It is likely that there will
@@ -24,17 +27,15 @@
 	// "font_face": "IBM Plex Mono",
 	"font_face": "Go Mono",
 	// "font_face": "iA Writer Duospace",
-	"font_size": 15,
+	"font_size": 16,
 
 	"tab_size": 4,
 	"translate_tabs_to_spaces": true,
-	"trim_trailing_white_space_on_save": true,
+	"trim_trailing_white_space_on_save": "all",
 	"auto_match_enabled": true,
 
 	// Layout
-	"draw_centered": true,
-	"word_wrap": true,
-	"wrap_width": 80,
+	// "wrap_width": 80,
 	"rulers": [],
 
 	// Line
@@ -63,12 +64,8 @@
 
 	// Allways keep current line vertically centered.
 	"mde.keep_centered": false,
+	"draw_centered": true,
+	"wrap_width": 80,
 
-	// Distraction free mode improvements. In order these to work, you have to install
-	// FullScreenStatus plugin: https://github.com/maliayas/SublimeText_FullScreenStatus
-	"mde.distraction_free_mode": {
-		"mde.keep_centered": false,
-		"wrap_width": 50,
-	},
-	"spell_check": true
+	"spell_check": false,
 }
