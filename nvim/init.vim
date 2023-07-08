@@ -17,6 +17,7 @@
 :set title                    " set terminal title
 :set colorcolumn=+1           " show column limit when textwidth is defined
 :set scl=yes                  " always show signcolumn to avoid text shifting
+:set fixeol                   " always add trailing new line at the end of file
 
 let mapleader = "," " map leader to comma
 
@@ -47,6 +48,7 @@ Plug 'mg979/vim-visual-multi'              " Multiple cursor
 Plug 'nvim-lua/plenary.nvim'               " telescope prerequisite
 Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' } " Pick files or command (similar to cmd-P in ST3)
 Plug 'dyng/ctrlsf.vim'                     " Find in files similar to ctrl-shift-f in ST3
+Plug 'terryma/vim-expand-region'           " Expand selection
 
 """" Language enhancement
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Improved language support
@@ -186,7 +188,6 @@ let g:move_key_modifier_visualmode = 'M'
 " Visual Multi settings
 let g:VM_leader = '='
 let g:VM_maps = {}
-let g:VM_maps["Exit"]                   = '<C-c>'        " quit VM
 let g:VM_maps['Find Under']             = '<C-d>'
 let g:VM_maps['Find Subword Under']     = '<C-d>'
 let g:VM_maps["Select Cursor Up"]       = '<M-C-Up>'     " start selecting up
@@ -571,11 +572,14 @@ lspconfig.gopls.setup{
   -- },
 }
 
--- [LSP] Organize imports on save
+-- [LSP] Organize imports and format on save
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.go',
   callback = function()
+    -- organize import
     vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
+    -- format buffer
+    vim.lsp.buf.format()
   end
 })
 
