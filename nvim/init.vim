@@ -19,6 +19,11 @@
 :set scl=yes                  " always show signcolumn to avoid text shifting
 :set fixeol                   " always add trailing new line at the end of file
 
+" these settings are not needed thanks to colorscheme built-in support
+" :highlight Comment gui=italic " for italic comment
+" :highlight markdownBold gui=bold
+" :highlight markdownItalic gui=italic
+
 let mapleader = "," " map leader to comma
 
 call plug#begin()
@@ -48,7 +53,7 @@ Plug 'mg979/vim-visual-multi'              " Multiple cursor
 Plug 'nvim-lua/plenary.nvim'               " telescope prerequisite
 Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' } " Pick files or command (similar to cmd-P in ST3)
 Plug 'dyng/ctrlsf.vim'                     " Find in files similar to ctrl-shift-f in ST3
-Plug 'terryma/vim-expand-region'           " Expand selection
+" Plug 'terryma/vim-expand-region'           " Expand selection (+ to expand, _ to shrink
 
 """" Language enhancement
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Improved language support
@@ -72,17 +77,20 @@ Plug 'godlygeek/tabular'                            " :Tabularize \,
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'  " Contextual commentstring
 Plug 'windwp/nvim-ts-autotag'                       " Auto close tag with treesitter
 Plug 'windwp/nvim-autopairs'                        " Auto close brackets and quotes
-Plug 'preservim/vim-markdown'                       " Better markdown support
+" Plug 'preservim/vim-markdown'                       " Better markdown support
+" Plug 'ixru/nvim-markdown'                           " markdown support for nvim, based on vim-markdown
 Plug 'norcalli/nvim-colorizer.lua'                  " Color code highlighter
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'mattn/emmet-vim'                              " Emmet
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }  " :MarkdownPreview
-Plug 'edluffy/hologram.nvim'                        " View image in neovim with Kitty Graphics Protocol
+Plug 'craigmac/vim-mermaid'                         " Mermaid diagram
 
 set encoding=utf-8
 
 call plug#end()
 
+let g:oceanic_next_terminal_italic = 1
+let g:oceanic_next_terminal_bold = 1
 " :colorscheme onedark
 " :colorscheme sonokai
 :colorscheme OceanicNext
@@ -175,7 +183,10 @@ autocmd BufEnter NvimTree* set cursorline
 autocmd FileType NvimTree au! BufEnter * stopinsert
 
 " highlight yanked text
-au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=300}
+autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=300}
+
+" map mdx to markdown
+autocmd BufNewFile,BufRead *.mdx set filetype=markdown
 
 " vim-prettier auto format on save, without @format pragma
 let g:prettier#autoformat = 1
@@ -202,9 +213,9 @@ let g:gitgutter_sign_added = '│'      " look nicer and signal by color
 let g:gitgutter_sign_modified = '│'   " look nicer and signal by color
 
 " vim markdown
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_fenced_languages = ['jsx=javascript', 'js=javascript', 'bash=sh', 'shell=sh']
+" let g:vim_markdown_folding_disabled = 1
+" let g:vim_markdown_frontmatter = 1
+" let g:vim_markdown_fenced_languages = ['jsx=javascript', 'js=javascript', 'bash=sh', 'shell=sh']
 
 "Copilot settings
 let g:copilot_node_command = '/usr/local/bin/node'
@@ -404,6 +415,16 @@ require'nvim-treesitter.configs'.setup {
   --   },
   -- },
   -- A list of parser names, or "all"
+  -- Increase selection from current node or scope
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "+",
+      node_incremental = "+",
+      scope_incremental = ")",
+      node_decremental = "_",
+    },
+  },
   autotag = {
     enable = true,
   },
@@ -422,7 +443,7 @@ require'nvim-treesitter.configs'.setup {
   sync_install = false,
 
   -- List of parsers to ignore installing (for "all")
-  ignore_install = { "html", "markdown" },
+  ignore_install = { "html" },
 
   highlight = {
     -- `false` will disable the whole extension
@@ -576,10 +597,10 @@ lspconfig.gopls.setup{
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.go',
   callback = function()
-    -- organize import
-    vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
     -- format buffer
     vim.lsp.buf.format()
+    -- organize import
+    vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
   end
 })
 
@@ -596,7 +617,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
   buffer = bufnr,
   callback = function()
     local opts = {
-      focusable = false,
+      focusable = true, -- focus with Tab
       close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
       border = false, --'rounded',
       source = 'always',
@@ -608,7 +629,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
 })
 
 -- Change signcolumn diagnostic icons
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+local signs = { Error = " ", Warn = " ", Hint = "󰌶 ", Info = " " }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -706,9 +727,9 @@ cmp.setup {
 }
 
 -- view Image
-require('hologram').setup{
-  auto_display = true -- WIP automatic markdown image display, may be prone to breaking
-}
+-- require('hologram').setup{
+--   auto_display = true -- WIP automatic markdown image display, may be prone to breaking
+-- }
 
 EOF
 
