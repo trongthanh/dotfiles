@@ -21,10 +21,18 @@ config.window_padding = {
   bottom = 0,
 }
 
--- For example, changing the color scheme:
--- config.color_scheme = 'AdventureTime'
-config.color_scheme = 'Darkside'
-config.font = wezterm.font 'Cascadia Code PL'
+config.color_scheme = 'OceanicMaterial'
+-- config.color_scheme = 'Tokyo Night (Gogh)'
+-- config.color_scheme = 'Molokai'
+-- config.color_scheme = 'MaterialOcean'
+-- config.color_scheme = 'Mariana'
+-- config.color_scheme = 'Darkside'
+-- config.color_scheme = 'MaterialDesignColors'
+-- config.font = wezterm.font 'Cascadia Code PL'
+config.font = wezterm.font {
+  family = 'Cascadia Code PL',
+  harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }, -- disable ligatures
+}
 config.font_size = 13.0
 config.line_height = 1.2
 
