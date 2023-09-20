@@ -24,7 +24,7 @@
 " :highlight markdownBold gui=bold
 " :highlight markdownItalic gui=italic
 
-let mapleader = "," " map leader to comma
+let mapleader = "\<Space>" " map leader to space
 
 call plug#begin()
 
@@ -53,8 +53,7 @@ Plug 'mg979/vim-visual-multi'              " Multiple cursor
 Plug 'nvim-lua/plenary.nvim'               " telescope prerequisite
 Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' } " Pick files or command (similar to cmd-P in ST3)
 Plug 'dyng/ctrlsf.vim'                     " Find in files similar to ctrl-shift-f in ST3
-" Plug 'terryma/vim-expand-region'           " Expand selection (+ to expand, _ to shrink
-
+Plug 'ggandor/leap.nvim'                   " Jump to any position in buffer
 """" Language enhancement
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Improved language support
 " Plug 'nvim-treesitter/nvim-tree-docs'               " Doc comments powered by treesitter (to fix gd lag due to: gdd)
@@ -72,7 +71,7 @@ Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*', 'do': 'make install_jsregexp'}
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'gpanders/editorconfig.nvim'                   " Better Editorconfig with custom properties
 " post install (yarn install | npm install) then load plugin only for editing supported files
-Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --production', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'graphql', 'vue', 'svelte', 'yaml', 'html'] }
+Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --production', 'for': ['javascript', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'graphql', 'vue', 'svelte', 'yaml', 'html'] }
 Plug 'godlygeek/tabular'                            " :Tabularize \,
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'  " Contextual commentstring
 Plug 'windwp/nvim-ts-autotag'                       " Auto close tag with treesitter
@@ -131,7 +130,7 @@ vnoremap <C-c> "+y<CR>
 " scroll horizontal with Ctrl
 noremap <C-ScrollWheelUp> <ScrollWheelLeft>
 noremap <C-ScrollWheelDown> <ScrollWheelRight>
-" turnoff  highlight
+" turn off highlight
 nnoremap <silent> <C-h> <Esc>:nohlsearch<CR>
 " toggle word wrap
 nnoremap <silent> <C-M-Z> <Esc>:set wrap!<CR>
@@ -141,6 +140,8 @@ nnoremap <silent> <C-M-t> "=strftime('%FT%T%z')<CR>P
 " sort lines
 vnoremap <silent> <F5> :'<, '>sort<CR>
 nnoremap <silent> <C-F5> :%sort<CR>
+" search and replace shortcut
+nnoremap <C-M-f> :%s/
 " exit terminal with Esc
 tnoremap <Esc> <C-\><C-n>
 " bufferline pick
@@ -188,6 +189,10 @@ autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", t
 " map mdx to markdown
 autocmd BufNewFile,BufRead *.mdx set filetype=markdown
 
+" CtrlSF Settings
+let g:ctrlsf_auto_focus = { "at" : "start" }
+let g:ctrlsf_position = 'right_local'
+
 " vim-prettier auto format on save, without @format pragma
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
@@ -199,8 +204,8 @@ let g:move_key_modifier_visualmode = 'M'
 " Visual Multi settings
 let g:VM_leader = '='
 let g:VM_maps = {}
-let g:VM_maps['Find Under']             = '<C-d>'
-let g:VM_maps['Find Subword Under']     = '<C-d>'
+let g:VM_maps['Find Under']             = '<C-n>'        " default, to map to Cmd-D via wezterm
+let g:VM_maps['Find Subword Under']     = '<C-n>'
 let g:VM_maps["Select Cursor Up"]       = '<M-C-Up>'     " start selecting up
 let g:VM_maps["Select Cursor Down"]     = '<M-C-Down>'   " start selecting down
 let g:VM_mouse_mappings = 1
@@ -617,7 +622,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
   buffer = bufnr,
   callback = function()
     local opts = {
-      focusable = true, -- focus with Tab
+      focusable = false, -- focus with Tab, turn off since it often focus accidentally, use the shortcut Space-d instead
       close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
       border = false, --'rounded',
       source = 'always',
@@ -666,21 +671,21 @@ cmp.setup {
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
-    -- ['<CR>'] = cmp.mapping({
-    --   i = function(fallback)
-    --     if cmp.visible() and cmp.get_active_entry() then
-    --       cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-    --     else
-    --       fallback()
-    --     end
-    --   end,
-    --   s = cmp.mapping.confirm({ select = true }),
-    --   c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-    -- }),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
+    ['<CR>'] = cmp.mapping({
+      i = function(fallback)
+        if cmp.visible() and cmp.get_active_entry() then
+          cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+        else
+          fallback()
+        end
+      end,
+      s = cmp.mapping.confirm({ select = true }),
+      c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+    }),
+    -- ['<CR>'] = cmp.mapping.confirm {
+    --   behavior = cmp.ConfirmBehavior.Replace,
+    --   select = true,
+    -- },
     ["<Down>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -700,8 +705,8 @@ cmp.setup {
     --     cmp.select_next_item()
     --   elseif luasnip.expand_or_jumpable() then
     --     luasnip.expand_or_jump()
-    --   -- elseif has_words_before() then
-    --   --   cmp.complete()
+    --   elseif has_words_before() then
+    --     cmp.complete()
     --   else
     --     fallback()
     --   end
@@ -725,6 +730,9 @@ cmp.setup {
     { name = 'path' }
   },
 }
+
+-- easy Motion
+require('leap').add_default_mappings()
 
 -- view Image
 -- require('hologram').setup{
