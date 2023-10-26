@@ -201,8 +201,11 @@ let g:prettier#autoformat_require_pragma = 0
 let g:move_key_modifier = 'M'
 let g:move_key_modifier_visualmode = 'M'
 
-" Visual Multi settings
-let g:VM_leader = '='
+" Visual Multi Settings
+let g:VM_leader = '=' 
+" leadr-c change case setting
+" leader-\ add cursor at position
+"
 let g:VM_maps = {}
 let g:VM_maps['Find Under']             = '<C-n>'        " default, to map to Cmd-D via wezterm
 let g:VM_maps['Find Subword Under']     = '<C-n>'
@@ -212,6 +215,8 @@ let g:VM_mouse_mappings = 1
 let g:VM_maps["Mouse Cursor"]           = '<S-LeftMouse>'
 let g:VM_maps["Mouse Word"]             = '<C-RightMouse>'
 let g:VM_maps["Mouse Column"]           = '<S-RightMouse>'
+let g:VM_maps["Undo"]                   = 'u'
+let g:VM_maps["Redo"]                   = '<C-r>'
 
 " gitgutter
 let g:gitgutter_sign_added = '│'      " look nicer and signal by color
@@ -382,12 +387,14 @@ require("bufferline").setup {
 }
 
 -- improve indentline color
-vim.cmd [[highlight IndentBlanklineChar guifg=#333f33]]
-vim.cmd [[highlight IndentBlanklineContextChar guifg=#6699cc gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineChar guifg=#333f33]]
+-- vim.cmd [[highlight IndentBlanklineContextChar guifg=#6699cc gui=nocombine]]
 
-require'indent_blankline'.setup {
-  show_current_context = true,
-  -- show_current_context_start = true,
+-- indent-blankline
+require'ibl'.setup {
+  indent = {
+    char = "│",
+    }
 }
 
 require'scrollbar'.setup {
@@ -508,6 +515,7 @@ require('telescope').setup {
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<C-p>', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fs', builtin.grep_string, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<C-S-p>', builtin.commands, {})
@@ -672,13 +680,14 @@ cmp.setup {
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping({
-      i = function(fallback)
-        if cmp.visible() and cmp.get_active_entry() then
-          cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-        else
-          fallback()
-        end
-      end,
+      -- i = function(fallback)
+      --   if cmp.visible() and cmp.get_active_entry() then
+      --     cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+      --   else
+      --     fallback()
+      --   end
+      -- end,
+      i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
       s = cmp.mapping.confirm({ select = true }),
       c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
     }),
