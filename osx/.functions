@@ -167,3 +167,10 @@ function mozjpeg() {
 	imagemin "$1" --plugin=mozjpeg --plugin.mozjpeg.quality=90
 }
 
+# extract Stable Diffusion prompt metadata from exif info and lightly format it for readability
+function sdi() {
+	# cut the prompt part
+	local param=`exiftool "$1" | grep Parameters | sed 's/Parameters[ ]*:/Prompt:/gi'`
+	# add newlines to separate
+	echo $param | sed 's/\.Negative/.\n\nNegative/i' | sed 's/.Steps/.\n\nSteps/i'
+}

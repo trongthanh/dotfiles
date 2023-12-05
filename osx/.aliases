@@ -151,7 +151,7 @@ alias pgu='pnpm update --global'
 alias pr='pnpm run'
 alias pd='pnpm run dev'
 alias pb='pnpm run build'
-alias ps='pnpm start'
+alias pst='pnpm start'
 alias pt='pnpm test'
 alias ptc='pnpm test --coverage'
 alias pln='pnpm run lint'
@@ -167,21 +167,50 @@ alias pc='pnpm create'
 alias px='pnpx'
 
 # npmrc
-alias npmcm='npmrc cmco && yarn config set registry https://npmjs.cmco.io'
-alias npmct='npmrc chotot && yarn config set registry https://npmjs.chotot.org'
-alias npmos='npmrc oss && yarn config set registry https://registry.npmjs.org'
+alias npmco='npmrc cmco'
+alias npmct='npmrc chotot'
+alias npmos='npmrc oss'
 
+# Open a folder with nvim
+function nv() {
+  [ -n "$1" ] && [ -d "$1" ] && cd "$1" && shift
+  nvim "$@"
+}
+
+alias v="nv"
 # Vim command with fuzzy search by fasd
-alias v="f -e vim"
+alias fv="f -e nvim"
 
 # kubectl command
 alias k=kubectl
+alias kstaging='kubectl config use-context staging-onprem'
+alias kdev='kubectl config use-context gke-dev'
+
+# python
+alias py=python3
 
 # more git commands
 alias gitwho="git shortlog -sne | cat"
 alias gcm="git checkout main"
 alias gcd="git checkout dev"
+alias igit="git-igitt"
+alias gcuet="git config user.email 'trongthanh@gmail.com'"
+
+# kitty kittens
+alias kk="kitty +kitten"
+alias kks="kitty +kitten ssh"
 
 # switch main display
-alias dpstand='displayplacer "id:F2FB810B-588C-ECCC-6EC8-4E8C4A8E2106 res:1920x1080 origin:(0,0)" "id:FF10FB8B-2C4F-DB90-1132-54624B0B6982 res:1440x900 origin:(1920,180)"'
-alias dpsit='displayplacer "id:FF10FB8B-2C4F-DB90-1132-54624B0B6982 res:1440x900 origin:(0,0)" "id:F2FB810B-588C-ECCC-6EC8-4E8C4A8E2106 res:1920x1080 origin:(-1920,-180)"'
+alias dpstand='displayplacer "id:FF10FB8B-2C4F-DB90-1132-54624B0B6982 res:1440x900 color_depth:8 scaling:on origin:(0,0) degree:0" "id:F2FB810B-588C-ECCC-6EC8-4E8C4A8E2106 res:1920x1080 hz:60 color_depth:8 scaling:off origin:(-1920,0) degree:0"'
+alias dpsit='displayplacer "id:F2FB810B-588C-ECCC-6EC8-4E8C4A8E2106 res:1920x1080 hz:60 color_depth:8 scaling:off origin:(0,0) degree:0" "id:FF10FB8B-2C4F-DB90-1132-54624B0B6982 res:1440x900 color_depth:8 scaling:on origin:(1920,0) degree:0"'
+alias dpsitv='displayplacer "id:F2FB810B-588C-ECCC-6EC8-4E8C4A8E2106 res:1920x1080 hz:60 color_depth:8 scaling:off origin:(0,0) degree:0" "id:FF10FB8B-2C4F-DB90-1132-54624B0B6982 res:1440x900 color_depth:8 scaling:on origin:(274,1080) degree:0"'
+
+# gcalcli
+alias gcal="gcalcli"
+alias gcala="gcalcli agenda"
+alias gcalw="gcalcli calw"
+alias gcalm="gcalcli calm"
+alias gcall="gcalcli --calendar fruitsquare@chotot.vn agenda"
+
+# notification
+alias notify="printf '\x1b]99;;Task Done\x1b\\'"
