@@ -13,7 +13,8 @@ end
 -- This is where you actually apply your config choices
 
 config.default_cursor_style = "BlinkingBlock"
-config.cursor_blink_rate = 800
+-- config.default_cursor_style = "BlinkingBar"
+config.cursor_blink_rate = 500
 config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_ease_in = "Constant"
 
@@ -41,27 +42,34 @@ config.colors = {
 -- config.font = wezterm.font 'Cascadia Code PL'
 config.font = wezterm.font_with_fallback({
 	{
-		-- family = "CaskaydiaCove Nerd Font",
-		family = "Cascadia Code",
+		-- family = "Cascadia Code",
+		-- family = "ZedMono Nerd Font",
 		-- family = "Monaspace Neon Var",
 		-- family = "Liberation Mono",
 		-- family = "SF Mono",
 		-- family = "Geist Mono",
-		weight = "Regular",
+		family = "JetBrains Mono",
+		weight = "Medium",
 		harfbuzz_features = { "calt=0", "clig=0", "liga=0" }, -- disable ligatures
 	},
+	-- {
+	-- 	family = "CaskaydiaCove Nerd Font",
+	-- },
 	{
-		family = "Liberation Mono",
-		weight = "Regular",
+		family = "LiterationMono Nerd Font",
 	},
 })
-config.font_size = 13.0
+config.font_size = 14.0
 config.line_height = 1.2
 
 -- quick select pattern Ctrl+Shift+Space
 config.quick_select_patterns = {
 	-- match quoted strings
 	"'.*'",
+	-- match within quotes
+	'(?<=")[^"]*?(?=")',
+	-- match arguments in command man page
+	"[-][-]?[a-zA-Z0-9_-]+=?[a-zA-Z0-9_-]*",
 }
 
 -- override hyperlinks to avoid clicking on package@version
@@ -157,7 +165,7 @@ config.keys = {
 		mods = "SHIFT|CMD",
 		action = wezterm.action.SplitPane({
 			direction = "Down",
-			-- command = { args = { 'top' } },
+			command = { domain = "CurrentPaneDomain" },
 			size = { Percent = 30 },
 		}),
 	},
@@ -168,8 +176,8 @@ config.keys = {
 		mods = "CMD",
 		action = wezterm.action.SplitPane({
 			direction = "Right",
-			-- command = { args = { 'top' } },
-			size = { Percent = 30 },
+			command = { domain = "CurrentPaneDomain" },
+			size = { Percent = 40 },
 		}),
 	},
 	-- Turn of search shortcut to reserve it for nvim. Use CMD-F instead
@@ -181,6 +189,12 @@ config.keys = {
 	-- Turn of command palette shortcut to reserve it for nvim. Use CMD-SHIFT-P instead
 	{
 		key = "p",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.DisableDefaultAssignment,
+	},
+	-- Turn off the default Ctrl-Shirt-C Copy action for nvim
+	{
+		key = "c",
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.DisableDefaultAssignment,
 	},
