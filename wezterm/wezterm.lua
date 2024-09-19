@@ -27,13 +27,16 @@ config.window_padding = {
 	bottom = 0,
 }
 
-config.color_scheme = "OceanicMaterial"
+-- config.color_scheme = "Dracula (Gogh)"
+config.color_scheme = "Dracula"
+-- config.color_scheme = "OceanicMaterial"
 -- config.color_scheme = "Tokyo Night (Gogh)"
+-- config.color_scheme = "tokyonight_night"
 -- config.color_scheme = "Molokai"
--- config.color_scheme = 'MaterialOcean'
--- config.color_scheme = 'Mariana'
+-- config.color_scheme = "MaterialOcean"
+-- config.color_scheme = "Mariana"
 -- config.color_scheme = 'Darkside'
--- config.color_scheme = 'MaterialDesignColors'
+-- config.color_scheme = "MaterialDesignColors"
 config.colors = {
 	cursor_border = "#2fb170",
 	cursor_bg = "#2fb170",
@@ -49,18 +52,19 @@ config.font = wezterm.font_with_fallback({
 		-- family = "SF Mono",
 		-- family = "Geist Mono",
 		family = "JetBrains Mono",
+		-- family = "Fira Code",
 		weight = "Medium",
-		harfbuzz_features = { "calt=0", "clig=0", "liga=0" }, -- disable ligatures
+		harfbuzz_features = { "calt=0" }, -- disable Contextual Alternates ligatures
 	},
-	-- {
-	-- 	family = "CaskaydiaCove Nerd Font",
-	-- },
 	{
-		family = "LiterationMono Nerd Font",
+		family = "Liberation Mono", -- Vietnamese fallback
+	},
+	{
+		family = "Symbols Nerd Font Mono", -- symbols fallback
 	},
 })
 config.font_size = 14.0
-config.line_height = 1.2
+config.line_height = 1.3
 
 -- quick select pattern Ctrl+Shift+Space
 config.quick_select_patterns = {
@@ -149,6 +153,11 @@ config.keys = {
 		action = wezterm.action.SendString("G"),
 	},
 	{
+		key = ",",
+		mods = "CMD",
+		action = wezterm.action.SendString("nvim ~/.config/wezterm/wezterm.lua\r"),
+	},
+	{
 		key = "w",
 		mods = "CMD",
 		action = wezterm.action.CloseCurrentPane({ confirm = true }),
@@ -205,6 +214,21 @@ config.keys = {
 	},
 	{ key = "LeftArrow", mods = "SHIFT|CMD", action = wezterm.action.ActivateTabRelative(-1) },
 	{ key = "RightArrow", mods = "SHIFT|CMD", action = wezterm.action.ActivateTabRelative(1) },
+	{
+		key = "k",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.QuickSelectArgs({
+			label = "open url",
+			patterns = {
+				"https?://\\S+",
+			},
+			action = wezterm.action_callback(function(window, pane)
+				local url = window:get_selection_text_for_pane(pane)
+				wezterm.log_info("opening: " .. url)
+				wezterm.open_with(url)
+			end),
+		}),
+	},
 }
 
 -- and finally, return the configuration to wezterm
