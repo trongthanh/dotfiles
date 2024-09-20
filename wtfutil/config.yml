@@ -63,7 +63,7 @@ wtf:
       numberOfStories: 10
       position:
         top: 1
-        left: 2
+        left: 0
         height: 2
         width: 2
       storyType: top
@@ -90,10 +90,10 @@ wtf:
       refreshInterval: 5
 
     github:
+      enabled: false
       apiKey: 'REDACTED'
       baseURL: ''
       enableStatus: true
-      enabled: true
       position:
         top: 3
         left: 0
@@ -103,6 +103,18 @@ wtf:
       repositories:
         - 'trongthanh/int3ractive.com'
       username: 'trongthanh'
+
+    feedreader:
+      enabled: true
+      feeds:
+        - https://www.reddit.com/r/programming.rss
+      feedLimit: 10
+      refreshInterval: 2h
+      position:
+        top: 3
+        left: 0
+        height: 2
+        width: 2
 
     gcal:
       colors:
@@ -121,7 +133,7 @@ wtf:
       multiCalendar: true
       position:
         top: 1
-        left: 0
+        left: 2
         height: 2
         width: 2
       refreshInterval: 300
