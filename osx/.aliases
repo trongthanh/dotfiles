@@ -1,15 +1,5 @@
 # programs
 
-# SublimeText 3
-# alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
-# or do it once:
-# sudo ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/
-
-# Sublime Merge
-# alias merge="/Applications/Sublime\ Merge.app/Contents/SharedSupport/bin/smerge"
-# or do it once:
-# sudo ln -s /Applications/Sublime\ Merge.app/Contents/SharedSupport/bin/smerge /usr/local/bin/merge
-
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
@@ -24,16 +14,18 @@ alias ..="cd .."
 alias ...="cd ../.."
 
 # List all files colorized in long format
-alias l="ls -lhF ${colorflag}"
-
+alias l="eza"
+alias ll="eza -lF"
+# List all files with icons
+alias li="eza -laF --icons"
 # List all files colorized in long format, including dot files
-alias la="ls -lahF ${colorflag}"
+alias la="eza -laF"
 
 # list file with file permission as octal number
-alias lso="ls -lahG | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
+alias lso="eza -laoF"
 
 # List only directories
-alias lsd="ls -lhF ${colorflag} | grep --color=never '^d'"
+alias lsd="eza -lDF"
 
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
@@ -48,8 +40,8 @@ alias egrep='egrep --color=auto'
 alias sudo='sudo '
 
 # `cat` with beautiful colors. requires bat install
-# 							   brew install bat
-alias c='bat --theme OneHalfDark -P'
+# brew install bat
+alias c='bat --theme OneHalfDark -pp'
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade --all; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
@@ -73,7 +65,7 @@ alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
 
 # Clean up node_modules folders
-alias npmcleanup="find . -name 'node_modules' -type d -exec rm -rfv '{}' +"
+alias npmcleanup="find . -name 'node_modules' -type d -exec rm -rf '{}' +"
 
 # File size
 alias fs="stat -f \"%z bytes\""
@@ -116,13 +108,6 @@ alias nt="npm test"
 alias nrm="npm remove"
 alias nwh="npm list"
 alias y="yarn"
-alias ya="yarn add"
-alias yad="yarn add --dev"
-alias yb="yarn build"
-alias ys="yarn start"
-alias yt="yarn test"
-alias yrm="yarn remove"
-alias ywh="yarn why"
 alias serve="live-server"
 
 alias p='pnpm'
@@ -171,34 +156,28 @@ alias npmco='npmrc cmco'
 alias npmct='npmrc chotot'
 alias npmos='npmrc oss'
 
-# Open a folder with nvim
-function nv() {
-  [ -n "$1" ] && [ -d "$1" ] && cd "$1" && shift
-  nvim "$@"
+# Open the wiki folder with nvim
+function wiki() {
+  nvim ~/Sync/wiki
 }
 
-alias v="nv"
-# Vim command with fuzzy search by fasd
-alias fv="f -e nvim"
+alias v="nvim"
 
 # kubectl command
 alias k=kubectl
 alias kstaging='kubectl config use-context staging-onprem'
 alias kdev='kubectl config use-context gke-dev'
 
-# python
-alias py=python3
-
 # more git commands
 alias gitwho="git shortlog -sne | cat"
 alias gcm="git checkout main"
 alias gcd="git checkout dev"
-alias igit="git-igitt"
+alias lg="lazygit"
 alias gcuet="git config user.email 'trongthanh@gmail.com'"
 
-# kitty kittens
-alias kk="kitty +kitten"
-alias kks="kitty +kitten ssh"
+# ai stuff
+alias oc=opencode
+alias cc=claude
 
 # switch main display
 alias dpstand='displayplacer "id:FF10FB8B-2C4F-DB90-1132-54624B0B6982 res:1440x900 color_depth:8 scaling:on origin:(0,0) degree:0" "id:F2FB810B-588C-ECCC-6EC8-4E8C4A8E2106 res:1920x1080 hz:60 color_depth:8 scaling:off origin:(-1920,0) degree:0"'
@@ -214,3 +193,7 @@ alias gcall="gcalcli --calendar fruitsquare@chotot.vn agenda"
 
 # notification
 alias notify="printf '\x1b]99;;Task Done\x1b\\'"
+
+# the fuck alias
+eval $(thefuck --alias)
+

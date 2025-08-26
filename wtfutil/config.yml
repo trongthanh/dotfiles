@@ -5,7 +5,7 @@ wtf:
       focused: orange
       normal: gray
   grid:
-    columns: [40, 40, 40, 40]
+    columns: [42, 42, 42, 42]
     rows: [8, 8, 8, 4, 4]
   refreshInterval: 1
   mods:
