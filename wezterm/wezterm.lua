@@ -12,8 +12,8 @@ end
 
 -- This is where you actually apply your config choices
 
-config.default_cursor_style = "BlinkingBlock"
--- config.default_cursor_style = "BlinkingBar"
+-- config.default_cursor_style = "BlinkingBlock"
+config.default_cursor_style = "BlinkingBar"
 config.cursor_blink_rate = 500
 config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_ease_in = "Constant"
@@ -21,8 +21,8 @@ config.cursor_blink_ease_in = "Constant"
 -- Wezterm UI
 config.tab_bar_at_bottom = true
 config.window_padding = {
-	left = 0,
-	right = 0,
+	left = 2,
+	right = 2,
 	top = 0,
 	bottom = 0,
 }
@@ -42,29 +42,47 @@ config.colors = {
 	cursor_bg = "#2fb170",
 }
 
--- config.font = wezterm.font 'Cascadia Code PL'
+local str =
+	"Thử Tiếng Việt 🗜️⏩⏏️🏠 uũủụùú ưừửữ eêếềểễệ oôổỗơớờởỡợ âấầẩẫậ ăắằẳẵặ dđ -> => <= == != === !== <=< >= > < && || ! ~ ^ & | ? : + - * / % ++ -- += -= *= /= %= &= ^= |= <<= >>= >>>= <<= >>> **= **"
+
+-- try to improve emoji consistentcy
+config.allow_square_glyphs_to_overflow_width = "Always"
+
 config.font = wezterm.font_with_fallback({
 	{
 		-- family = "Cascadia Code",
-		-- family = "ZedMono Nerd Font",
-		-- family = "Monaspace Neon Var",
+		-- family = "IBM Plex Mono",
+		-- family = "Monaspace Neon",
+		-- family = "Monaspace Argon",
+		-- family = "Monaspace Xenon",
 		-- family = "Liberation Mono",
 		-- family = "SF Mono",
-		-- family = "Geist Mono",
+		-- family = "Go Mono",
 		family = "JetBrains Mono",
+		-- family = "Iosevka",
 		-- family = "Fira Code",
 		weight = "Medium",
 		harfbuzz_features = { "calt=0" }, -- disable Contextual Alternates ligatures
 	},
 	{
-		family = "Liberation Mono", -- Vietnamese fallback
+		family = "IBM Plex Mono", -- Vietnamese fallback
+		weight = "Medium",
+	},
+	{
+		family = "Heiti SC", -- Chinese fallback
 	},
 	{
 		family = "Symbols Nerd Font Mono", -- symbols fallback
 	},
 })
-config.font_size = 14.0
+-- config.font_size = 14.0
+-- config.line_height = 1.2
+config.font_size = 13.5
 config.line_height = 1.3
+
+-- improve text rendering
+-- config.freetype_load_target = "Light"
+config.freetype_load_target = "HorizontalLcd"
 
 -- quick select pattern Ctrl+Shift+Space
 config.quick_select_patterns = {
@@ -167,6 +185,11 @@ config.keys = {
 		key = "d",
 		mods = "CMD",
 		action = wezterm.action.SendKey({ key = "n", mods = "CTRL" }),
+	},
+	{
+		key = "Enter",
+		mods = "CTRL",
+		action = wezterm.action.SendKey({ key = "s", mods = "CTRL" }),
 	},
 	-- This will create a new split to bottom
 	{
