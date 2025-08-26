@@ -25,9 +25,12 @@
 	// "font_face": "Roboto Mono",
 	// "font_face": "Noto Serif",
 	// "font_face": "IBM Plex Mono",
-	"font_face": "Go Mono",
+	// "font_face": "Go Mono",
+	// "font_face": "Cascadia Mono",
 	// "font_face": "iA Writer Duospace",
-	"font_size": 16,
+	"font_face": "Monaspace Xenon",
+	// "font_face": "New York Small",
+	// "font_size": 15,
 
 	"tab_size": 4,
 	"translate_tabs_to_spaces": true,
@@ -64,8 +67,8 @@
 
 	// Allways keep current line vertically centered.
 	"mde.keep_centered": false,
-	"draw_centered": true,
-	"wrap_width": 80,
+	// "draw_centered": true,
+	// "wrap_width": 80,
 
 	"spell_check": false,
 }

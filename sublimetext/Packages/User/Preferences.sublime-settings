@@ -19,24 +19,11 @@
 		"ui",
 		"npm"
 	],
-	"auto_complete_delay": 100,
-	"auto_complete_selector": "meta.tag - punctuation.definition.tag.begin, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
-	"auto_complete_triggers":
-	[
-		{
-			"characters": "<",
-			"selector": "text.html",
-		},
-		{
-			"characters": ".",
-			"selector": "source.js",
-		}
-	],
 	"caret_style": "smooth",
 	"caret_extra_bottom": 4,
 	"caret_extra_top": 4,
 	"caret_extra_width": 1,
-	"color_scheme": "Mariana.sublime-color-scheme",
+	"color_scheme": "Packages/Dracula Color Scheme/Dracula.tmTheme",
 	"dictionary": "Packages/Language - English/en_US.dic",
 	"enable_inline_error_tips": true,
 	"enable_typescript_language_service": true,
@@ -81,22 +68,14 @@
 		"node_modules",
 		".meteor/local",
 		".lighthouseci",
-		".linaria-cache",
+		".linaria-cache"
 	],
-	"font_face": "Liberation Mono",
-	"font_size": 15,
+	"font_face": "IBM Plex Mono",
+	"font_size": 14,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"All Autocomplete",
-		"BracketHighlighter",
-		"ColorPicker",
-		"LiveServer",
-		"LSP-copilot",
-		"rsub",
-		"Sass",
-		"Swig",
-		"TypeScript",
+		"Vintage",
 	],
 	"ignored_words":
 	[
@@ -129,7 +108,7 @@
 		"rimraf",
 		"semver",
 		"stylesheet",
-		"systemctl",
+		"systemctl"
 	],
 	"index_exclude_patterns":
 	[
@@ -146,21 +125,22 @@
 		"*.css.map",
 		"*.js.map"
 	],
-	"index_files": true,
+	"index_files": false,
+	"index_exclude_gitignore": false,
 	"index_workers": 2,
 	"ignore_vcs_packages": true,
 	"line_padding_bottom": 3,
 	"line_padding_top": 3,
 	"mde.auto_fold_link.enabled": false,
-	"relative_line_numbers": true,
+	"relative_line_numbers": false,
 	"scroll_past_end": true,
 	"scroll_speed": 0,
 	"spell_check": false,
 	"tab_completion": false,
 	"tab_size": 2,
-	"theme": "auto",
-	"trim_trailing_white_space_on_save": true,
-	"typescript_tsdk": "/usr/local/lib/node_modules/typescript/lib",
+	"theme": "Adaptive.sublime-theme",
+	"trim_trailing_white_space_on_save": "all",
+	"typescript_tsdk": "/opt/homebrew/lib/node_modules/typescript/lib",
 	"use_tab_stops": false,
 	"validate_on_save": true,
 	"word_separators": "./\\()\"'-:,.;<>~!@#%^&*|+=[]{}`~?",
@@ -170,4 +150,6 @@
 	"light_color_scheme": "Mariana Light.sublime-color-scheme",
 	"show_git_status": true,
 	"hardware_acceleration": "opengl",
+	"update_check": true,
+	"word_wrap": true,
 }

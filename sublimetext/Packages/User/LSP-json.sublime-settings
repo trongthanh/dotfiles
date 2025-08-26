@@ -1,0 +1,19 @@
+{
+	"settings": {
+		"jsonc.patterns": [
+			"buffer://*",
+			".babelrc",
+			".eslintrc",
+			".eslintrc.json",
+			".hintrc",
+			".jsfmtrc",
+			".jshintrc",
+			".jsonc",
+			".swcrc",
+			"/.ember-cli",
+			"/.vscode/*.json",
+			"/babel.config.json",
+			".sublime-settings",
+		]
+	}
+}

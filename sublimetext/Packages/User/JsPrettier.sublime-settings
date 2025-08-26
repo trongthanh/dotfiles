@@ -58,7 +58,7 @@
 	//     "prettier_cli_path": "%USERPROFILE%\\bin\\prettier.cmd"
 	// ----------------------------------------------------------------------
 
-	"prettier_cli_path": "/usr/local/bin/prettier_d",
+	"prettier_cli_path": "/opt/homebrew/bin/prettier_d_slim",
 
 	// ----------------------------------------------------------------------
 	// Node Path
