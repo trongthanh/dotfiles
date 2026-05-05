@@ -11,6 +11,7 @@ if wezterm.config_builder then
 end
 
 -- This is where you actually apply your config choices
+config.front_end = "WebGpu"
 
 -- config.default_cursor_style = "BlinkingBlock"
 config.default_cursor_style = "BlinkingBar"
@@ -19,15 +20,20 @@ config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_ease_in = "Constant"
 
 -- Wezterm UI
-config.tab_bar_at_bottom = true
+config.use_fancy_tab_bar = true
+config.tab_bar_at_bottom = false
+config.tab_max_width = 30
+config.enable_scroll_bar = false
+config.window_close_confirmation = "AlwaysPrompt"
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.window_padding = {
-	left = 2,
-	right = 2,
-	top = 0,
-	bottom = 0,
+	left = "0.5cell",
+	right = "0.5cell",
+	top = "0cell",
+	bottom = "0cell",
 }
 
--- config.color_scheme = "Dracula (Gogh)"
+-- config.color_scheme = "One Light (base16)"
 config.color_scheme = "Dracula"
 -- config.color_scheme = "OceanicMaterial"
 -- config.color_scheme = "Tokyo Night (Gogh)"
@@ -43,7 +49,7 @@ config.colors = {
 }
 
 local str =
-	"Thử Tiếng Việt 🗜️⏩⏏️🏠 uũủụùú ưừửữ eêếềểễệ oôổỗơớờởỡợ âấầẩẫậ ăắằẳẵặ dđ -> => <= == != === !== <=< >= > < && || ! ~ ^ & | ? : + - * / % ++ -- += -= *= /= %= &= ^= |= <<= >>= >>>= <<= >>> **= **"
+	"Thử Tiếng Việt 🗜️⏩⏏️🏠  🦀⏪⛔️❓🤣✅😃👍👀 uũủụùú ưừửữ eêếềểễệ oôổỗơớờởỡợ âấầẩẫậ ăắằẳẵặ dđ oO0 -> => <= == != === !== <=< >= > < && || ! ~ ^ & | ? : + - * / % ++ -- += -= *= /= %= &= ^= |= <<= >>= >>>= <<= >>> **= **"
 
 -- try to improve emoji consistentcy
 config.allow_square_glyphs_to_overflow_width = "Always"
@@ -53,19 +59,19 @@ config.font = wezterm.font_with_fallback({
 		-- family = "Cascadia Code",
 		-- family = "IBM Plex Mono",
 		-- family = "Monaspace Neon",
-		-- family = "Monaspace Argon",
+		family = "Monaspace Argon",
 		-- family = "Monaspace Xenon",
 		-- family = "Liberation Mono",
 		-- family = "SF Mono",
 		-- family = "Go Mono",
-		family = "JetBrains Mono",
-		-- family = "Iosevka",
+		-- family = "JetBrains Mono",
+		-- family = "Ubuntu Mono",
 		-- family = "Fira Code",
-		weight = "Medium",
+		-- weight = "Medium",
 		harfbuzz_features = { "calt=0" }, -- disable Contextual Alternates ligatures
 	},
 	{
-		family = "IBM Plex Mono", -- Vietnamese fallback
+		family = "SF Mono", -- Vietnamese fallback
 		weight = "Medium",
 	},
 	{
@@ -81,8 +87,11 @@ config.font_size = 13.5
 config.line_height = 1.3
 
 -- improve text rendering
--- config.freetype_load_target = "Light"
-config.freetype_load_target = "HorizontalLcd"
+config.freetype_load_target = "Normal"
+config.freetype_render_target = "Light"
+
+-- toast notification handling
+config.notification_handling = "AlwaysShow"
 
 -- quick select pattern Ctrl+Shift+Space
 config.quick_select_patterns = {
@@ -92,6 +101,8 @@ config.quick_select_patterns = {
 	'(?<=")[^"]*?(?=")',
 	-- match arguments in command man page
 	"[-][-]?[a-zA-Z0-9_-]+=?[a-zA-Z0-9_-]*",
+	-- match gke pod names
+	"ct-[a-zA-Z0-9_-]+",
 }
 
 -- override hyperlinks to avoid clicking on package@version
@@ -212,6 +223,22 @@ config.keys = {
 			size = { Percent = 40 },
 		}),
 	},
+	-- Turn of font size shortcuts to reserve it for nvim. Use CMD-0|-|= instead
+	{
+		key = "=",
+		mods = "CTRL",
+		action = wezterm.action.DisableDefaultAssignment,
+	},
+	{
+		key = "-",
+		mods = "CTRL",
+		action = wezterm.action.DisableDefaultAssignment,
+	},
+	{
+		key = "0",
+		mods = "CTRL",
+		action = wezterm.action.DisableDefaultAssignment,
+	},
 	-- Turn of search shortcut to reserve it for nvim. Use CMD-F instead
 	{
 		key = "f",
@@ -235,8 +262,29 @@ config.keys = {
 		mods = "SHIFT|CMD",
 		action = wezterm.action.ActivateCommandPalette,
 	},
-	{ key = "LeftArrow", mods = "SHIFT|CMD", action = wezterm.action.ActivateTabRelative(-1) },
-	{ key = "RightArrow", mods = "SHIFT|CMD", action = wezterm.action.ActivateTabRelative(1) },
+	{ key = "LeftArrow", mods = "SHIFT|CMD", action = wezterm.action.ActivatePaneDirection("Left") },
+	{ key = "RightArrow", mods = "SHIFT|CMD", action = wezterm.action.ActivatePaneDirection("Right") },
+	{ key = "DownArrow", mods = "SHIFT|CMD", action = wezterm.action.ActivatePaneDirection("Down") },
+	{ key = "UpArrow", mods = "SHIFT|CMD", action = wezterm.action.ActivatePaneDirection("Up") },
+	{ key = "LeftArrow", mods = "META|CMD", action = wezterm.action.ActivateTabRelative(-1) },
+	{ key = "RightArrow", mods = "META|CMD", action = wezterm.action.ActivateTabRelative(1) },
+	-- Tmux split horizontal (Ctrl-B %)
+	{
+		key = "%",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.SendString("\x02%"),
+	},
+	-- Tmux split vertical (Ctrl-B ")
+	{
+		key = '"',
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.SendString('\x02"'),
+	},
+	-- Turn of of tmux pane navigation
+	{ key = "LeftArrow", mods = "CTRL|SHIFT", action = wezterm.action.DisableDefaultAssignment },
+	{ key = "RightArrow", mods = "CTRL|SHIFT", action = wezterm.action.DisableDefaultAssignment },
+	{ key = "DownArrow", mods = "CTRL|SHIFT", action = wezterm.action.DisableDefaultAssignment },
+	{ key = "UpArrow", mods = "CTRL|SHIFT", action = wezterm.action.DisableDefaultAssignment },
 	{
 		key = "k",
 		mods = "CTRL|SHIFT",
