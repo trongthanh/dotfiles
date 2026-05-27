@@ -162,6 +162,12 @@ function timecurl() {
 EOF
 }
 
+# Curl with pretty print response json
+function curl_pp() {
+  # Run the curl command with all passed arguments, pipe to json_pp for pretty printing, and highlight with bat
+  curl "$@" | json_pp | bat -l json --paging=never
+}
+
 # Optimize jpeg with mozjpeg (required imagemin-cli & imagemin-mozjpeg)
 function mozjpeg() {
 	imagemin "$1" --plugin=mozjpeg --plugin.mozjpeg.quality=90
@@ -173,4 +179,59 @@ function sdi() {
 	local param=`exiftool "$1" | grep Parameters | sed 's/Parameters[ ]*:/Prompt:/gi'`
 	# add newlines to separate
 	echo $param | sed 's/\.Negative/.\n\nNegative/i' | sed 's/.Steps/.\n\nSteps/i'
+}
+
+# Donwload m3u8 videos
+# getm3u8 <url> <output>
+function getm3u8() {
+	ffmpeg -protocol_whitelist file,http,https,tcp,tls,crypto -i "$1" -c copy "$2"
+}
+
+_highlight_diff() {
+  local old="$1" new="$2"
+  if [[ "$old" == "$new" ]]; then
+    echo -n "$new"
+    return
+  fi
+  local old_parts=("${(@s:.:)old}")
+  local new_parts=("${(@s:.:)new}")
+  local i
+  for ((i = 1; i <= $#new_parts; i++)); do
+    ((i > 1)) && echo -n "."
+    if [[ "${old_parts[$i]}" != "${new_parts[$i]}" ]]; then
+      echo -n $'\033[0;32m'${new_parts[$i]}$'\033[0m'
+    else
+      echo -n "${new_parts[$i]}"
+    fi
+  done
+}
+
+function update_ai_cli() {
+  fnm use system
+
+  gemini_before="$(npx @google/gemini-cli --version 2>/dev/null)"
+  qwen_before="$(npx @qwen-code/qwen-code --version 2>/dev/null)"
+  pi_before="$(npx @earendil-works/pi-coding-agent --version 2>/dev/null)"
+  codex_before="$(codex --version 2>/dev/null | awk '{print $2}')"
+  claude_before="$(claude --version 2>/dev/null | awk '{print $1}')"
+  copilot_before="$(npm list -g @jeffreycao/copilot-api 2>/dev/null | grep -o '@jeffreycao/copilot-api@[0-9.]*' | sed 's/.*@//')"
+
+  npm install -g @google/gemini-cli @qwen-code/qwen-code @jeffreycao/copilot-api @earendil-works/pi-coding-agent
+  brew upgrade claude-code@latest anomalyco/tap/opencode codex
+
+  local gemini_after="$(npx @google/gemini-cli --version 2>/dev/null)"
+  local qwen_after="$(npx @qwen-code/qwen-code --version 2>/dev/null)"
+  local pi_after="$(npx @earendil-works/pi-coding-agent --version 2>/dev/null)"
+  local codex_after="$(codex --version 2>/dev/null | awk '{print $2}')"
+  local claude_after="$(claude --version 2>/dev/null | awk '{print $1}')"
+  local copilot_after="$(npm list -g @jeffreycao/copilot-api 2>/dev/null | grep -o '@jeffreycao/copilot-api@[0-9.]*' | sed 's/.*@//')"
+
+  echo ""
+  echo "Updates:"
+  printf "  claude      %s → " "$claude_before"; _highlight_diff "$claude_before" "$claude_after"; echo
+  printf "  codex       %s → " "$codex_before"; _highlight_diff "$codex_before" "$codex_after"; echo
+  printf "  copilot-api %s → " "$copilot_before"; _highlight_diff "$copilot_before" "$copilot_after"; echo
+  printf "  gemini      %s → " "$gemini_before"; _highlight_diff "$gemini_before" "$gemini_after"; echo
+  printf "  pi          %s → " "$pi_before"; _highlight_diff "$pi_before" "$pi_after"; echo
+  printf "  qwen        %s → " "$qwen_before"; _highlight_diff "$qwen_before" "$qwen_after"; echo
 }
