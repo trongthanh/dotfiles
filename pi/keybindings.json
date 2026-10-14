@@ -1,0 +1,5 @@
+{
+  "$schema": "https://pi.dev/schemas/keybindings.schema.json",
+  "tui.altScreen.top": "home",
+  "tui.altScreen.bottom": "end"
+}

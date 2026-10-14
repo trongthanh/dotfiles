@@ -1,0 +1,10 @@
+# Local credentials and machine-specific state
+**/auth.json
+**/credentials.json
+**/mcp-auth.json
+**/web-search.json
+**/zalo.json
+**/models-store.json
+**/trust.json
+**/mcp-cache.json
+**/mcp-project-approvals.json
