@@ -1,4 +1,4 @@
--- Basic configs for neovim 0.10+ that is suitable to use on VPS / Remote servers
+-- Basic configs for neovim 0.9+ that is suitable to use on VPS / Remote servers
 -- Place this file in ~/.config/nvim/init.lua
 local opt = vim.opt
 local g = vim.g
@@ -80,6 +80,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "master",
 		event = { "BufReadPost", "BufNewFile" },
 		cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
 		build = ":TSUpdate",
@@ -90,9 +91,10 @@ require("lazy").setup({
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = { "lua", "vim", "javascript", "html", "css", "json" },
+				auto_install = true,
 				highlight = {
 					enable = true,
-					use_languagetree = true,
+					additional_vim_regex_highlighting = { "markdown" },
 				},
 				incremental_selection = {
 					enable = true,
@@ -110,6 +112,7 @@ require("lazy").setup({
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
+		tag = "compat-nvim-0.9",
 		cmd = { "NvimTreeToggle", "NvimTreeFocus" },
 		init = function()
 			--
@@ -119,6 +122,19 @@ require("lazy").setup({
 		end,
 		config = function(_, opts)
 			require("nvim-tree").setup({})
+		end,
+	},
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+		opts = {
+			flavour = "mocha",
+		},
+		config = function(_, opts)
+			require("catppuccin").setup(opts)
+			-- setup must be called before loading
+			vim.cmd.colorscheme("catppuccin-nvim")
 		end,
 	},
 })
