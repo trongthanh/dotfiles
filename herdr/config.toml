@@ -1,0 +1,51 @@
+onboarding = false
+# herdr configuration — migrated from ~/.tmux.conf
+# Docs: https://herdr.dev/docs/keyboard/
+
+[theme]
+# Matches the Dracula status-bar/border colors from .tmux.conf
+name = "dracula"
+
+auto_switch = false
+
+[keys]
+prefix = "ctrl+b"
+
+# (herdr default "prefix+z" already covers the base case)
+zoom = ["prefix+z", "ctrl+alt+z"]
+
+# replicate my tmux pane keybindings
+split_vertical = ["prefix+v", "prefix+%", "ctrl+shift+?"]
+split_horizontal = ["prefix+minus", "prefix+\"", "ctrl+shift+_"]
+
+# tmux: bind-key -n C-S-Up/Down/Left/Right select-pane
+# Add ctrl+shift+arrow as direct (no-prefix) pane-focus chords alongside the defaults.
+focus_pane_left = ["prefix+h", "ctrl+shift+left"]
+focus_pane_down = ["prefix+j", "ctrl+shift+down"]
+focus_pane_up = ["prefix+k", "ctrl+shift+up"]
+focus_pane_right = ["prefix+l", "ctrl+shift+right"]
+
+switch_tab = "alt+1..9"
+switch_workspace = "ctrl+1..9"
+next_workspace = "ctrl+down"
+previous_workspace = "ctrl+up"
+
+[[keys.command]]
+key = ["prefix+shift+r", "ctrl+shift+r"]
+type = "plugin_action"
+command = "persiyanov.reviewr.toggle"   # <plugin_id>.<action_id> — note the id, not the name
+
+[ui.toast]
+delivery = "terminal"
+
+[ui]
+show_agent_labels_on_pane_borders = true
+agent_panel_sort = "priority"
+pane_borders = "auto"
+pane_outer_borders = true
+pane_gaps = false
+
+status_indicators = "symbols"
+
+[experimental]
+kitty_graphics = true
